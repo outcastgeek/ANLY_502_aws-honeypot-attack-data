@@ -36,6 +36,7 @@ str(EndUserSat)
 CustomerSurvey2014 <- read_excel(perfFileName, sheet = "2014 Customer Survey", skip = 1)
 
 BladeWeight <- read_excel(perfFileName, sheet = "Blade Weight", skip = 1) #Skip 1 skips the first row
+View(BladeWeight)
 
 #View, Structure
 View(CustomerSurvey2014)
