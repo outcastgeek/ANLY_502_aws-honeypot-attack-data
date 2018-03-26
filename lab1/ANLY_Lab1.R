@@ -9,6 +9,11 @@ capabilities()
 setwd("~/datascience_workspace/anly500/lab1")
 getwd()
 
+#Set Library Packages Folder
+.libPaths()
+.libPaths( c( .libPaths(), "~/R/x86_64-pc-linux-gnu-library/3.4") )
+.libPaths()
+
 #Install package readxl
 install.packages("readxl")
 
