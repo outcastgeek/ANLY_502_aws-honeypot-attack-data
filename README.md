@@ -10,7 +10,7 @@
 **R and RStudio Installation:**
 
 * R Installation on Mac OSX: `> brew cask install xquartz r-app rstudio`
-* R installation on Linux:
+* R installation on Linux (Fedora):
 ```
 > sudo yum groupinstall "X Software Development
 > sudo dnf install gcc-gfortran pcre-devel xz-devel lzma-devel bzip2-devel readline-devel
