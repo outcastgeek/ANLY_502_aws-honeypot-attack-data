@@ -6,7 +6,7 @@ Sys.setenv("DISPLAY"=":0")
 capabilities()
 
 #Set Working Directory
-setwd("~/datascience_workspace/anly500/lab1")
+setwd("~/datascience_workspace/MS_Analytics/anly_500/lab1")
 getwd()
 
 #Set Library Packages Folder
