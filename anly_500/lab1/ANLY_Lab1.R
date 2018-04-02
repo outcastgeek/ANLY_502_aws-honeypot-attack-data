@@ -29,9 +29,12 @@ View(DealerSat)
 str(DealerSat) #Good way to quickly show the structure of something
 summary(DealerSat)
 
+#Method 1 - Remove Rows from the top section if a dataframe. use the skip = function
 EndUserSat <- read_excel(perfFileName, sheet = "End-User Satisfaction", skip = 1)
 View(EndUserSat)
 str(EndUserSat)
+
+#Method 2 - Remove Rows
 
 CustomerSurvey2014 <- read_excel(perfFileName, sheet = "2014 Customer Survey", skip = 1)
 

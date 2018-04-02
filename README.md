@@ -1,7 +1,13 @@
 
-#ANLY 500
+#Master of Science in Analytics
 
-**Miscellaneous:**
+**Statistics Books:**
+
+* [OpenIntro Statistics](https://www.openintro.org/stat/textbook.php?stat_book=os)
+* [Introductory Statistics with Randomization and Simulation](https://www.openintro.org/stat/textbook.php?stat_book=isrs)
+* [Advanced High School Statistics](https://www.openintro.org/stat/textbook.php?stat_book=aps)
+
+**R and RStudio Installation:**
 
 * R Installation on Mac OSX: `> brew cask install xquartz r-app rstudio`
 * R installation on Linux:
