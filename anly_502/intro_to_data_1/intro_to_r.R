@@ -32,3 +32,4 @@ arbuthnot$boys + arbuthnot$girls # All baptisms count for each year
 
 plot(arbuthnot$year, arbuthnot$boys + arbuthnot$girls, type = "l") # Plot of all baptisms per year
 
+plot(sin, -pi, 2*pi)

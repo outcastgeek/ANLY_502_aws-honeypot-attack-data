@@ -17,8 +17,15 @@ getwd()
 #Install package readxl
 install.packages("readxl")
 
+#Install package ggplot2
+install.packages("ggplot2")
+
 #Load package readxl
 library(readxl)
+
+#Require and load package ggplot2
+require(ggplot2)
+library(ggplot2)
 
 ## fileFolder <- "~/Downloads/"
 fileFolder <- "./"

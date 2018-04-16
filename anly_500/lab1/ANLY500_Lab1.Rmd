@@ -1,0 +1,120 @@
+---
+title: "ANLY 500 Lab 1"
+author: "Akpany Benjamin Ebby"
+date: "April 20th, 2018"
+output: pdf_document
+comment: Rmd Document with Markdown + Embedded R Code
+---
+
+```{r setup, include=FALSE, purl=FALSE, eval=TRUE}
+
+#Setup X11 Display
+
+x11(width = 3, height = 3)
+Sys.getenv("DISPLAY")
+Sys.setenv("DISPLAY"=":0")
+capabilities()
+
+#Set Working Directory
+setwd("~/datascience_workspace/MS_Analytics/anly_500/lab1")
+getwd()
+
+#Set Library Packages Folder
+.libPaths()
+.libPaths( c( .libPaths(), "~/R/x86_64-pc-linux-gnu-library/3.4") )
+.libPaths()
+
+#Install package readxl
+#install.packages("readxl")
+
+#Install package ggplot2
+#install.packages("ggplot2")
+
+```
+
+```{r}
+
+#Load package readxl
+library(readxl)
+
+#Require and load package ggplot2
+require(ggplot2)
+library(ggplot2)
+
+## fileFolder <- "~/Downloads/"
+fileFolder <- "./"
+perfFileName <- paste(fileFolder, "Performance Lawn Equipment Database.xlsx", sep = "")
+
+DealerSat <- read_excel(perfFileName, sheet = " Dealer Satisfaction", skip = 1)
+View(DealerSat)
+str(DealerSat) #Good way to quickly show the structure of something
+summary(DealerSat)
+
+#Method 1 - Remove Rows from the top section if a dataframe. use the skip = function
+EndUserSat <- read_excel(perfFileName, sheet = "End-User Satisfaction", skip = 1)
+View(EndUserSat)
+str(EndUserSat)
+
+#Method 2 - Remove Rows
+
+CustomerSurvey2014 <- read_excel(perfFileName, sheet = "2014 Customer Survey", skip = 1)
+
+BladeWeight <- read_excel(perfFileName, sheet = "Blade Weight", skip = 1) #Skip 1 skips the first row
+View(BladeWeight)
+
+#View, Structure
+View(CustomerSurvey2014)
+str(CustomerSurvey2014)
+
+View(BladeWeight)
+str(BladeWeight)
+
+## #Next identify the N/A rows
+## is.na(BladeWeight$Sample)
+## is.na(BladeWeight$Weight)
+
+## #Next reverse tge vector of truefalse using a boolean-not operation
+## BladeWeight[!is.na(BladeWeight$Sample),]
+
+## #Delete the rows
+## BladeWeight = BladeWeight[!is.na(BladeWeight$Sample),]
+
+## #Verify it worked
+## summary(BladeWeight$Sample)
+
+## #Finally let's subset the data by region. ##
+## View(Dealer_Sat)
+## dealerSat_NA = Dealer_Sat[1:5,]
+## dealerSat_NA
+## View(dealerSat_NA)
+## head(dealerSat_NA)
+
+## tdealerSat_NA = t(dealerSat_NA[,3:8])
+## tdealerSat_NA
+## View(tdealerSat_NA)
+
+## colnames(tdealerSat_NA) <- c("2010", "2011", "2012", "2013", "2014")
+## head(tdealerSat_NA)
+## colnames(tdealerSat_NA)
+
+```
+
+#### A Sample Plot
+
+```{r}
+
+# Define 2 vectors
+cars <- c(1, 3, 6, 4, 9)
+trucks <- c(2, 5, 4, 5, 12)
+
+# Graph cars using a y axis that ranges from 0 to 12
+plot(cars, type="o", col="blue", ylim=c(0,12))
+
+# Graph trucks with red dashed line and square points
+lines(trucks, type="o", pch=22, lty=2, col="red")
+
+# Create a title with a red, bold/italic font
+title(main="Autos", col.main="red", font.main=4)
+
+```
+

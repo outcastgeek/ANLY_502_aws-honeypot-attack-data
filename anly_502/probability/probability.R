@@ -17,7 +17,7 @@ load("kobe.RData")
 
 head(kobe)
 
-# in Game 1 Kobe had the following sequence of hits and misses
+# In Game 1 Kobe had the following sequence of hits and misses
 kobe$basket[1:9]
 
 # All shooting streaks from custom function calc_streak
