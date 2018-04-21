@@ -17,24 +17,20 @@ getwd()
 .libPaths( c( .libPaths(), "~/R/x86_64-pc-linux-gnu-library/3.4") )
 .libPaths()
 
-#Install package readxl
-#install.packages("readxl")
-
-#Install package ggplot2
-#install.packages("ggplot2")
-
-#Install package pastecs
-install.packages("pastecs")
-
-#Install package lattice
-install.packages("lattice")
-
-
-loadExcelFileFromCurrentFolder <- function(fileName)
+# Load Sheet from Current Directory
+loadSheetFromFile <- function(
+                             fileName,
+                             sheet=NULL,
+                             skip=NULL
+                             )
 {
   fileFolder <- "./"
   fileNamePath <- paste(fileFolder, fileName, sep = "")
-  dataFrame <- read_excel(fileNamePath)
+  dataFrame <- read_excel(
+    fileNamePath,
+    sheet = sheet,
+    skip = skip
+  )
   dataFrame
 }
 

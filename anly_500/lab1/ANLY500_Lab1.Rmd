@@ -10,40 +10,43 @@ comment: Rmd Document with Markdown + Embedded R Code
 
 ```{r setup, include=FALSE, purl=FALSE, eval=TRUE}
 
-source('ANLY500_Lab1_Helper.R')
+source('R/ANLY500_Lab1_Helper.R')
 
 ```
 
+```{r echo=FALSE}
+
+library(knitr)
+read_chunk('R/ANLY500_Lab1_Chunks.R')
+
+```
+
+*Install the Required Libraries if not installed*
+```{r installLibraries}
+```
+
+*Load the Required Libraries*
+```{r loadLibraries}
+```
+
+##Chapter 1
+
 ```{r}
 
-#Load package readxl
-library(readxl)
+perfFileName <- "Performance Lawn Equipment Database.xlsx"
 
-#Require and load package ggplot2
-require(ggplot2)
-library(ggplot2)
+# Dealer Satisfaction
+DealerSat <- loadSheetFromFile(perfFileName, sheet = " Dealer Satisfaction", skip = 1)
 
-#Require and load package stats
-library(stats)
-library(help = "stats")
-
-#Require and load package pastecs
-library(pastecs)
-library(help = "pastecs")
-
-perfFileName <- loadExcelFileFromCurrentFolder("Performance Lawn Equipment Database.xlsx")
-
-DealerSat <- read_excel(perfFileName, sheet = " Dealer Satisfaction", skip = 1)
-View(DealerSat)
 str(DealerSat) #Good way to quickly show the structure of something
 summary(DealerSat)
-
 head(DealerSat)
-describe(DealerSat)
 stat.desc(DealerSat)
 
+View(DealerSat)
+
 #Method 1 - Remove Rows from the top section if a dataframe. use the skip = function
-EndUserSat <- read_excel(perfFileName, sheet = "End-User Satisfaction", skip = 1)
+EndUserSat <- loadSheetFromFile(perfFileName, sheet = "End-User Satisfaction", skip = 1)
 View(EndUserSat)
 str(EndUserSat)
 
@@ -91,6 +94,8 @@ str(BladeWeight)
 
 ```
 
+##Chapter 2
+
 #### A Sample Plot
 
 ```{r}
@@ -107,6 +112,17 @@ lines(trucks, type="o", pch=22, lty=2, col="red")
 
 # Create a title with a red, bold/italic font
 title(main="Autos", col.main="red", font.main=4)
+
+```
+
+## DELETE THIS CHUNK LATER
+```{r}
+
+#head(DealerSat)
+#stat.desc(DealerSat)
+
+#library(help = "stats")
+#library(help = "pastecs")
 
 ```
 
