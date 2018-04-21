@@ -37,32 +37,41 @@ perfFileName <- "Performance Lawn Equipment Database.xlsx"
 
 # Dealer Satisfaction
 DealerSat <- loadSheetFromFile(perfFileName, sheet = " Dealer Satisfaction", skip = 1)
-
 str(DealerSat) #Good way to quickly show the structure of something
-summary(DealerSat)
-head(DealerSat)
-stat.desc(DealerSat)
-
-View(DealerSat)
+#summary(DealerSat)
+#head(DealerSat)
+#stat.desc(DealerSat)
+#View(DealerSat)
 
 #Method 1 - Remove Rows from the top section if a dataframe. use the skip = function
 EndUserSat <- loadSheetFromFile(perfFileName, sheet = "End-User Satisfaction", skip = 1)
-View(EndUserSat)
 str(EndUserSat)
+#View(EndUserSat)
 
 #Method 2 - Remove Rows
 
-CustomerSurvey2014 <- read_excel(perfFileName, sheet = "2014 Customer Survey", skip = 1)
-
-BladeWeight <- read_excel(perfFileName, sheet = "Blade Weight", skip = 1) #Skip 1 skips the first row
-View(BladeWeight)
-
-#View, Structure
-View(CustomerSurvey2014)
+CustomerSurvey2014 <- loadSheetFromFile(perfFileName, sheet = "2014 Customer Survey", skip = 1)
 str(CustomerSurvey2014)
 
-View(BladeWeight)
+Complaints <- loadSheetFromFile(perfFileName, sheet = "Complaints", skip = 1)
+str(Complaints)
+
+MowerUnitSales <- loadSheetFromFile(perfFileName, sheet = "Mower Unit sales", skip = 1)
+str(MowerUnitSales)
+
+TractorUnitSales <- loadSheetFromFile(perfFileName, sheet = "Tractor Unit sales", skip = 1)
+str(TractorUnitSales)
+
+BladeWeight <- loadSheetFromFile(perfFileName, sheet = "Blade Weight", skip = 1) #Skip 1 skips the first row
 str(BladeWeight)
+#View(BladeWeight)
+
+#View, Structure
+#View(CustomerSurvey2014)
+#str(CustomerSurvey2014)
+
+#View(BladeWeight)
+#str(BladeWeight)
 
 ## #Next identify the N/A rows
 ## is.na(BladeWeight$Sample)
