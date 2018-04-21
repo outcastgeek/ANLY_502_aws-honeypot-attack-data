@@ -6,29 +6,11 @@ output: pdf_document
 comment: Rmd Document with Markdown + Embedded R Code
 ---
 
+## Lab 1 Report as of `r Sys.Date()`
+
 ```{r setup, include=FALSE, purl=FALSE, eval=TRUE}
 
-#Setup X11 Display
-
-x11(width = 3, height = 3)
-Sys.getenv("DISPLAY")
-Sys.setenv("DISPLAY"=":0")
-capabilities()
-
-#Set Working Directory
-setwd("~/datascience_workspace/MS_Analytics/anly_500/lab1")
-getwd()
-
-#Set Library Packages Folder
-.libPaths()
-.libPaths( c( .libPaths(), "~/R/x86_64-pc-linux-gnu-library/3.4") )
-.libPaths()
-
-#Install package readxl
-#install.packages("readxl")
-
-#Install package ggplot2
-#install.packages("ggplot2")
+source('ANLY500_Lab1_Helper.R')
 
 ```
 
@@ -41,14 +23,24 @@ library(readxl)
 require(ggplot2)
 library(ggplot2)
 
-## fileFolder <- "~/Downloads/"
-fileFolder <- "./"
-perfFileName <- paste(fileFolder, "Performance Lawn Equipment Database.xlsx", sep = "")
+#Require and load package stats
+library(stats)
+library(help = "stats")
+
+#Require and load package pastecs
+library(pastecs)
+library(help = "pastecs")
+
+perfFileName <- loadExcelFileFromCurrentFolder("Performance Lawn Equipment Database.xlsx")
 
 DealerSat <- read_excel(perfFileName, sheet = " Dealer Satisfaction", skip = 1)
 View(DealerSat)
 str(DealerSat) #Good way to quickly show the structure of something
 summary(DealerSat)
+
+head(DealerSat)
+describe(DealerSat)
+stat.desc(DealerSat)
 
 #Method 1 - Remove Rows from the top section if a dataframe. use the skip = function
 EndUserSat <- read_excel(perfFileName, sheet = "End-User Satisfaction", skip = 1)
