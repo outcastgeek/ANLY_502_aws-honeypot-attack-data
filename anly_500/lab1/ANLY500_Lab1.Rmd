@@ -29,11 +29,19 @@ read_chunk('R/ANLY500_Lab1_Chunks.R')
 ```{r loadLibraries}
 ```
 
-##Chapter 1
+#Chapter 1
+
+###*Set Data File Name:*
 
 ```{r}
 
 perfFileName <- "Performance Lawn Equipment Database.xlsx"
+
+```
+
+###*Dealer Satisfaction Sheet*
+
+```{r}
 
 # Dealer Satisfaction
 DealerSat <- loadSheetFromFile(perfFileName, sheet = " Dealer Satisfaction", skip = 1)
@@ -50,21 +58,102 @@ str(EndUserSat)
 
 #Method 2 - Remove Rows
 
+```
+
+###*2014 Customer Survey Sheet:*
+
+```{r}
+
 CustomerSurvey2014 <- loadSheetFromFile(perfFileName, sheet = "2014 Customer Survey", skip = 1)
 str(CustomerSurvey2014)
+
+```
+
+###*Complaints Sheet:*
+
+```{r}
 
 Complaints <- loadSheetFromFile(perfFileName, sheet = "Complaints", skip = 1)
 str(Complaints)
 
-MowerUnitSales <- loadSheetFromFile(perfFileName, sheet = "Mower Unit sales", skip = 1)
+```
+
+###*Mower Unit Sales Sheet:*
+
+```{r}
+
+MowerUnitSales <- loadSheetFromFile(perfFileName, sheet = "Mower Unit Sales", skip = 1)
 str(MowerUnitSales)
 
-TractorUnitSales <- loadSheetFromFile(perfFileName, sheet = "Tractor Unit sales", skip = 1)
+```
+
+###*Tractor Unit Sales Sheet:*
+
+```{r}
+
+TractorUnitSales <- loadSheetFromFile(perfFileName, sheet = "Tractor Unit Sales", skip = 1)
 str(TractorUnitSales)
+
+```
+
+###*Industry Mower Total Sales Sheet:*
+
+```{r}
+
+IndustryMowerTotalSales <- loadSheetFromFile(perfFileName, sheet = "Industry Mower Total Sales", skip = 1)
+str(IndustryMowerTotalSales)
+
+```
+
+###*Industry Tractor Total Sheet:*
+
+```{r}
+
+IndustryTractorTotalSales <- loadSheetFromFile(perfFileName, sheet = "Industry Tractor Total Sales", skip = 1)
+str(IndustryTractorTotalSales)
+
+```
+
+###*Unit Production Costs Sheet:*
+
+```{r}
+
+UnitProductionCosts <- loadSheetFromFile(perfFileName, sheet = "Unit Production Costs", skip = 1)
+str(UnitProductionCosts)
+
+```
+
+###*Operating & Interest Expenses Sheet:*
+
+```{r}
+
+OperatingAndInterestExpenses <- loadSheetFromFile(perfFileName, sheet = "Operating & Interest Expenses", skip = 1)
+str(OperatingAndInterestExpenses)
+
+```
+
+###*On-Time Delivery Sheet:*
+
+```{r}
+
+OnTimeDelivery <- loadSheetFromFile(perfFileName, sheet = "On-Time Delivery", skip = 1)
+str(OnTimeDelivery)
+
+```
+
+###*Blade Weight Sheet:*
+
+```{r}
 
 BladeWeight <- loadSheetFromFile(perfFileName, sheet = "Blade Weight", skip = 1) #Skip 1 skips the first row
 str(BladeWeight)
 #View(BladeWeight)
+
+```
+
+###*Other Stuff to Revisit:*
+
+```{r}
 
 #View, Structure
 #View(CustomerSurvey2014)
@@ -103,7 +192,7 @@ str(BladeWeight)
 
 ```
 
-##Chapter 2
+#Chapter 2
 
 #### A Sample Plot
 
