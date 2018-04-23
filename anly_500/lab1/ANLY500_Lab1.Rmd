@@ -29,6 +29,8 @@ read_chunk('R/ANLY500_Lab1_Chunks.R')
 ```{r loadLibraries}
 ```
 
+Some helper functions do exists to support the code snippets below such as: ```loadSheetFromFile```
+
 #Chapter 1
 
 ###*Set Data File Name:*
@@ -141,6 +143,60 @@ str(OnTimeDelivery)
 
 ```
 
+###*Defects After Delivery Sheet:*
+
+```{r}
+
+DefectsAfterDelivery <- loadSheetFromFile(perfFileName, sheet = "Defects After Delivery", skip = 1)
+str(DefectsAfterDelivery)
+
+```
+
+###*Time to Pay Suppliers Sheet:*
+
+```{r}
+
+TimeToPaySuppliers <- loadSheetFromFile(perfFileName, sheet = "Time to Pay Suppliers", skip = 1)
+str(TimeToPaySuppliers)
+
+```
+
+###*Response times to customer service calls Sheet:*
+
+```{r}
+
+ResponseTimesCSC <- loadSheetFromFile(perfFileName, sheet = "Response Time", skip = 1)
+str(ResponseTimesCSC)
+
+```
+
+###*Employee Satisfaction Results Sheet:*
+
+```{r}
+
+EmployeeSatisfaction <- loadSheetFromFile(perfFileName, sheet = "Employee Satisfaction", skip = 1)
+str(EmployeeSatisfaction)
+
+```
+
+###*Engine Production Time Sheet:*
+
+```{r}
+
+EngineProductionTime <- loadSheetFromFile(perfFileName, sheet = "Engines", skip = 1)
+str(EngineProductionTime)
+
+```
+
+###*Unit Tractor Transmission Costs Sheet:*
+
+```{r}
+
+TransmissionCosts <- loadSheetFromFile(perfFileName, sheet = "Transmission Costs", skip = 1)
+str(TransmissionCosts)
+
+```
+
 ###*Blade Weight Sheet:*
 
 ```{r}
@@ -148,6 +204,51 @@ str(OnTimeDelivery)
 BladeWeight <- loadSheetFromFile(perfFileName, sheet = "Blade Weight", skip = 1) #Skip 1 skips the first row
 str(BladeWeight)
 #View(BladeWeight)
+
+```
+
+###*Mower Test Functional Performance Sheet:*
+
+```{r}
+
+MowerTest <- loadSheetFromFile(perfFileName, sheet = "Mower Test", skip = 1)
+str(MowerTest)
+
+```
+
+###*Employee Retention Sheet:*
+
+```{r}
+
+EmployeeRetention <- loadSheetFromFile(perfFileName, sheet = "Employee Retention", skip = 1)
+str(EmployeeRetention)
+
+```
+
+###*Unit Shipping Cost Sheet:*
+
+```{r}
+
+UnitShippingCost <- loadSheetFromFile(perfFileName, sheet = "Shipping Cost", skip = 1)
+str(UnitShippingCost)
+
+```
+
+###*Fixed Costs of Capacity Increase or New Construction Sheet:*
+
+```{r}
+
+FixedCost <- loadSheetFromFile(perfFileName, sheet = "Fixed Cost", skip = 1)
+str(FixedCost)
+
+```
+
+###*Purchasing Survey Sheet:*
+
+```{r}
+
+PurchasingSurvey <- loadSheetFromFile(perfFileName, sheet = "Purchasing Survey", skip = 1)
+str(PurchasingSurvey)
 
 ```
 
