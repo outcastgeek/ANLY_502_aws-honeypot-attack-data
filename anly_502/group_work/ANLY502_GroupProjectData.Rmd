@@ -1,0 +1,94 @@
+---
+title: "ANLY 502 Group Project Data"
+author: "Akpany Benjamin Ebby"
+date: "April 27th, 2018"
+output:
+  pdf_document:
+    highlight: zenburn
+comment: Rmd Document with Markdown + Embedded R Code
+---
+
+#### Document as of `r Sys.Date()`
+
+```{r setup, include=FALSE, purl=FALSE, eval=TRUE}
+
+source('R/ANLY502_GroupProjectData_Helper.R')
+
+```
+
+```{r echo=FALSE}
+
+library(knitr)
+read_chunk('R/ANLY502_GroupProjectData_Chunks.R')
+
+```
+
+*Install the Required Libraries if not installed*
+```{r installLibraries}
+```
+
+*Load the Required Libraries*
+```{r loadLibraries}
+```
+
+Some helper functions do exists to support the code snippets below such as: ```loadSheetFromFile```
+
+#General Description of Data
+
+The AWS Honeypot Database is an open-source database including information on cyber attacks/attempts.
+Data has 451,581 data points collected from 9:53pm on 3 March 2013 to 5:55am on 8 September 2013
+
+###*Set Data File Name:*
+
+```{r}
+
+attackDataFile <- "AWS_Honeypot_marx-geo.csv"
+
+```
+
+###*AWS Honeypot Attack Data*
+
+The Data is in the CSV format with a size of ```47MB```, and is a ```6MB``` zipped download.
+
+*Load Data*
+
+```{r}
+
+# Honeypot Attack
+HoneypotAttack <- loadSheetFromFile(attackDataFile, skip = 0)
+```
+
+*Summary of Data*
+
+```{r}
+summary(HoneypotAttack)
+```
+
+
+*Structure of Data*
+
+```{r}
+str(HoneypotAttack) #Good way to quickly show the structure of something
+```
+
+*Description of Data*
+
+```{r}
+stat.desc(HoneypotAttack)
+```
+
+#List of explanatory variables
+
+The explanatory variables are:	**src,	proto, type, spt, dpt, srcstr, cc, country, locale, localeabbr**
+
+###src:
+designates the origin of the attack
+
+#Data Source
+
+[Kaggle: AWS Honeypot Attack Data](https://www.kaggle.com/casimian2000/aws-honeypot-attack-data)
+```
+https://www.kaggle.com/casimian2000/aws-honeypot-attack-data
+```
+
+
