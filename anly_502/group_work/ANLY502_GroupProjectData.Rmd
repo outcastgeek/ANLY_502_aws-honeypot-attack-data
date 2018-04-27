@@ -1,7 +1,10 @@
 ---
 title: "ANLY 502 Group Project Data"
-author: "Akpany Benjamin Ebby"
-date: "April 27th, 2018"
+author:
+- "Akpany Benjamin Ebby"
+- "Amit Augustine"
+- "Zongxia Li"
+date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
   pdf_document:
     highlight: zenburn
@@ -36,7 +39,9 @@ Some helper functions do exists to support the code snippets below such as: ```l
 #General Description of Data
 
 The AWS Honeypot Database is an open-source database including information on cyber attacks/attempts.
-Data has 451,581 data points collected from 9:53pm on 3 March 2013 to 5:55am on 8 September 2013
+Data has 451,581 data points collected from 9:53pm on 3 March 2013 to 5:55am on 8 September 2013.
+The Data is in the CSV format with a size of ```47MB```, and is a ```6MB``` zipped download.
+We will analyze this Data to identify any trends or correlations that could possibly be used in predictive cyber threat vectors.
 
 ###*Set Data File Name:*
 
@@ -45,10 +50,6 @@ Data has 451,581 data points collected from 9:53pm on 3 March 2013 to 5:55am on 
 attackDataFile <- "AWS_Honeypot_marx-geo.csv"
 
 ```
-
-###*AWS Honeypot Attack Data*
-
-The Data is in the CSV format with a size of ```47MB```, and is a ```6MB``` zipped download.
 
 *Load Data*
 
@@ -81,8 +82,13 @@ stat.desc(HoneypotAttack)
 
 The explanatory variables are:	**src,	proto, type, spt, dpt, srcstr, cc, country, locale, localeabbr**
 
-###src:
-designates the origin of the attack
+__src:__ the origin of the attack
+__proto:__ the network protocol used during for the attack
+__srcstr:__ the ip address of the attack origin
+__cc:__ the country code
+__country:__ the country of the origin of the attack
+__locale:__ the locale of the origin of the attack
+__localeabbr:__ the locale abbreviation of the origin of the attack
 
 #Data Source
 
@@ -90,5 +96,3 @@ designates the origin of the attack
 ```
 https://www.kaggle.com/casimian2000/aws-honeypot-attack-data
 ```
-
-
