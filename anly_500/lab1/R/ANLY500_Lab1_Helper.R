@@ -3,13 +3,13 @@
 
 #Setup X11 Display
 
-x11(width = 3, height = 3)
+#x11(width = 3, height = 3)
 Sys.getenv("DISPLAY")
 Sys.setenv("DISPLAY"=":0")
 capabilities()
 
 #Set Working Directory
-setwd("~/datascience_workspace/MS_Analytics/anly_500/lab1")
+#setwd("~/datascience_workspace/MS_Analytics/anly_500/lab1")
 getwd()
 
 #Set Library Packages Folder

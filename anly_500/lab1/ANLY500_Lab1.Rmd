@@ -265,6 +265,7 @@ y2010L0 <- sum(y2010[,3])
 y2010L0
 
 ```
+
 ### Step 2
 
 ```{r}
@@ -297,6 +298,19 @@ apply(M, 1, sum)
 apply(M, c(1,2), sum)
 
 # result is two-dimension
+
+```
+
+```{r}
+
+y <- t(sapply(MowerTest[-1], function(x) table(factor(x, levels=c("Pass", "Fail")))))
+y
+
+y2 <- as.data.frame(y)
+y2
+str(y2)
+sum(y2$Fail)
+sum(y2$Pass)
 
 ```
 

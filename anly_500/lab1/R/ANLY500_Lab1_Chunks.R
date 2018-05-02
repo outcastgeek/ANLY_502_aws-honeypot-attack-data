@@ -1,12 +1,12 @@
 
 ## @knitr installLibraries
 
-# install.packages("knitr")
-# install.packages("readxl")
-# install.packages("ggplot2")
-# install.packages("pastecs")
-# install.packages("lattice")
-# install.packages("lmtest")
+## install.packages("knitr")
+## install.packages("readxl")
+## install.packages("ggplot2")
+## install.packages("pastecs")
+## install.packages("lattice")
+## install.packages("lmtest")
 
 ## @knitr loadLibraries
 
