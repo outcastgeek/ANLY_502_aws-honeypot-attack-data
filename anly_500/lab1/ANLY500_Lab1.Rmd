@@ -252,7 +252,87 @@ str(PurchasingSurvey)
 
 ```
 
+#Chapter 2
+
+### Step 1
+
+```{r}
+
+y2010 <- DealerSat[ which(DealerSat$Year == 2010), ]
+y2010
+
+y2010L0 <- sum(y2010[,3])
+y2010L0
+
+```
+### Step 2
+
+```{r}
+
+seq(1,16)
+seq(32)
+c(4,4,2)
+
+?apply
+
+M <- matrix(seq(1,16), 4, 4)
+M
+
+# apply min/max to rows
+apply(M, 1, min)
+apply(M, 1, max)
+
+# apply min/max to columns
+apply(M, 2, min)
+apply(M, 2, max)
+
+# 3 dimensional array
+M <- array( seq(32), dim = c(4,4,2) )
+M
+
+# apply sum across each M[*, , ] - i.e sum across 2nd and 3rd dimension
+apply(M, 1, sum)
+
+# apply sum across each M[*, , ] - i.e sum across 3rd dimension
+apply(M, c(1,2), sum)
+
+# result is two-dimension
+
+```
+
+### Step 3
+
+```{r}
+
+str(MowerUnitSales)
+summary(MowerUnitSales)
+
+str(TractorUnitSales)
+summary(TractorUnitSales)
+
+#str(Prices)
+#summary(Prices)
+
+#mowerRev2010 <- MowerUnitSales[1,12, 3:8] * Prices[1,2]
+#mowerRev2010
+
+```
+
+### Step 4
+
+#Chapter 3
+
+## Part 1
+
+### Step 1
+
 ###*Other Stuff to Revisit:*
+
+```{r}
+
+str(DealerSat)
+
+```
 
 ```{r}
 
@@ -293,7 +373,7 @@ str(PurchasingSurvey)
 
 ```
 
-#Chapter 2
+
 
 #### A Sample Plot
 
