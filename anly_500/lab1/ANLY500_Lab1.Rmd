@@ -375,7 +375,8 @@ colnames(data.m2) <- c("Level", "Year", "Counts")
 data.m2
 
 library(ggplot2)
-ggplot(data.m2, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identify")
+ggplot(data.m2, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
+ggplot(data.m2, aes(x=Year, y=Counts)) + geom_bar(stat="identity")
 
 ```
 
