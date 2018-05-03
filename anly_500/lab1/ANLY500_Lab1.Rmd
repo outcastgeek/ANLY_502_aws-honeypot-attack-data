@@ -481,8 +481,49 @@ ggplot(chEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="id
 
 ```
 
-###*Other Stuff to Revisit:*
+### Step 2
 
+```{r}
+
+plot(Complaints$World, ylim=range(c(0, 400)), type="l", xlab="Month", ylab="Number of Complaints")
+par(new=TRUE)
+plot(Complaints$NA., ylim=range(c(0,400)), type="l", col="red", axes = FALSE, xlab = "", ylab = "")
+par(new=TRUE)
+plot(Complaints$SA, ylim=range(c(0,400)), type="l", col="green", axes = FALSE, xlab = "", ylab = "")
+par(new=TRUE)
+plot(Complaints$Eur, ylim=range(c(0,400)), type="l", col="blue", axes = FALSE, xlab = "", ylab = "")
+par(new=TRUE)
+plot(Complaints$Pac, ylim=range(c(0,400)), type="l", col="magenta", axes = FALSE, xlab = "", ylab = "")
+par(new=TRUE)
+plot(Complaints$China, ylim=range(c(0,400)), type="l", col="deeppink4", axes = FALSE, xlab = "", ylab = "")
+
+```
+
+## Part 2
+
+### Step 1
+
+```{r}
+
+summary(ShippingCost_Existing$Mowers)
+summary(ShippingCost_Existing$Tractors)
+summary(ShippingCost_Proposed$Mowers)
+summary(ShippingCost_Proposed$Tractors)
+
+```
+
+## Part 3
+
+### Step 1
+
+```{r}
+
+str(CustomerSurvey2014)
+summary(CustomerSurvey2014)
+
+```
+
+###*Other Stuff to Revisit:*
 
 ```{r}
 
