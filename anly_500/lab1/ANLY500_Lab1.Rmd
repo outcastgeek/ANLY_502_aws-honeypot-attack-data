@@ -2,7 +2,9 @@
 title: "ANLY 500 Lab 1"
 author: "Akpany Benjamin Ebby"
 date: "April 20th, 2018"
-output: pdf_document
+output:
+  pdf_document:
+    highlight: zenburn
 comment: Rmd Document with Markdown + Embedded R Code
 ---
 
@@ -29,7 +31,8 @@ read_chunk('R/ANLY500_Lab1_Chunks.R')
 ```{r loadLibraries}
 ```
 
-Some helper functions do exists to support the code snippets below such as: ```loadSheetFromFile```
+The following helper functions will be used in support of the code snippets throughout the document:
+```{r helperFunctions}```
 
 #Chapter 1
 
@@ -360,23 +363,36 @@ str(ResponseTimesCSC)
 
 Massage the Data for Plotting:
 
-```{r}
+**Dealer Satisfaction by Region:**
 
-dealerSat_NA <- DealerSat[1:5,]
-tDealerSat_NA <- t(dealerSat_NA[,3:8])
-tDealerSat_NA
-colnames(tDealerSat_NA) <- c("2010", "2011", "2012", "2013", "2014")
-tDealerSat_NA
+####North America
+
+```{r, tidy=TRUE}
 
 library(reshape2)
-data.m2 <- melt(tDealerSat_NA, id.vars=var1)
-data.m2
-colnames(data.m2) <- c("Level", "Year", "Counts")
-data.m2
-
 library(ggplot2)
-ggplot(data.m2, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
-ggplot(data.m2, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
+
+yearsCols <- c("2010", "2011", "2012", "2013", "2014")
+dataTags <- c("Level", "Year", "Counts")
+
+naDealerSat <- regionData(DealerSat, 1,5, 3,8, yearsCols,dataTags)
+
+ggplot(naDealerSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
+ggplot(naDealerSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
+
+## dealerSat_NA <- DealerSat[1:5,]
+## tDealerSat_NA <- t(dealerSat_NA[,3:8])
+## tDealerSat_NA
+## colnames(tDealerSat_NA) <- c("2010", "2011", "2012", "2013", "2014")
+## tDealerSat_NA
+
+## data.m2 <- melt(tDealerSat_NA, id.vars=var1)
+## data.m2
+## colnames(data.m2) <- c("Level", "Year", "Counts")
+## data.m2
+
+## ggplot(data.m2, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
+## ggplot(data.m2, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
 
 ```
 
