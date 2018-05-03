@@ -341,8 +341,43 @@ f.	On-Time Delivery
 g.	Defects after Delivery
 h.	Response Time
 
-
 ### Step 1
+
+Data Structure of Dealer Satisfaction, End-User Satisfaction, Complaints, Mower Unit Sales, Tractor Unit Sales, On-Time Delivery, Defects after Delivery, Response Time:
+
+```{r}
+
+str(DealerSat)
+str(EndUserSat)
+str(Complaints)
+str(MowerUnitSales)
+str(TractorUnitSales)
+str(OnTimeDelivery)
+str(DefectsAfterDelivery)
+str(ResponseTimesCSC)
+
+```
+
+Massage the Data for Plotting:
+
+```{r}
+
+dealerSat_NA <- DealerSat[1:5,]
+tDealerSat_NA <- t(dealerSat_NA[,3:8])
+tDealerSat_NA
+colnames(tDealerSat_NA) <- c("2010", "2011", "2012", "2013", "2014")
+tDealerSat_NA
+
+library(reshape2)
+data.m2 <- melt(tDealerSat_NA, id.vars=var1)
+data.m2
+colnames(data.m2) <- c("Level", "Year", "Counts")
+data.m2
+
+library(ggplot2)
+ggplot(data.m2, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identify")
+
+```
 
 ###*Other Stuff to Revisit:*
 

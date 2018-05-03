@@ -17,3 +17,6 @@ library(ggplot2)
 library(stats)
 
 library(pastecs)
+
+library(reshape2)
+
