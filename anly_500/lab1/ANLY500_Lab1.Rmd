@@ -302,17 +302,17 @@ Prices <- UnitProductionCosts
 str(Prices)
 summary(Prices)
 
-Prices
-Prices[1:2]
-Prices[1:12,2]
-Prices[1,2]
-Prices[1:1,2:1]
+## Prices
+## Prices[1:2]
+## Prices[1:12,2]
+## Prices[1,2]
+## Prices[1:1,2:1]
 
-mowerRev2010 <- MowerUnitSales[1:12, 3:7] * Prices[1:12,2]
+## mowerRev2010 <- MowerUnitSales[1:12, 3:7] * Prices[1:12,2]
 
-tractorPrice <- Prices[1,2]
-tractorPrice
-MowerUnitSales[1:12, 3:7] * tractorPrice
+## tractorPrice <- Prices[1,2]
+## tractorPrice
+## MowerUnitSales[1:12, 3:7] * tractorPrice
 
 Prices$Tractor[1]
 MowerUnitSales[1:12, 3:7] * Prices$Tractor[1]
@@ -376,7 +376,7 @@ data.m2
 
 library(ggplot2)
 ggplot(data.m2, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
-ggplot(data.m2, aes(x=Year, y=Counts)) + geom_bar(stat="identity")
+ggplot(data.m2, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
 
 ```
 
