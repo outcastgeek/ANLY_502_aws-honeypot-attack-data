@@ -270,6 +270,85 @@ y2010L0
 
 ```{r}
 
+y <- t(sapply(MowerTest[-1], function(x) table(factor(x, levels=c("Pass", "Fail")))))
+y
+
+y2 <- as.data.frame(y)
+y2
+str(y2)
+sum(y2$Fail)
+sum(y2$Pass)
+
+```
+
+### Step 3
+
+```{r}
+
+str(MowerUnitSales)
+summary(MowerUnitSales)
+
+str(TractorUnitSales)
+summary(TractorUnitSales)
+
+## Where is the Prices data coming from?
+
+str(UnitProductionCosts)
+summary(UnitProductionCosts)
+
+# Maybe
+Prices <- UnitProductionCosts
+
+str(Prices)
+summary(Prices)
+
+Prices
+Prices[1:2]
+Prices[1:12,2]
+Prices[1,2]
+Prices[1:1,2:1]
+
+mowerRev2010 <- MowerUnitSales[1:12, 3:7] * Prices[1:12,2]
+
+tractorPrice <- Prices[1,2]
+tractorPrice
+MowerUnitSales[1:12, 3:7] * tractorPrice
+
+Prices$Tractor[1]
+MowerUnitSales[1:12, 3:7] * Prices$Tractor[1]
+MowerUnitSales[1:12, 3:7] * Prices$Tractor[1:12]
+
+#mowerRev2010 <- MowerUnitSales[1:12, 3:8] * Prices[1,2] # ????
+#mowerRev2010
+
+```
+
+### Step 4
+
+apply the sum function to find the market share of both the Mower and Tractor
+
+#Chapter 3
+
+## Part 1
+
+You have been tasked with putting together an overview of PLE’s business performance and market position.  You have specifically been asked to construct appropriate charts and summarize your conclusions for:
+a.	Dealer Satisfaction
+b.	End-User Satisfaction
+c.	Complaints
+d.	Mower Unit Sales
+e.	Tractor Unit Sales
+f.	On-Time Delivery
+g.	Defects after Delivery
+h.	Response Time
+
+
+### Step 1
+
+###*Other Stuff to Revisit:*
+
+
+```{r}
+
 seq(1,16)
 seq(32)
 c(4,4,2)
@@ -300,47 +379,6 @@ apply(M, c(1,2), sum)
 # result is two-dimension
 
 ```
-
-```{r}
-
-y <- t(sapply(MowerTest[-1], function(x) table(factor(x, levels=c("Pass", "Fail")))))
-y
-
-y2 <- as.data.frame(y)
-y2
-str(y2)
-sum(y2$Fail)
-sum(y2$Pass)
-
-```
-
-### Step 3
-
-```{r}
-
-str(MowerUnitSales)
-summary(MowerUnitSales)
-
-str(TractorUnitSales)
-summary(TractorUnitSales)
-
-#str(Prices)
-#summary(Prices)
-
-#mowerRev2010 <- MowerUnitSales[1,12, 3:8] * Prices[1,2]
-#mowerRev2010
-
-```
-
-### Step 4
-
-#Chapter 3
-
-## Part 1
-
-### Step 1
-
-###*Other Stuff to Revisit:*
 
 ```{r}
 
