@@ -32,7 +32,8 @@ read_chunk('R/ANLY500_Lab1_Chunks.R')
 ```
 
 The following helper functions will be used in support of the code snippets throughout the document:
-```{r helperFunctions}```
+```{r helperFunctions}
+```
 
 #Chapter 1
 
@@ -423,6 +424,60 @@ yearsInChinaCols <- c("2012", "2013", "2014")
 chDealerSat <- regionData(DealerSat, 21,23, 3,8, yearsInChinaCols,dataTags)
 ggplot(chDealerSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
 ggplot(chDealerSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
+
+```
+
+##**Dealer Satisfaction by Region:**
+
+###*North America:*
+
+```{r}
+
+naEndUserSat <- regionData(EndUserSat, 1,5, 3,8, yearsCols,dataTags)
+ggplot(naEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
+ggplot(naEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
+
+```
+
+###*South America:*
+
+```{r}
+
+saEndUserSat <- regionData(EndUserSat, 6,10, 3,8, yearsCols,dataTags)
+ggplot(saEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
+ggplot(saEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
+
+```
+
+###*Europe:*
+
+```{r}
+
+euEndUserSat <- regionData(EndUserSat, 11,15, 3,8, yearsCols,dataTags)
+ggplot(euEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
+ggplot(euEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
+
+```
+
+###*Pacific Rim:*
+
+```{r}
+
+prEndUserSat <- regionData(EndUserSat, 16,20, 3,8, yearsCols,dataTags)
+ggplot(prEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
+ggplot(prEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
+
+```
+
+###*China:*
+
+```{r}
+
+yearsInChinaCols <- c("2012", "2013", "2014")
+
+chEndUserSat <- regionData(EndUserSat, 21,23, 3,8, yearsInChinaCols,dataTags)
+ggplot(chEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
+ggplot(chEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
 
 ```
 
