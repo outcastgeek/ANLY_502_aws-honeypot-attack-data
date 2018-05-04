@@ -487,7 +487,7 @@ ggplot(chEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="id
 
 plot(Complaints$World, ylim=range(c(0, 400)), type="l", xlab="Month", ylab="Number of Complaints")
 par(new=TRUE)
-plot(Complaints$NA., ylim=range(c(0,400)), type="l", col="red", axes = FALSE, xlab = "", ylab = "")
+plot(Complaints$NA, ylim=range(c(0,400)), type="l", col="red", axes = FALSE, xlab = "", ylab = "")
 par(new=TRUE)
 plot(Complaints$SA, ylim=range(c(0,400)), type="l", col="green", axes = FALSE, xlab = "", ylab = "")
 par(new=TRUE)
@@ -505,10 +505,11 @@ plot(Complaints$China, ylim=range(c(0,400)), type="l", col="deeppink4", axes = F
 
 ```{r}
 
-summary(ShippingCost_Existing$Mowers)
-summary(ShippingCost_Existing$Tractors)
-summary(ShippingCost_Proposed$Mowers)
-summary(ShippingCost_Proposed$Tractors)
+summary(UnitShippingCost$Mowers) #summary(ShippingCost_Existing$Mowers)
+summary(UnitShippingCost$Tractors) #summary(ShippingCost_Existing$Tractors)
+# Where is the ShippingCost_Proposed coming from?
+# summary(ShippingCost_Proposed$Mowers)
+# summary(ShippingCost_Proposed$Tractors)
 
 ```
 
