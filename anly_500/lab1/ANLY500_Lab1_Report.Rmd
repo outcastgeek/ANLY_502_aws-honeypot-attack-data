@@ -24,7 +24,8 @@ link-citations: true
 \selectfont
 \sffamily
 
-
+## Disclaimer:
+This Lab Report #1 was last generated `r format(Sys.time(), '%B %d, %Y')`. It is based on the Business Analytics textbook excercises [@BusinessAnalytics_2016] and the R Mardown documentation [@Bookdown_2018]. In addition, [Required Libraries] and [Helper Functions] will be used in support of the various code snippets throughout the document.
 
 ```{r setup, include=FALSE, purl=FALSE, eval=TRUE}
 
@@ -41,23 +42,16 @@ read_chunk('R/ANLY500_Lab1_Chunks.R')
 
 ```
 
-*Install the Required Libraries if not installed*
-```{r installLibraries}
+```{r installLibraries, echo=FALSE}
 ```
 
-*Load the Required Libraries*
-```{r}
-
-library(readxl)
-library(ggplot2)
-library(stats)
-library(pastecs)
-library(reshape2)
-
+```{r loadLibraries, echo=FALSE}
 ```
 
-The following helper functions will be used in support of the code snippets throughout the document:
-```{r helperFunctions}
+```{r helperFunctions, echo=FALSE}
+```
+
+```{r loadSheets, echo=FALSE}
 ```
 
 #Chapter 1:
@@ -66,6 +60,8 @@ As you may have seen in text book, Mrs. Bruke, your client has provided the data
 you have decided to review each worksheet and determine whether the data were gathered from internal sources, external sources,
 or have been generated from special studies. Also, you need to know whether the measures are categorical, ordinal, interval, or ratio.
 Prepare a report summarizing the characteristics of the metrics used in each worksheet.
+
+We start by [Loading the Data Sheets].
 
 #Chapter 3:
 
@@ -77,14 +73,15 @@ Three years ago a new region was opened to serve China, where a booming market f
 PLE has always emphasized quality and considers the quality it builds into its products as its primary selling point.
 In the past 2 years, PLE has also emphasized the ease of use of their products.
 Before digging into the details of operations, Elizabeth Burke wants to gain an overview of PLE’s overall business performance and market position by examining the information provided in the database. Specifically, she is asking you to construct appropriate charts for the data in the following worksheets and summarize your conclusions from analysis of these charts.
-1.	Dealer Satisfaction
-2.	End-User Satisfaction
-3.	Complaints
-4.	Mower Unit Sales
-5.	Tractor Unit Sales
-6.	On-Time Delivery
-7.	Defects after Delivery
-8.	Response Time
+
+1. Dealer Satisfaction
+2. End-User Satisfaction
+3. Complaints
+4. Mower Unit Sales
+5. Tractor Unit Sales
+6. On-Time Delivery
+7. Defects after Delivery
+8. Response Time
 
 ##Part 2:
 
@@ -101,57 +98,70 @@ Propose a monthly dashboard of the most important business information that Ms. 
 #Chapter 4:
 
 Your client wants some detailed statistical information about much of the data in the PLE database. In particular, she wants to know the following:
-1.	the mean satisfaction ratings and standard deviations by year and region in the worksheets Dealer Satisfaction and End-User Satisfaction
-2.	a descriptive statistical summary for the 2012 customer survey data
-3.	how the response times differ in each quarter of the worksheet Response Time
-4.	how defects after delivery (worksheet Defects after Delivery) have changed over these 5 years
+
+1. the mean satisfaction ratings and standard deviations by year and region in the worksheets Dealer Satisfaction and End-User Satisfaction
+2. a descriptive statistical summary for the 2012 customer survey data
+3. how the response times differ in each quarter of the worksheet Response Time
+4. how defects after delivery (worksheet Defects after Delivery) have changed over these 5 years
 How sales of mowers and tractors compare with industry totals and how strongly monthly product sales are correlated with industry sales
 
 #Chapter 5:
 
 PLE collects a variety of data from special studies, many of which are related to the quality of its products. The company collects data about functional test performance of its mowers after assembly; results from the past 30 days are given in the worksheet Mower Test. In addition, many in-process measurements are taken to ensure that manufacturing processes remain in control and can produce according to design specifications. The worksheet Blade Weight shows 350 measurements of blade weights taken from the manufacturing process that produces mower blades during the most recent shift. Elizabeth Burke has asked you to study these data from an analytics perspective. Drawing upon your experience, you have developed a number of questions.
-1.	For the mower test data, what distribution might be appropriate to model the failure of an individual mower?
-2.	What fraction of mowers fails the functional performance test using all the mower test data?
-3.	What is the probability of having x failures in the next 100 mowers tested, for x from 0 to 20?
-4.	What is the average blade weight and how much variability is occurring in the measurements of blade weights?
-5.	Assuming that the data are normal, what is the probability that blade weights from this process will exceed 5.20?
-6.	What is the probability that weights will be less than 4.80?
-7.	What is the actual percent of weights that exceed 5.20 or are less than 4.80 from the data in the worksheet?
-8.	Is the process that makes the blades stable over time? That is, are there any apparent changes in the pattern of the blade weights?
-9.	Could any of the blade weights be considered outliers, which might indicate a problem with the manufacturing process or materials?
-10.	Was the assumption that blade weights are normally distributed justified? What is the best-fitting probability distribution for the data?
+
+1. For the mower test data, what distribution might be appropriate to model the failure of an individual mower?
+2. What fraction of mowers fails the functional performance test using all the mower test data?
+3. What is the probability of having x failures in the next 100 mowers tested, for x from 0 to 20?
+4. What is the average blade weight and how much variability is occurring in the measurements of blade weights?
+5. Assuming that the data are normal, what is the probability that blade weights from this process will exceed 5.20?
+6. What is the probability that weights will be less than 4.80?
+7. What is the actual percent of weights that exceed 5.20 or are less than 4.80 from the data in the worksheet?
+8. Is the process that makes the blades stable over time? That is, are there any apparent changes in the pattern of the blade weights?
+9. Could any of the blade weights be considered outliers, which might indicate a problem with the manufacturing process or materials?
+10. Was the assumption that blade weights are normally distributed justified? What is the best-fitting probability distribution for the data?
 
 #Chapter 6:
 
 In reviewing your previous reports, several questions came to Elizabeth Burke’s mind. Use point and interval estimates to help answer these questions.
-1.	What proportion of customer’s rate the company with “top box” survey responses (which is defined as scale levels 4 and 5) on quality, ease of use, price, and service in the 2014 Customer Survey worksheet? How do these proportions differ by geographic region?
-2.	What estimates, with reasonable assurance, can PLE give customers for response times to customer service calls?
-3.	Engineering has collected data on alternative process costs for building transmissions in the worksheet Transmission Costs. Can you determine whether one of the proposed processes is better than the current process?
-4.	What would be a confidence interval for an additional sample of mower test performance as in the worksheet Mower Test?
-5.	For the data in the worksheet Blade Weight, what is the sampling distribution of the mean, the overall mean, and the standard error of the mean? Is a normal distribution an appropriate assumption for the sampling distribution of the mean?
-6.	How many blade weights must be measured to find a 95% confidence interval for the mean blade weight with a sampling error of at most 0.2? What if the sampling error is specified as 0.1?
+
+1. What proportion of customer’s rate the company with “top box” survey responses (which is defined as scale levels 4 and 5) on quality, ease of use, price, and service in the 2014 Customer Survey worksheet? How do these proportions differ by geographic region?
+2. What estimates, with reasonable assurance, can PLE give customers for response times to customer service calls?
+3. Engineering has collected data on alternative process costs for building transmissions in the worksheet Transmission Costs. Can you determine whether one of the proposed processes is better than the current process?
+4. What would be a confidence interval for an additional sample of mower test performance as in the worksheet Mower Test?
+5. For the data in the worksheet Blade Weight, what is the sampling distribution of the mean, the overall mean, and the standard error of the mean? Is a normal distribution an appropriate assumption for the sampling distribution of the mean?
+6. How many blade weights must be measured to find a 95% confidence interval for the mean blade weight with a sampling error of at most 0.2? What if the sampling error is specified as 0.1?
 
 #Chapter 7:
 
-1) Are there significant differences in ratings of specific product/service attributes in the 2014 Customer Survey worksheet?
-2) In the worksheet On-Time Delivery, has the proportion of on-time deliveries in 2014 significantly improved since 2010?
-3) Have the data in the worksheet Defects After Delivery changed significantly over the past 5 years?
-4) Although engineering has collected data on alternative process costs for building transmissions in the worksheet Transmission Costs, why didn’t they reach a conclusion as to whether one of the proposed processes is better than the current process?
-5) Are there differences in employee retention due to gender, college graduation status, or whether the employee is from the local area in the data in the worksheet Employee Retention?
+1. Are there significant differences in ratings of specific product/service attributes in the 2014 Customer Survey worksheet?
+2. In the worksheet On-Time Delivery, has the proportion of on-time deliveries in 2014 significantly improved since 2010?
+3. Have the data in the worksheet Defects After Delivery changed significantly over the past 5 years?
+4. Although engineering has collected data on alternative process costs for building transmissions in the worksheet Transmission Costs, why didn’t they reach a conclusion as to whether one of the proposed processes is better than the current process?
+5. Are there differences in employee retention due to gender, college graduation status, or whether the employee is from the local area in the data in the worksheet Employee Retention?
 
 
 
-# Appendix
+# Appendix:
 
-### Code for A Sample Plot
-```{r sample_plot2, ref.label='sample_plot', eval=FALSE}
+#### Required Libraries
+
+```{r installLibraries, eval=FALSE}
 ```
 
-### Code for Another Sample Plot
-```{r samplePlot}
+```{r loadLibraries, eval=FALSE}
 ```
 
-# References
+#### Helper Functions
+
+```{r helperFunctions, eval=FALSE}
+```
+
+#### Loading the Data Sheets
+
+```{r loadSheets, eval=FALSE}
+```
+
+# References:
 
 
 

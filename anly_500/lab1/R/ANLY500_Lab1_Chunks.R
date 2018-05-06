@@ -72,3 +72,30 @@ regionData <- function(DFrame, lRow, hRow, lCol, hCol, cols1,cols2) {
     data.m2
 }
 
+## @knitr loadSheets
+
+perfFileName <- "Performance Lawn Equipment Database.xlsx"
+
+DealerSat <- loadSheetFromFile(perfFileName, sheet = " Dealer Satisfaction", skip = 1)
+EndUserSat <- loadSheetFromFile(perfFileName, sheet = "End-User Satisfaction", skip = 1)
+CustomerSurvey2014 <- loadSheetFromFile(perfFileName, sheet = "2014 Customer Survey", skip = 1)
+Complaints <- loadSheetFromFile(perfFileName, sheet = "Complaints", skip = 1)
+MowerUnitSales <- loadSheetFromFile(perfFileName, sheet = "Mower Unit Sales", skip = 1)
+TractorUnitSales <- loadSheetFromFile(perfFileName, sheet = "Tractor Unit Sales", skip = 1)
+IndustryMowerTotalSales <- loadSheetFromFile(perfFileName, sheet = "Industry Mower Total Sales", skip = 1)
+IndustryTractorTotalSales <- loadSheetFromFile(perfFileName, sheet = "Industry Tractor Total Sales", skip = 1)
+UnitProductionCosts <- loadSheetFromFile(perfFileName, sheet = "Unit Production Costs", skip = 1)
+OperatingAndInterestExpenses <- loadSheetFromFile(perfFileName, sheet = "Operating & Interest Expenses", skip = 1)
+OnTimeDelivery <- loadSheetFromFile(perfFileName, sheet = "On-Time Delivery", skip = 1)
+DefectsAfterDelivery <- loadSheetFromFile(perfFileName, sheet = "Defects After Delivery", skip = 1)
+TimeToPaySuppliers <- loadSheetFromFile(perfFileName, sheet = "Time to Pay Suppliers", skip = 1)
+ResponseTimesCSC <- loadSheetFromFile(perfFileName, sheet = "Response Time", skip = 1)
+EmployeeSatisfaction <- loadSheetFromFile(perfFileName, sheet = "Employee Satisfaction", skip = 1)
+EngineProductionTime <- loadSheetFromFile(perfFileName, sheet = "Engines", skip = 1)
+TransmissionCosts <- loadSheetFromFile(perfFileName, sheet = "Transmission Costs", skip = 1)
+BladeWeight <- loadSheetFromFile(perfFileName, sheet = "Blade Weight", skip = 1) #Skip 1 skips the first row
+MowerTest <- loadSheetFromFile(perfFileName, sheet = "Mower Test", skip = 1)
+EmployeeRetention <- loadSheetFromFile(perfFileName, sheet = "Employee Retention", skip = 1)
+UnitShippingCost <- loadSheetFromFile(perfFileName, sheet = "Shipping Cost", skip = 1)
+FixedCost <- loadSheetFromFile(perfFileName, sheet = "Fixed Cost", skip = 1)
+PurchasingSurvey <- loadSheetFromFile(perfFileName, sheet = "Purchasing Survey", skip = 1)
