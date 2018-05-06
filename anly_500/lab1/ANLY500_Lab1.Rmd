@@ -210,7 +210,7 @@ str(OnTimeDelivery)
 
 DefectsAfterDelivery <- perfFileName %>%
     fullFilePath %>%
-    read_excel(sheet = "Defects After Delivery", skip = 1)
+    read_excel(sheet = "Defects After Delivery", skip = 3)
 str(DefectsAfterDelivery)
 
 ```
@@ -941,6 +941,88 @@ str(A)
 plot(A)
 
 ```
+
+# Chapter 7
+
+## Part 1
+
+```{r}
+
+Quality <- CustomerSurvey2014$Quality
+str(CustomerSurvey2014)
+Ease.of.Use <- CustomerSurvey2014$'Ease of Use'
+Price <- CustomerSurvey2014$Price
+Service <- CustomerSurvey2014$Service
+
+Data <- data.frame(Y=c(Quality, Ease.of.Use, Price, Service), Para=factor(rep(c("Quality", "Ease.of.Use", "Price", "Service"), times=c(length(Quality), length(Ease.of.Use), length(Price), length(Service)))))
+str(Data)
+
+fm1 <- aov(Y~Para, data = Data)
+anova(fm1)
+
+```
+
+## Part 2
+
+```{r}
+
+p0 <- sum(OnTimeDelivery$'Number On Time'[1:12]/sum(OnTimeDelivery$'Number of deliveries'[1:12]))
+p0
+
+pbar <- sum(OnTimeDelivery$'Number On Time'[49:60])/sum(OnTimeDelivery$'Number of deliveries'[49:60])
+pbar
+
+n <- 12
+z <- (pbar - p0)/sqrt(p0*(1-p0)/n)
+z
+
+alpha <- 0.05
+z.alpha <- qnorm(1 - alpha)
+z.alpha
+
+pval <- pnorm(z, lower.tail = FALSE)
+pval
+
+```
+
+## Part 3
+
+```{r}
+
+sum(DefectsAfterDelivery$'2014')/12
+
+defects.by.year <- c(826.33, 837.42, 785.92, 669.08, 496.25)
+plot(defects.by.year, type="b", lwd=2)
+
+a <- DefectsAfterDelivery$'2010'
+b <- DefectsAfterDelivery$'2014'
+t.test(a,b, var.equal = FALSE, paired = FALSE)
+
+```
+
+## Part 4
+
+```{r}
+
+t.test(TransmissionCosts$Current, TransmissionCosts$'Process A', var.equal = FALSE, paired = FALSE)
+t.test(TransmissionCosts$Current, TransmissionCosts$'Process B', var.equal = FALSE, paired = FALSE)
+
+```
+
+## Part 5
+
+```{r}
+
+gender <- EmployeeRetention$Gender
+yearsPLE <- EmployeeRetention$YearsPLE
+male.female <- data.frame(gender=gender, yearsPLE=yearsPLE)
+
+male.female[order(male.female$gender),]
+t.test(male.female$yearsPLE ~ male.female$gender, var.equal = FALSE, paired = FALSE)
+
+```
+
+Once again, the p-value is greater than .05 who we conclude that there is no statistically significant difference between men and women in terms of the number of years of service at PLE.
 
 ###*Other Stuff to Revisit:*
 
