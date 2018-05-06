@@ -13,13 +13,9 @@
 ## @knitr loadLibraries
 
 library(readxl)
-
 library(ggplot2)
-
 library(stats)
-
 library(pastecs)
-
 library(reshape2)
 
 ### @knitr samplePlot
