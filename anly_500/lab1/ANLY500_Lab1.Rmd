@@ -907,6 +907,40 @@ z.test(TransmissionCosts$Current, sigma.x = current.sd)
 Standard\hspace{1 mm}deviation = \sqrt{\frac{mean * (1 - mean)}{n}}
 \end{equation}
 
+```{r}
+
+#TODO: Revisit this!!!!
+A <- data.frame(lapply(MowerTest, function(x) as.numeric(x)))
+str(A)
+A[,5] <- 2
+A[,10] <- 2
+A[,27] <- 2
+A[,30] <- 2
+str(A)
+
+B <- data.matrix(A[,-1])
+str(B)
+B <- B - 1
+str(B)
+
+B <- B - 1
+length(which(B==0))
+1-mean(B)
+t.test(B, mu=0.982)
+#End TODO
+
+hist(BladeWeight$Weight)
+
+# The standard error of the mean for our blade weight data can be found using
+sem <- sd(BladeWeight$Weight)/sqrt(length(BladeWeight$Weight))
+sem
+
+#TODO: Revisit this!
+A <- lm(BladeWeight$Weight~ ., BladeWeight)
+str(A)
+plot(A)
+
+```
 
 ###*Other Stuff to Revisit:*
 
