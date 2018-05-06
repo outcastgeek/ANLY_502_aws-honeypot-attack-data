@@ -15,16 +15,16 @@ output:
     fig_caption: true
     template: resources/svm-latex-ms.tex
 comment: Rmd Document with Markdown + Embedded R Code
-# spacing: double
 bibliography: resources/biblio.bib
-biblio-style: apsr
+biblio-style: "apalike"
+link-citations: true
 ---
 \fontsize{8}{11}
 \fontseries{b}
 \selectfont
 \sffamily
 
-## Lab 1 Report as of `r Sys.Date()` based on excercise from @BusinessAnalytics_2016
+## Lab 1 Report as of `r format(Sys.time(), '%B %d, %Y')` based on the Business Analytics textbook excercises (@BusinessAnalytics_2016) and the R Mardown documentation (@Bookdown_2018)
 
 ```{r setup, include=FALSE, purl=FALSE, eval=TRUE}
 
@@ -562,6 +562,32 @@ hist(CustomerSurvey2014$Quality, main="Quality - Number of Responses", xlab="Lev
 
 ```
 
+### Step 2
+
+## Part 4
+
+TODO: Do this part as you best see fit in terms of a choice of a dashboard
+
+#Chapter 4
+
+## Part 1
+
+For the Performance Lawn Equipment case study at the end of Chapter 4 you are tasked with developing the following:
+a.	The mean satisfaction ratings and standard deviations by year and region in the data files Dealer Satisfaction and End-User Satisfaction
+b.	A descriptive statistical summary for the 2014 customer survey data
+c.	How the response times differ in each quarter of the data file Response Time
+d.	How defects after delivery (data file Defects after Delivery) have changed over the years
+e.	How sales of mowers and tractors compare with industry totals and how strongly monthly product sales are correlated with industry sales
+
+### Step 1
+
+```{r}
+
+na_tDealerSat <- sectionTranspose(DealerSat, 1,5, 3,8)
+na_tDealerSat
+
+```
+
 ###*Other Stuff to Revisit:*
 
 ```{r}
@@ -642,11 +668,11 @@ str(DealerSat)
 
 ```
 
-
+This is how you create an appendix with R Markdown
 
 #### A Sample Plot
 
-```{r}
+```{r sample_plot, echo=FALSE}
 
 # Define 2 vectors
 cars <- c(1, 3, 6, 4, 9)
@@ -663,6 +689,15 @@ title(main="Autos", col.main="red", font.main=4)
 
 ```
 
+See Appendix [Code for A Sample Plot]
+
+### Another Sample Plot
+
+```{r samplePlot, echo=FALSE}
+```
+
+See Appendix [Code for Another Sample Plot]
+
 ## DELETE THIS CHUNK LATER
 ```{r}
 
@@ -672,6 +707,16 @@ title(main="Autos", col.main="red", font.main=4)
 #library(help = "stats")
 #library(help = "pastecs")
 
+```
+
+# Appendix
+
+### Code for A Sample Plot
+```{r sample_plot2, ref.label='sample_plot', eval=FALSE}
+```
+
+### Code for Another Sample Plot
+```{r samplePlot}
 ```
 
 # References

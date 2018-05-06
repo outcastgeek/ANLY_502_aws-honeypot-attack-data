@@ -34,17 +34,21 @@ loadSheetFromFile <- function(
   dataFrame
 }
 
-# Adjusts the Region Data for Plotting
-regionData <- function(DFrame, lRow, hRow, lCol, hCol, cols1,cols2) {
-  dFrame_NA <- DFrame[lRow:hRow,]
-  tDFrame_NA <- t(dFrame_NA[,lCol:hCol])
-  tDFrame_NA
-  colnames(tDFrame_NA) <- cols1
-  tDFrame_NA
-
-  data.m2 <- melt(tDFrame_NA, id.vars=var1)
-  colnames(data.m2) <- cols2
-
-  data.m2
+# Creates the transpose of a section of a Data Frame
+sectionTranspose <- function(DFrame, lRow, hRow, lCol, hCol) {
+    dFrame <- DFrame[lRow:hRow,]
+    tdFrame <- t(dFrame[,lCol:hCol])
+    tdFrame
 }
 
+# Adjusts the Region Data for Plotting
+regionData <- function(DFrame, lRow, hRow, lCol, hCol, cols1,cols2) {
+    tdFrame <- sectionTranspose(DFrame, lRow, hRow, lCol, hCol)
+    colnames(tdFrame) <- cols1
+    tdFrame
+
+    data.m2 <- melt(tdFrame, id.vars=var1)
+    colnames(data.m2) <- cols2
+
+    data.m2
+}

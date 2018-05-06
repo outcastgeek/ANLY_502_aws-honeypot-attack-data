@@ -22,6 +22,22 @@ library(pastecs)
 
 library(reshape2)
 
+### @knitr samplePlot
+
+# Define 2 vectors
+cars <- c(1, 3, 6, 4, 9)
+trucks <- c(2, 5, 4, 5, 12)
+
+# Graph cars using a y axis that ranges from 0 to 12
+plot(cars, type="o", col="blue", ylim=c(0,12))
+
+# Graph trucks with red dashed line and square points
+lines(trucks, type="o", pch=22, lty=2, col="red")
+
+# Create a title with a red, bold/italic font
+title(main="Autos", col.main="red", font.main=4)
+
+
 ## @knitr helperFunctions
 
 # Load Sheet from Current Directory
@@ -41,17 +57,22 @@ loadSheetFromFile <- function(
   dataFrame
 }
 
+# Creates the transpose of a section of a Data Frame
+sectionTranspose <- function(DFrame, lRow, hRow, lCol, hCol) {
+    dFrame <- DFrame[lRow:hRow,]
+    tdFrame <- t(dFrame[,lCol:hCol])
+    tdFrame
+}
+
 # Adjusts the Region Data for Plotting
 regionData <- function(DFrame, lRow, hRow, lCol, hCol, cols1,cols2) {
-  dFrame_NA <- DFrame[lRow:hRow,]
-  tDFrame_NA <- t(dFrame_NA[,lCol:hCol])
-  tDFrame_NA
-  colnames(tDFrame_NA) <- cols1
-  tDFrame_NA
+    tdFrame <- sectionTranspose(DFrame, lRow, hRow, lCol, hCol)
+    colnames(tdFrame) <- cols1
+    tdFrame
 
-  data.m2 <- melt(tDFrame_NA, id.vars=var1)
-  colnames(data.m2) <- cols2
+    data.m2 <- melt(tdFrame, id.vars=var1)
+    colnames(data.m2) <- cols2
 
-  data.m2
+    data.m2
 }
 
