@@ -46,16 +46,17 @@ read_chunk('R/ANLY500_Lab1_Chunks.R')
 ```
 
 *Load the Required Libraries*
-```{r}
+```{r echo=FALSE}
 
 library(readxl)
 library(ggplot2)
 library(psych)
 library(Hmisc)
 library(stats)
-#library(pastecs)
+library(pastecs)
 library(magrittr)
 library(reshape2)
+library(BSDA)
 
 ```
 
@@ -80,7 +81,7 @@ perfFileName <- "Performance Lawn Equipment Database.xlsx"
 # Dealer Satisfaction
 DealerSat <- perfFileName %>%
     fullFilePath %>%
-    read_excel(sheet = " Dealer Satisfaction", skip = 1)
+    read_excel(sheet = " Dealer Satisfaction", skip = 1) #Skip 1 skips the first row
 str(DealerSat) #Good way to quickly show the structure of something
 #summary(DealerSat)
 #head(DealerSat)
@@ -275,7 +276,7 @@ str(TransmissionCosts)
 
 BladeWeight <- perfFileName %>%
     fullFilePath %>%
-    read_excel(sheet = "Blade Weight", skip = 1) #Skip 1 skips the first row
+    read_excel(sheet = "Blade Weight")
 str(BladeWeight)
 #View(BladeWeight)
 
@@ -688,21 +689,21 @@ TODO: Revisit this!!
 
 m=0
 n=0
-for (j in 1:25){
-    # print(j)
-    m[j] <- ((DealerSat[j,4]*1) + (DealerSat[j,5]*2) +
-                 (DealerSat[j,6]*3) + (DealerSat[j,7]*4)
-             +(DealerSat[j,8]*5))/sum(DealerSat[j,3:8])
-    n[j] <- sqrt(((DealerSat[j,3] * (0 - m[j])^2) + 
-                 (DealerSat[j,4] * (1 - m[j])^2) +
-                 (DealerSat[j,5] * (2 - m[j])^2) +
-                 (DealerSat[j,6] * (3 - m[j])^2) +
-                 (DealerSat[j,7] * (4 - m[j])^2) +
-                 (DealerSat[j,8] * (5 - m[j])^2))/
-                   (sum(DealerSat[j,3:8])-1))
-    # print(m[j])
-    # print(n[j])
-}
+# for (j in 1:25){
+#     # print(j)
+#     m[j] <- ((DealerSat[j,4]*1) + (DealerSat[j,5]*2) +
+#                  (DealerSat[j,6]*3) + (DealerSat[j,7]*4)
+#              +(DealerSat[j,8]*5))/sum(DealerSat[j,3:8])
+#     n[j] <- sqrt(((DealerSat[j,3] * (0 - m[j])^2) + 
+#                  (DealerSat[j,4] * (1 - m[j])^2) +
+#                  (DealerSat[j,5] * (2 - m[j])^2) +
+#                  (DealerSat[j,6] * (3 - m[j])^2) +
+#                  (DealerSat[j,7] * (4 - m[j])^2) +
+#                  (DealerSat[j,8] * (5 - m[j])^2))/
+#                    (sum(DealerSat[j,3:8])-1))
+#     # print(m[j])
+#     # print(n[j])
+# }
 print(m)
 print(n)
 
@@ -730,7 +731,8 @@ mResponseTimesCSC <- c(mean(ResponseTimesCSC$'Q1 2013'), mean(ResponseTimesCSC$'
 mResponseTimesCSC
 
 plot(mResponseTimesCSC, type = "l", lwd=2, col="green", ylab = "Mean", xlab = "Quarter", main="Mean Response Time", ylim = c(0,5), xaxt="n")
-axis(side = 1, at = c(1:8), labels = alabels, pch=0.5)
+#TODO: Revisit this!!!!
+#axis(side = 1, at = c(1:8), labels = alabels, pch=0.5)
 
 ```
 
@@ -744,7 +746,7 @@ str(DefectsAfterDelivery)
 
 TODO: Complete this part of the exercise
 
-### Step 4 (Part e)
+### Step 5 (Part e)
 
 ```{r}
 
@@ -758,13 +760,152 @@ totalMowerSales[,8:12]<- IndustryMowerTotalSales[,-1]
 str(totalMowerSales)
 
 #TODO: Revisit this
-colnames(totalMowerSales) <- c("Month", "Year", "NorthA", "SA", "Eur", "Pac", "China", "World", "IndustryNorthA", "IndustrySA", "IndustryEur", "IndustryPac", "IndustryWorld")
-head(totalMowerSales)
+#colnames(totalMowerSales) <- c("Month", "Year", "NorthA", "SA", "Eur", "Pac", "China", "World", "IndustryNorthA", "IndustrySA", "IndustryEur", "IndustryPac", "IndustryWorld")
+#head(totalMowerSales)
 
 stat.desc(totalMowerSales)
 rcorr(as.matrix(totalMowerSales[3:12]))
 
 ```
+
+# Chapter 5
+
+## Part 1
+
+### Step 1
+
+Answer: Bernoulli Distribution
+
+### Step 2
+
+```{r}
+
+countFail <- length(which(MowerTest == "Fail"))
+countFail
+
+```
+
+So there are 54 “Fail” in the MowerTest data set, or the fraction of “Fail”, i.e. the probability of “Fail” is 54/3000 = 0.018. 
+
+### Step 3
+
+```{r}
+
+y <- dbinom(0:20, 100, .018)
+y
+plot(y)
+
+```
+
+### Step 4
+
+```{r}
+
+
+View(BladeWeight)
+str(BladeWeight)
+
+(sum(BladeWeight$Weight)/350)
+sd(BladeWeight$Weight)
+
+```
+
+### Step 5
+
+```{r}
+
+y = pnorm(5.20, mean=4.99, sd=0.11)
+y
+1 - y
+
+```
+
+### Step 6
+
+```{r}
+
+
+pnorm(4.80, mean=4.99, sd=0.11)
+```
+
+### Step 7
+
+```{r}
+
+countblade <- length(which(BladeWeight$Weight > 5.20))
+countblade
+countblade2 <- length(which(BladeWeight$Weight <= 4.80))
+countblade2
+
+```
+
+### Step 8
+
+```{r}
+
+
+plot(BladeWeight$Sample, BladeWeight$Weight)
+```
+
+### Step 9
+
+Looking at the scatter plot, only close to the 200th blade was there any trouble.  It isn’t too much trouble to find that this is blade #171.
+
+### Step 10
+
+```{r}
+
+hist(BladeWeight$Weight)
+
+```
+
+# Chapter 6
+
+## Part 1
+
+### Step 1
+
+```{r}
+
+countByRegion <- table(CustomerSurvey2014$Region, CustomerSurvey2014$Quality)
+countByRegion
+
+sum(countByRegion[3,4], countByRegion[3,5])
+
+```
+
+### Step 2
+
+````{r}
+
+Q1.13mean <- mean(ResponseTimesCSC$'Q1 2013')
+Q1.13std <- sd(ResponseTimesCSC$'Q1 2013')
+
+Q1.13mean
+Q1.13std
+
+z.test(ResponseTimesCSC$'Q1 2013', sigma.x = Q1.13std)
+
+Q2.13mean <- mean(ResponseTimesCSC$'Q2 2013')
+Q2.13std <- sd(ResponseTimesCSC$'Q2 2013')
+z.test(ResponseTimesCSC$'Q2 2013', sigma.x = Q2.13std)
+
+````
+
+### Step 3
+
+```{r}
+
+current.sd <- sd(TransmissionCosts$Current)
+z.test(TransmissionCosts$Current, sigma.x = current.sd)
+
+```
+
+### Step 4
+
+\begin{equation}
+Standard\hspace{1 mm}deviation = \sqrt{\frac{mean * (1 - mean)}{n}}
+\end{equation}
 
 
 ###*Other Stuff to Revisit:*

@@ -11,17 +11,19 @@
 ## install.packages("Hmisc")
 ## install.packages("lattice")
 ## install.packages("lmtest")
+## install.packages("BSDA")
 
 ## @knitr loadLibraries
 
 library(readxl)
 library(ggplot2)
 library(psych)
-library(Hmisc)
+library(Hmisc) #Skip 1 skips the first row
 library(stats)
 #library(pastecs)
 library(magrittr)
 library(reshape2)
+library(BSDA)
 
 ### @knitr samplePlot
 
@@ -71,7 +73,7 @@ perfFileName <- "Performance Lawn Equipment Database.xlsx"
 
 DealerSat <- perfFileName %>%
     fullFilePath %>%
-    read_excel(sheet = " Dealer Satisfaction", skip = 1)
+    read_excel(sheet = " Dealer Satisfaction", skip = 1) #Skip 1 skips the first row
 
 EndUserSat <- perfFileName %>%
     fullFilePath %>%
@@ -139,7 +141,7 @@ TransmissionCosts <- perfFileName %>%
 
 BladeWeight <- perfFileName %>%
     fullFilePath %>%
-    read_excel(sheet = "Blade Weight", skip = 1) #Skip 1 skips the first row
+    read_excel(sheet = "Blade Weight")
 
 MowerTest <- perfFileName %>%
     fullFilePath %>%
