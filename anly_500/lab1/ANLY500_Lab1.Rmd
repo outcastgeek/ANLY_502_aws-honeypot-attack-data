@@ -51,7 +51,8 @@ read_chunk('R/ANLY500_Lab1_Chunks.R')
 library(readxl)
 library(ggplot2)
 library(stats)
-library(pastecs)
+#library(pastecs)
+library(magrittr)
 library(reshape2)
 
 ```
@@ -75,7 +76,9 @@ perfFileName <- "Performance Lawn Equipment Database.xlsx"
 ```{r}
 
 # Dealer Satisfaction
-DealerSat <- loadSheetFromFile(perfFileName, sheet = " Dealer Satisfaction", skip = 1)
+DealerSat <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = " Dealer Satisfaction", skip = 1)
 str(DealerSat) #Good way to quickly show the structure of something
 #summary(DealerSat)
 #head(DealerSat)
@@ -89,7 +92,9 @@ str(DealerSat) #Good way to quickly show the structure of something
 ```{r}
 
 #Method 1 - Remove Rows from the top section if a dataframe. use the skip = function
-EndUserSat <- loadSheetFromFile(perfFileName, sheet = "End-User Satisfaction", skip = 1)
+EndUserSat <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "End-User Satisfaction", skip = 1)
 str(EndUserSat)
 #View(EndUserSat)
 
@@ -101,7 +106,9 @@ str(EndUserSat)
 
 ```{r}
 
-CustomerSurvey2014 <- loadSheetFromFile(perfFileName, sheet = "2014 Customer Survey", skip = 1)
+CustomerSurvey2014 <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "2014 Customer Survey", skip = 1)
 str(CustomerSurvey2014)
 
 ```
@@ -110,7 +117,9 @@ str(CustomerSurvey2014)
 
 ```{r}
 
-Complaints <- loadSheetFromFile(perfFileName, sheet = "Complaints", skip = 1)
+Complaints <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Complaints", skip = 1)
 str(Complaints)
 
 ```
@@ -119,7 +128,9 @@ str(Complaints)
 
 ```{r}
 
-MowerUnitSales <- loadSheetFromFile(perfFileName, sheet = "Mower Unit Sales", skip = 1)
+MowerUnitSales <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Mower Unit Sales", skip = 1)
 str(MowerUnitSales)
 
 ```
@@ -128,7 +139,9 @@ str(MowerUnitSales)
 
 ```{r}
 
-TractorUnitSales <- loadSheetFromFile(perfFileName, sheet = "Tractor Unit Sales", skip = 1)
+TractorUnitSales <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Tractor Unit Sales", skip = 1)
 str(TractorUnitSales)
 
 ```
@@ -137,7 +150,9 @@ str(TractorUnitSales)
 
 ```{r}
 
-IndustryMowerTotalSales <- loadSheetFromFile(perfFileName, sheet = "Industry Mower Total Sales", skip = 1)
+IndustryMowerTotalSales <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Industry Mower Total Sales", skip = 1)
 str(IndustryMowerTotalSales)
 
 ```
@@ -146,7 +161,9 @@ str(IndustryMowerTotalSales)
 
 ```{r}
 
-IndustryTractorTotalSales <- loadSheetFromFile(perfFileName, sheet = "Industry Tractor Total Sales", skip = 1)
+IndustryTractorTotalSales <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Industry Tractor Total Sales", skip = 1)
 str(IndustryTractorTotalSales)
 
 ```
@@ -155,7 +172,9 @@ str(IndustryTractorTotalSales)
 
 ```{r}
 
-UnitProductionCosts <- loadSheetFromFile(perfFileName, sheet = "Unit Production Costs", skip = 1)
+UnitProductionCosts <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Unit Production Costs", skip = 1)
 str(UnitProductionCosts)
 
 ```
@@ -164,7 +183,9 @@ str(UnitProductionCosts)
 
 ```{r}
 
-OperatingAndInterestExpenses <- loadSheetFromFile(perfFileName, sheet = "Operating & Interest Expenses", skip = 1)
+OperatingAndInterestExpenses <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Operating & Interest Expenses", skip = 1)
 str(OperatingAndInterestExpenses)
 
 ```
@@ -173,7 +194,9 @@ str(OperatingAndInterestExpenses)
 
 ```{r}
 
-OnTimeDelivery <- loadSheetFromFile(perfFileName, sheet = "On-Time Delivery", skip = 1)
+OnTimeDelivery <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "On-Time Delivery", skip = 1)
 str(OnTimeDelivery)
 
 ```
@@ -182,7 +205,9 @@ str(OnTimeDelivery)
 
 ```{r}
 
-DefectsAfterDelivery <- loadSheetFromFile(perfFileName, sheet = "Defects After Delivery", skip = 1)
+DefectsAfterDelivery <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Defects After Delivery", skip = 1)
 str(DefectsAfterDelivery)
 
 ```
@@ -191,7 +216,9 @@ str(DefectsAfterDelivery)
 
 ```{r}
 
-TimeToPaySuppliers <- loadSheetFromFile(perfFileName, sheet = "Time to Pay Suppliers", skip = 1)
+TimeToPaySuppliers <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Time to Pay Suppliers", skip = 1)
 str(TimeToPaySuppliers)
 
 ```
@@ -200,7 +227,9 @@ str(TimeToPaySuppliers)
 
 ```{r}
 
-ResponseTimesCSC <- loadSheetFromFile(perfFileName, sheet = "Response Time", skip = 1)
+ResponseTimesCSC <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Response Time", skip = 1)
 str(ResponseTimesCSC)
 
 ```
@@ -209,7 +238,9 @@ str(ResponseTimesCSC)
 
 ```{r}
 
-EmployeeSatisfaction <- loadSheetFromFile(perfFileName, sheet = "Employee Satisfaction", skip = 1)
+EmployeeSatisfaction <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Employee Satisfaction", skip = 1)
 str(EmployeeSatisfaction)
 
 ```
@@ -218,7 +249,9 @@ str(EmployeeSatisfaction)
 
 ```{r}
 
-EngineProductionTime <- loadSheetFromFile(perfFileName, sheet = "Engines", skip = 1)
+EngineProductionTime <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Engines", skip = 1)
 str(EngineProductionTime)
 
 ```
@@ -227,7 +260,9 @@ str(EngineProductionTime)
 
 ```{r}
 
-TransmissionCosts <- loadSheetFromFile(perfFileName, sheet = "Transmission Costs", skip = 1)
+TransmissionCosts <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Transmission Costs", skip = 1)
 str(TransmissionCosts)
 
 ```
@@ -236,7 +271,9 @@ str(TransmissionCosts)
 
 ```{r}
 
-BladeWeight <- loadSheetFromFile(perfFileName, sheet = "Blade Weight", skip = 1) #Skip 1 skips the first row
+BladeWeight <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Blade Weight", skip = 1) #Skip 1 skips the first row
 str(BladeWeight)
 #View(BladeWeight)
 
@@ -246,7 +283,9 @@ str(BladeWeight)
 
 ```{r}
 
-MowerTest <- loadSheetFromFile(perfFileName, sheet = "Mower Test", skip = 1)
+MowerTest <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Mower Test", skip = 1)
 str(MowerTest)
 
 ```
@@ -255,7 +294,9 @@ str(MowerTest)
 
 ```{r}
 
-EmployeeRetention <- loadSheetFromFile(perfFileName, sheet = "Employee Retention", skip = 1)
+EmployeeRetention <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Employee Retention", skip = 1)
 str(EmployeeRetention)
 
 ```
@@ -264,7 +305,9 @@ str(EmployeeRetention)
 
 ```{r}
 
-UnitShippingCost <- loadSheetFromFile(perfFileName, sheet = "Shipping Cost", skip = 1)
+UnitShippingCost <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Shipping Cost", skip = 1)
 str(UnitShippingCost)
 
 ```
@@ -273,7 +316,9 @@ str(UnitShippingCost)
 
 ```{r}
 
-FixedCost <- loadSheetFromFile(perfFileName, sheet = "Fixed Cost", skip = 1)
+FixedCost <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Fixed Cost", skip = 1)
 str(FixedCost)
 
 ```
@@ -282,7 +327,9 @@ str(FixedCost)
 
 ```{r}
 
-PurchasingSurvey <- loadSheetFromFile(perfFileName, sheet = "Purchasing Survey", skip = 1)
+PurchasingSurvey <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Purchasing Survey", skip = 1)
 str(PurchasingSurvey)
 
 ```
@@ -410,7 +457,9 @@ dataTags <- c("Level", "Year", "Counts")
 
 ```{r}
 
-naDealerSat <- regionData(DealerSat, 1,5, 3,8, yearsCols,dataTags)
+naDealerSat <- DealerSat %>%
+        sectionTranspose(1,5, 3,8) %>%
+        tGraphData(yearsCols,dataTags)
 ggplot(naDealerSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
 ggplot(naDealerSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
 
@@ -420,7 +469,9 @@ ggplot(naDealerSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="ide
 
 ```{r}
 
-saDealerSat <- regionData(DealerSat, 6,10, 3,8, yearsCols,dataTags)
+saDealerSat <- DealerSat %>%
+        sectionTranspose(6,10, 3,8) %>%
+        tGraphData(yearsCols,dataTags)
 ggplot(saDealerSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
 ggplot(saDealerSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
 
@@ -430,7 +481,9 @@ ggplot(saDealerSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="ide
 
 ```{r}
 
-euDealerSat <- regionData(DealerSat, 11,15, 3,8, yearsCols,dataTags)
+euDealerSat <- DealerSat %>%
+        sectionTranspose(11,15, 3,8) %>%
+        tGraphData(yearsCols,dataTags)
 ggplot(euDealerSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
 ggplot(euDealerSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
 
@@ -440,7 +493,9 @@ ggplot(euDealerSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="ide
 
 ```{r}
 
-prDealerSat <- regionData(DealerSat, 16,20, 3,8, yearsCols,dataTags)
+prDealerSat <- DealerSat %>%
+        sectionTranspose(16,20, 3,8) %>%
+        tGraphData(yearsCols,dataTags)
 ggplot(prDealerSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
 ggplot(prDealerSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
 
@@ -452,7 +507,9 @@ ggplot(prDealerSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="ide
 
 yearsInChinaCols <- c("2012", "2013", "2014")
 
-chDealerSat <- regionData(DealerSat, 21,23, 3,8, yearsInChinaCols,dataTags)
+chDealerSat <- DealerSat %>%
+        sectionTranspose(21,23, 3,8) %>%
+        tGraphData(yearsInChinaCols,dataTags)
 ggplot(chDealerSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
 ggplot(chDealerSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
 
@@ -464,7 +521,9 @@ ggplot(chDealerSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="ide
 
 ```{r}
 
-naEndUserSat <- regionData(EndUserSat, 1,5, 3,8, yearsCols,dataTags)
+naEndUserSat <- EndUserSat %>%
+        sectionTranspose(1,5, 3,8) %>%
+        tGraphData(yearsCols,dataTags)
 ggplot(naEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
 ggplot(naEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
 
@@ -474,7 +533,9 @@ ggplot(naEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="id
 
 ```{r}
 
-saEndUserSat <- regionData(EndUserSat, 6,10, 3,8, yearsCols,dataTags)
+saEndUserSat <- EndUserSat %>%
+        sectionTranspose(6,10, 3,8) %>%
+        tGraphData(yearsCols,dataTags)
 ggplot(saEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
 ggplot(saEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
 
@@ -484,7 +545,9 @@ ggplot(saEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="id
 
 ```{r}
 
-euEndUserSat <- regionData(EndUserSat, 11,15, 3,8, yearsCols,dataTags)
+euEndUserSat <- EndUserSat %>%
+        sectionTranspose(11,15, 3,8) %>%
+        tGraphData(yearsCols,dataTags)
 ggplot(euEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
 ggplot(euEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
 
@@ -494,7 +557,9 @@ ggplot(euEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="id
 
 ```{r}
 
-prEndUserSat <- regionData(EndUserSat, 16,20, 3,8, yearsCols,dataTags)
+prEndUserSat <- EndUserSat %>%
+        sectionTranspose(16,20, 3,8) %>%
+        tGraphData(yearsCols,dataTags)
 ggplot(prEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
 ggplot(prEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
 
@@ -506,7 +571,9 @@ ggplot(prEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="id
 
 yearsInChinaCols <- c("2012", "2013", "2014")
 
-chEndUserSat <- regionData(EndUserSat, 21,23, 3,8, yearsInChinaCols,dataTags)
+chEndUserSat <- EndUserSat %>%
+        sectionTranspose(21,23, 3,8) %>%
+        tGraphData(yearsInChinaCols,dataTags)
 ggplot(chEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
 ggplot(chEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
 

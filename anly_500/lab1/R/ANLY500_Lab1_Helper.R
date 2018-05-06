@@ -17,21 +17,12 @@ getwd()
 .libPaths( c( .libPaths(), "~/R/x86_64-pc-linux-gnu-library/3.4") )
 .libPaths()
 
-# Load Sheet from Current Directory
-loadSheetFromFile <- function(
-                             fileName,
-                             sheet=NULL,
-                             skip=NULL
-                             )
+# Obtains the full File Path
+fullFilePath <- function(fileName)
 {
-  fileFolder <- "./"
-  fileNamePath <- paste(fileFolder, fileName, sep = "")
-  dataFrame <- read_excel(
-    fileNamePath,
-    sheet = sheet,
-    skip = skip
-  )
-  dataFrame
+    fileFolder <- "./"
+    fileNamePath <- paste(fileFolder, fileName, sep = "")
+    fileNamePath
 }
 
 # Creates the transpose of a section of a Data Frame
@@ -41,13 +32,10 @@ sectionTranspose <- function(DFrame, lRow, hRow, lCol, hCol) {
     tdFrame
 }
 
-# Adjusts the Region Data for Plotting
-regionData <- function(DFrame, lRow, hRow, lCol, hCol, cols1,cols2) {
-    tdFrame <- sectionTranspose(DFrame, lRow, hRow, lCol, hCol)
-    colnames(tdFrame) <- cols1
-    tdFrame
-
-    data.m2 <- melt(tdFrame, id.vars=var1)
+# Adjusts the Transposed Data for Plotting
+tGraphData <- function(tDFrame, cols1,cols2) {
+    colnames(tDFrame) <- cols1
+    data.m2 <- melt(tDFrame, id.vars=var1)
     colnames(data.m2) <- cols2
 
     data.m2

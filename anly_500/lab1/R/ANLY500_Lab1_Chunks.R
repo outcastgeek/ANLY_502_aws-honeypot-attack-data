@@ -15,7 +15,8 @@
 library(readxl)
 library(ggplot2)
 library(stats)
-library(pastecs)
+#library(pastecs)
+library(magrittr)
 library(reshape2)
 
 ### @knitr samplePlot
@@ -36,21 +37,12 @@ title(main="Autos", col.main="red", font.main=4)
 
 ## @knitr helperFunctions
 
-# Load Sheet from Current Directory
-loadSheetFromFile <- function(
-                              fileName,
-                              sheet=NULL,
-                              skip=NULL
-                              )
+# Obtains the full File Path
+fullFilePath <- function(fileName)
 {
-  fileFolder <- "./"
-  fileNamePath <- paste(fileFolder, fileName, sep = "")
-  dataFrame <- read_excel(
-    fileNamePath,
-    sheet = sheet,
-    skip = skip
-  )
-  dataFrame
+    fileFolder <- "./"
+    fileNamePath <- paste(fileFolder, fileName, sep = "")
+    fileNamePath
 }
 
 # Creates the transpose of a section of a Data Frame
@@ -60,13 +52,10 @@ sectionTranspose <- function(DFrame, lRow, hRow, lCol, hCol) {
     tdFrame
 }
 
-# Adjusts the Region Data for Plotting
-regionData <- function(DFrame, lRow, hRow, lCol, hCol, cols1,cols2) {
-    tdFrame <- sectionTranspose(DFrame, lRow, hRow, lCol, hCol)
-    colnames(tdFrame) <- cols1
-    tdFrame
-
-    data.m2 <- melt(tdFrame, id.vars=var1)
+# Adjusts the Transposed Data for Plotting
+tGraphData <- function(tDFrame, cols1,cols2) {
+    colnames(tDFrame) <- cols1
+    data.m2 <- melt(tDFrame, id.vars=var1)
     colnames(data.m2) <- cols2
 
     data.m2
@@ -76,26 +65,95 @@ regionData <- function(DFrame, lRow, hRow, lCol, hCol, cols1,cols2) {
 
 perfFileName <- "Performance Lawn Equipment Database.xlsx"
 
-DealerSat <- loadSheetFromFile(perfFileName, sheet = " Dealer Satisfaction", skip = 1)
-EndUserSat <- loadSheetFromFile(perfFileName, sheet = "End-User Satisfaction", skip = 1)
-CustomerSurvey2014 <- loadSheetFromFile(perfFileName, sheet = "2014 Customer Survey", skip = 1)
-Complaints <- loadSheetFromFile(perfFileName, sheet = "Complaints", skip = 1)
-MowerUnitSales <- loadSheetFromFile(perfFileName, sheet = "Mower Unit Sales", skip = 1)
-TractorUnitSales <- loadSheetFromFile(perfFileName, sheet = "Tractor Unit Sales", skip = 1)
-IndustryMowerTotalSales <- loadSheetFromFile(perfFileName, sheet = "Industry Mower Total Sales", skip = 1)
-IndustryTractorTotalSales <- loadSheetFromFile(perfFileName, sheet = "Industry Tractor Total Sales", skip = 1)
-UnitProductionCosts <- loadSheetFromFile(perfFileName, sheet = "Unit Production Costs", skip = 1)
-OperatingAndInterestExpenses <- loadSheetFromFile(perfFileName, sheet = "Operating & Interest Expenses", skip = 1)
-OnTimeDelivery <- loadSheetFromFile(perfFileName, sheet = "On-Time Delivery", skip = 1)
-DefectsAfterDelivery <- loadSheetFromFile(perfFileName, sheet = "Defects After Delivery", skip = 1)
-TimeToPaySuppliers <- loadSheetFromFile(perfFileName, sheet = "Time to Pay Suppliers", skip = 1)
-ResponseTimesCSC <- loadSheetFromFile(perfFileName, sheet = "Response Time", skip = 1)
-EmployeeSatisfaction <- loadSheetFromFile(perfFileName, sheet = "Employee Satisfaction", skip = 1)
-EngineProductionTime <- loadSheetFromFile(perfFileName, sheet = "Engines", skip = 1)
-TransmissionCosts <- loadSheetFromFile(perfFileName, sheet = "Transmission Costs", skip = 1)
-BladeWeight <- loadSheetFromFile(perfFileName, sheet = "Blade Weight", skip = 1) #Skip 1 skips the first row
-MowerTest <- loadSheetFromFile(perfFileName, sheet = "Mower Test", skip = 1)
-EmployeeRetention <- loadSheetFromFile(perfFileName, sheet = "Employee Retention", skip = 1)
-UnitShippingCost <- loadSheetFromFile(perfFileName, sheet = "Shipping Cost", skip = 1)
-FixedCost <- loadSheetFromFile(perfFileName, sheet = "Fixed Cost", skip = 1)
-PurchasingSurvey <- loadSheetFromFile(perfFileName, sheet = "Purchasing Survey", skip = 1)
+DealerSat <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = " Dealer Satisfaction", skip = 1)
+
+EndUserSat <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "End-User Satisfaction", skip = 1)
+
+CustomerSurvey2014 <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "2014 Customer Survey", skip = 1)
+
+Complaints <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Complaints", skip = 1)
+
+MowerUnitSales <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Mower Unit Sales", skip = 1)
+
+TractorUnitSales <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Tractor Unit Sales", skip = 1)
+
+IndustryMowerTotalSales <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Industry Mower Total Sales", skip = 1)
+
+IndustryTractorTotalSales <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Industry Tractor Total Sales", skip = 1)
+
+UnitProductionCosts <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Unit Production Costs", skip = 1)
+
+OperatingAndInterestExpenses <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Operating & Interest Expenses", skip = 1)
+
+OnTimeDelivery <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "On-Time Delivery", skip = 1)
+
+DefectsAfterDelivery <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Defects After Delivery", skip = 1)
+
+TimeToPaySuppliers <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Time to Pay Suppliers", skip = 1)
+
+ResponseTimesCSC <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Response Time", skip = 1)
+
+EmployeeSatisfaction <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Employee Satisfaction", skip = 1)
+
+EngineProductionTime <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Engines", skip = 1)
+
+TransmissionCosts <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Transmission Costs", skip = 1)
+
+BladeWeight <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Blade Weight", skip = 1) #Skip 1 skips the first row
+
+MowerTest <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Mower Test", skip = 1)
+
+EmployeeRetention <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Employee Retention", skip = 1)
+
+UnitShippingCost <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Shipping Cost", skip = 1)
+
+FixedCost <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Fixed Cost", skip = 1)
+
+PurchasingSurvey <- perfFileName %>%
+    fullFilePath %>%
+    read_excel(sheet = "Purchasing Survey", skip = 1)
+
