@@ -50,6 +50,8 @@ read_chunk('R/ANLY500_Lab1_Chunks.R')
 
 library(readxl)
 library(ggplot2)
+library(psych)
+library(Hmisc)
 library(stats)
 #library(pastecs)
 library(magrittr)
@@ -646,14 +648,124 @@ c.	How the response times differ in each quarter of the data file Response Time
 d.	How defects after delivery (data file Defects after Delivery) have changed over the years
 e.	How sales of mowers and tractors compare with industry totals and how strongly monthly product sales are correlated with industry sales
 
-### Step 1
+### Step 1 (Part a)
 
 ```{r}
 
-na_tDealerSat <- sectionTranspose(DealerSat, 1,5, 3,8)
-na_tDealerSat
+tDealerSat_NA <- DealerSat %>%
+                 sectionTranspose(1,5, 3,8)
+colnames(tDealerSat_NA) <- yearsCols
+tDealerSat_NA # The transpose of the Dealer Satisfaction data for the North America region with column headings
+
+m_NA2010 <- ((tDealerSat_NA[2,1]*1) + (tDealerSat_NA[3,1]*2) + (tDealerSat_NA[4,1]*3) + (tDealerSat_NA[5,1]*4) + (tDealerSat_NA[6,1]*5))/sum(tDealerSat_NA[,1])
+m_NA2010
 
 ```
+
+The easier brute force is:
+
+```{r}
+
+m=0
+for (j in 1:25){
+    # print(j)
+    m[j] <- ((DealerSat[j,4]*1) + (DealerSat[j,5]*2) +
+             (DealerSat[j,6]*3) + (DealerSat[j,7]*4)
+             +(DealerSat[j,8]*5))/sum(DealerSat[j,3:8])
+   # print(m[j])
+}
+print(m)
+
+n <- matrix(m, 5, byrow=FALSE)
+n
+
+```
+
+The same process is used for the standard deviations:
+
+TODO: Revisit this!!
+```{r}
+
+m=0
+n=0
+for (j in 1:25){
+    # print(j)
+    m[j] <- ((DealerSat[j,4]*1) + (DealerSat[j,5]*2) +
+                 (DealerSat[j,6]*3) + (DealerSat[j,7]*4)
+             +(DealerSat[j,8]*5))/sum(DealerSat[j,3:8])
+    n[j] <- sqrt(((DealerSat[j,3] * (0 - m[j])^2) + 
+                 (DealerSat[j,4] * (1 - m[j])^2) +
+                 (DealerSat[j,5] * (2 - m[j])^2) +
+                 (DealerSat[j,6] * (3 - m[j])^2) +
+                 (DealerSat[j,7] * (4 - m[j])^2) +
+                 (DealerSat[j,8] * (5 - m[j])^2))/
+                   (sum(DealerSat[j,3:8])-1))
+    # print(m[j])
+    # print(n[j])
+}
+print(m)
+print(n)
+
+```
+
+### Step 2 (Part b)
+
+```{r}
+
+custSurveyNA <- CustomerSurvey2014[1:100,-1]
+custSurveySA <-CustomerSurvey2014[102:151,-1]
+
+describe(custSurveySA)
+stat.desc(custSurveySA)
+
+```
+
+### Step 3 (Part c)
+
+```{r}
+
+str(ResponseTimesCSC)
+
+mResponseTimesCSC <- c(mean(ResponseTimesCSC$'Q1 2013'), mean(ResponseTimesCSC$'Q2 2013'), mean(ResponseTimesCSC$'Q3 2013'), mean(ResponseTimesCSC$'Q4 2013'), mean(ResponseTimesCSC$'Q1 2014'), mean(ResponseTimesCSC$'Q2 2014'), mean(ResponseTimesCSC$'Q3 2014'), mean(ResponseTimesCSC$'Q4 2014'))
+mResponseTimesCSC
+
+plot(mResponseTimesCSC, type = "l", lwd=2, col="green", ylab = "Mean", xlab = "Quarter", main="Mean Response Time", ylim = c(0,5), xaxt="n")
+axis(side = 1, at = c(1:8), labels = alabels, pch=0.5)
+
+```
+
+### Step 4 (Part d)
+
+```{r}
+
+str(DefectsAfterDelivery)
+
+```
+
+TODO: Complete this part of the exercise
+
+### Step 4 (Part e)
+
+```{r}
+
+str(MowerUnitSales)
+str(IndustryMowerTotalSales)
+
+totalMowerSales <- MowerUnitSales[,]
+str(totalMowerSales)
+
+totalMowerSales[,8:12]<- IndustryMowerTotalSales[,-1]
+str(totalMowerSales)
+
+#TODO: Revisit this
+colnames(totalMowerSales) <- c("Month", "Year", "NorthA", "SA", "Eur", "Pac", "China", "World", "IndustryNorthA", "IndustrySA", "IndustryEur", "IndustryPac", "IndustryWorld")
+head(totalMowerSales)
+
+stat.desc(totalMowerSales)
+rcorr(as.matrix(totalMowerSales[3:12]))
+
+```
+
 
 ###*Other Stuff to Revisit:*
 

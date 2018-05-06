@@ -7,6 +7,8 @@
 ## install.packages("readxl")
 ## install.packages("ggplot2")
 ## install.packages("pastecs")
+## install.packages("psych")
+## install.packages("Hmisc")
 ## install.packages("lattice")
 ## install.packages("lmtest")
 
@@ -14,6 +16,8 @@
 
 library(readxl)
 library(ggplot2)
+library(psych)
+library(Hmisc)
 library(stats)
 #library(pastecs)
 library(magrittr)
