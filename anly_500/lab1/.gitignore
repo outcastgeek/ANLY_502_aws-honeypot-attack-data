@@ -3,6 +3,7 @@
 
 *.md
 *.pdf
+*.bbl
 figure
 *.iml
 .idea

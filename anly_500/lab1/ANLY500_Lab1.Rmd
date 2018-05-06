@@ -1,14 +1,30 @@
 ---
 title: "ANLY 500 Lab 1"
-author: "Akpany Benjamin Ebby"
-date: "April 20th, 2018"
+author:
+- name: Akpany Benjamin Ebby
+  affiliation: Harrisburg University of Science and Technology (Master of Science in Analytics)
+date: "`r format(Sys.time(), '%B %d, %Y')`"
 output:
   pdf_document:
-    highlight: zenburn
+    highlight: tango
+    toc: true
+    toc_depth: 2
+    number_sections: false
+    fig_width: 7
+    fig_height: 6
+    fig_caption: true
+    template: resources/svm-latex-ms.tex
 comment: Rmd Document with Markdown + Embedded R Code
+# spacing: double
+bibliography: resources/biblio.bib
+biblio-style: apsr
 ---
+\fontsize{8}{11}
+\fontseries{b}
+\selectfont
+\sffamily
 
-## Lab 1 Report as of `r Sys.Date()`
+## Lab 1 Report as of `r Sys.Date()` based on excercise from @BusinessAnalytics_2016
 
 ```{r setup, include=FALSE, purl=FALSE, eval=TRUE}
 
@@ -19,6 +35,8 @@ source('R/ANLY500_Lab1_Helper.R')
 ```{r echo=FALSE}
 
 library(knitr)
+library(printr)
+library(formatR)
 read_chunk('R/ANLY500_Lab1_Chunks.R')
 
 ```
@@ -28,7 +46,14 @@ read_chunk('R/ANLY500_Lab1_Chunks.R')
 ```
 
 *Load the Required Libraries*
-```{r loadLibraries}
+```{r}
+
+library(readxl)
+library(ggplot2)
+library(stats)
+library(pastecs)
+library(reshape2)
+
 ```
 
 The following helper functions will be used in support of the code snippets throughout the document:
@@ -56,6 +81,12 @@ str(DealerSat) #Good way to quickly show the structure of something
 #head(DealerSat)
 #stat.desc(DealerSat)
 #View(DealerSat)
+
+```
+
+###*End-User Satisfaction*
+
+```{r}
 
 #Method 1 - Remove Rows from the top section if a dataframe. use the skip = function
 EndUserSat <- loadSheetFromFile(perfFileName, sheet = "End-User Satisfaction", skip = 1)
@@ -487,7 +518,7 @@ ggplot(chEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="id
 
 plot(Complaints$World, ylim=range(c(0, 400)), type="l", xlab="Month", ylab="Number of Complaints")
 par(new=TRUE)
-plot(Complaints$NA, ylim=range(c(0,400)), type="l", col="red", axes = FALSE, xlab = "", ylab = "")
+plot(Complaints$'NA', ylim=range(c(0,400)), type="l", col="red", axes = FALSE, xlab = "", ylab = "")
 par(new=TRUE)
 plot(Complaints$SA, ylim=range(c(0,400)), type="l", col="green", axes = FALSE, xlab = "", ylab = "")
 par(new=TRUE)
@@ -521,6 +552,13 @@ summary(UnitShippingCost$Tractors) #summary(ShippingCost_Existing$Tractors)
 
 str(CustomerSurvey2014)
 summary(CustomerSurvey2014)
+
+CustomerSurvey2014[is.na(CustomerSurvey2014)] <- "NorthA"
+str(CustomerSurvey2014)
+
+barplot(table(CustomerSurvey2014$Region))
+
+hist(CustomerSurvey2014$Quality, main="Quality - Number of Responses", xlab="Level of Quality")
 
 ```
 
@@ -635,4 +673,6 @@ title(main="Autos", col.main="red", font.main=4)
 #library(help = "pastecs")
 
 ```
+
+# References
 

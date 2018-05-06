@@ -2,6 +2,8 @@
 ## @knitr installLibraries
 
 ## install.packages("knitr")
+## install.packages("printr")
+## install.packages("formatR")
 ## install.packages("readxl")
 ## install.packages("ggplot2")
 ## install.packages("pastecs")
