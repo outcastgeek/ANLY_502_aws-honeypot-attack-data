@@ -63,6 +63,9 @@ Prepare a report summarizing the characteristics of the metrics used in each wor
 
 We start by [Loading the Data Sheets].
 
+* Dealer Satisfaction:
+- *Region*: Categorical
+
 #Chapter 3:
 
 ##Part 1:

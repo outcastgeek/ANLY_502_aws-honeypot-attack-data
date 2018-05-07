@@ -24,7 +24,7 @@ link-citations: true
 \selectfont
 \sffamily
 
-## Lab 1 Report as of `r format(Sys.time(), '%B %d, %Y')` based on the Business Analytics textbook excercises (@BusinessAnalytics_2016) and the R Mardown documentation (@Bookdown_2018)
+## Lab 1 Report as of `r format(Sys.time(), '%B %d, %Y')` based on the Business Analytics textbook excercises [@BusinessAnalytics_2016] and the R Mardown documentation [@Bookdown_2018]
 
 ```{r setup, include=FALSE, purl=FALSE, eval=TRUE}
 
