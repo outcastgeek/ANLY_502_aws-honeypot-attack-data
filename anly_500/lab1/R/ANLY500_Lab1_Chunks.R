@@ -18,7 +18,7 @@
 library(readxl)
 library(ggplot2)
 library(psych)
-library(Hmisc) #Skip 1 skips the first row
+library(Hmisc)
 library(stats)
 #library(pastecs)
 library(magrittr)

@@ -45,7 +45,7 @@ read_chunk('R/ANLY500_Lab1_Chunks.R')
 ```{r installLibraries, echo=FALSE}
 ```
 
-```{r loadLibraries, echo=FALSE}
+```{r loadLibraries, echo=FALSE, message=FALSE, warning=FALSE}
 ```
 
 ```{r helperFunctions, echo=FALSE}
