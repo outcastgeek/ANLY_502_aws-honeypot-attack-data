@@ -163,3 +163,54 @@ PurchasingSurvey <- perfFileName %>%
     fullFilePath %>%
     read_excel(sheet = "Purchasing Survey", skip = 1)
 
+## @knitr satisfactionByRegionAxis
+
+yearsCols <- c("2010", "2011", "2012", "2013", "2014")
+dataTags <- c("Level", "Year", "Counts")
+
+
+## @knitr dealerSatNorthAmerica
+
+naDealerSat <- DealerSat %>%
+        sectionTranspose(1,5, 3,8) %>%
+        tGraphData(yearsCols,dataTags)
+ggplot(naDealerSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
+ggplot(naDealerSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
+
+
+## @knitr dealerSatSouthAmerica
+
+saDealerSat <- DealerSat %>%
+        sectionTranspose(6,10, 3,8) %>%
+        tGraphData(yearsCols,dataTags)
+ggplot(saDealerSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
+ggplot(saDealerSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
+
+
+## @knitr dealerSatEurope
+
+euDealerSat <- DealerSat %>%
+        sectionTranspose(11,15, 3,8) %>%
+        tGraphData(yearsCols,dataTags)
+ggplot(euDealerSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
+ggplot(euDealerSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
+
+
+## @knitr dealerSatPacificRim
+
+prDealerSat <- DealerSat %>%
+        sectionTranspose(16,20, 3,8) %>%
+        tGraphData(yearsCols,dataTags)
+ggplot(prDealerSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
+ggplot(prDealerSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
+
+
+## @knitr dealerSatChina
+
+yearsInChinaCols <- c("2012", "2013", "2014")
+
+chDealerSat <- DealerSat %>%
+        sectionTranspose(21,23, 3,8) %>%
+        tGraphData(yearsInChinaCols,dataTags)
+ggplot(chDealerSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
+ggplot(chDealerSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")

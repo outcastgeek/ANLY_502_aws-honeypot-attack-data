@@ -63,8 +63,37 @@ Prepare a report summarizing the characteristics of the metrics used in each wor
 
 We start by [Loading the Data Sheets].
 
+//TODO: Revisit this!!!!
+------------------------
+
 * Dealer Satisfaction:
-- *Region*: Categorical
+1. *Region:* Categorical
+3. *Year:* Ordinal
+4. *L0:* Ordinal
+5. *L1:* Ordinal
+6. *L2:* Ordinal
+7. *L3:* Ordinal
+8. *L4:* Ordinal
+9. *L5:* Ordinal
+10. *SampleSize:* Numerical
+
+* End-User Satisfaction:
+1. *Region:* Categorical
+3. *Year:* Ordinal
+4. *L0:* Ordinal
+5. *L1:* Ordinal
+6. *L2:* Ordinal
+7. *L3:* Ordinal
+8. *L4:* Ordinal
+9. *L5:* Ordinal
+10. *SampleSize:* Numerical
+
+* 2014 Customer Survey:
+1. *Region:* Categorical
+2. *Quality:* Ordinal
+3. *Ease of Use:* Interval
+4. *Price:* Ordinal
+5. *Service:* Ordinal
 
 #Chapter 3:
 
@@ -85,6 +114,140 @@ Before digging into the details of operations, Elizabeth Burke wants to gain an 
 6. On-Time Delivery
 7. Defects after Delivery
 8. Response Time
+
+### Step 1 (Dealer Satisfaction)
+
+The Data Structure of the Dealer Satisfaction, End-User Satisfaction, Complaints, Mower Unit Sales, Tractor Unit Sales, On-Time Delivery, Defects after Delivery, Response Time
+Excel Sheets is as follows:
+
+```{r}
+
+str(DealerSat)
+str(EndUserSat)
+str(Complaints)
+str(MowerUnitSales)
+str(TractorUnitSales)
+str(OnTimeDelivery)
+str(DefectsAfterDelivery)
+str(ResponseTimesCSC)
+
+```
+
+
+The [Dealer Satisfaction by Region] is as follows:
+
+```{r satisfactionByRegionAxis, echo=FALSE}
+```
+
+*North America:*
+
+```{r dealerSatNorthAmerica, echo=FALSE}
+```
+
+*South America:*
+
+```{r dealerSatSouthAmerica, echo=FALSE}
+```
+
+*Europe:*
+
+```{r dealerSatEurope, echo=FALSE}
+```
+
+*Pacific Rim:*
+
+```{r dealerSatPacificRim, echo=FALSE}
+```
+
+*China:*
+
+```{r dealerSatChina, echo=FALSE}
+```
+
+
+### Step 2 (End-User Satisfaction)
+
+**End-User Satisfaction by Region:**
+
+*North America:*
+
+```{r echo=FALSE}
+
+naEndUserSat <- EndUserSat %>%
+        sectionTranspose(1,5, 3,8) %>%
+        tGraphData(yearsCols,dataTags)
+ggplot(naEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
+ggplot(naEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
+
+```
+
+*South America:*
+
+```{r echo=FALSE}
+
+saEndUserSat <- EndUserSat %>%
+        sectionTranspose(6,10, 3,8) %>%
+        tGraphData(yearsCols,dataTags)
+ggplot(saEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
+ggplot(saEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
+
+```
+
+*Europe:*
+
+```{r echo=FALSE}
+
+euEndUserSat <- EndUserSat %>%
+        sectionTranspose(11,15, 3,8) %>%
+        tGraphData(yearsCols,dataTags)
+ggplot(euEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
+ggplot(euEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
+
+```
+
+*Pacific Rim:*
+
+```{r echo=FALSE}
+
+prEndUserSat <- EndUserSat %>%
+        sectionTranspose(16,20, 3,8) %>%
+        tGraphData(yearsCols,dataTags)
+ggplot(prEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
+ggplot(prEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
+
+```
+
+*China:*
+
+```{r echo=FALSE}
+
+yearsInChinaCols <- c("2012", "2013", "2014")
+
+chEndUserSat <- EndUserSat %>%
+        sectionTranspose(21,23, 3,8) %>%
+        tGraphData(yearsInChinaCols,dataTags)
+ggplot(chEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
+ggplot(chEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
+
+```
+
+### Step 3: (Complaints)
+
+```{r echo=FALSE}
+
+plot(Complaints$World, ylim=range(c(0, 400)), type="l", xlab="Month", ylab="Number of Complaints")
+par(new=TRUE)
+plot(Complaints$'NA', ylim=range(c(0,400)), type="l", col="red", axes = FALSE, xlab = "", ylab = "")
+par(new=TRUE)
+plot(Complaints$SA, ylim=range(c(0,400)), type="l", col="green", axes = FALSE, xlab = "", ylab = "")
+par(new=TRUE)
+plot(Complaints$Eur, ylim=range(c(0,400)), type="l", col="blue", axes = FALSE, xlab = "", ylab = "")
+par(new=TRUE)
+plot(Complaints$Pac, ylim=range(c(0,400)), type="l", col="magenta", axes = FALSE, xlab = "", ylab = "")
+par(new=TRUE)
+plot(Complaints$China, ylim=range(c(0,400)), type="l", col="deeppink4", axes = FALSE, xlab = "", ylab = "")
+
+```
 
 ##Part 2:
 
@@ -162,6 +325,21 @@ In reviewing your previous reports, several questions came to Elizabeth Burke’
 #### Loading the Data Sheets
 
 ```{r loadSheets, eval=FALSE}
+```
+
+#### Dealer Satisfaction by Region
+
+```{r satisfactionByRegionAxis, eval=FALSE}
+```
+```{r dealerSatNorthAmerica, eval=FALSE}
+```
+```{r dealerSatSouthAmerica, eval=FALSE}
+```
+```{r dealerSatEurope, eval=FALSE}
+```
+```{r dealerSatPacificRim, eval=FALSE}
+```
+```{r dealerSatChina, eval=FALSE}
 ```
 
 # References:

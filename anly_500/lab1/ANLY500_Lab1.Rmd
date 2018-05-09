@@ -518,7 +518,7 @@ ggplot(chDealerSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="ide
 
 ```
 
-##**Dealer Satisfaction by Region:**
+##**End-User Satisfaction by Region:**
 
 ###*North America:*
 
