@@ -30,6 +30,7 @@ This Lab Report #1 was last generated `r format(Sys.time(), '%B %d, %Y')`. It is
 ```{r setup, include=FALSE, purl=FALSE, eval=TRUE}
 
 source('R/ANLY500_Lab1_Helper.R')
+source('R/ANLY500_Lab1_Chunks.R')
 
 ```
 
@@ -40,18 +41,6 @@ library(printr)
 library(formatR)
 read_chunk('R/ANLY500_Lab1_Chunks.R')
 
-```
-
-```{r installLibraries, echo=FALSE}
-```
-
-```{r loadLibraries, echo=FALSE, message=FALSE, warning=FALSE}
-```
-
-```{r helperFunctions, echo=FALSE}
-```
-
-```{r loadSheets, echo=FALSE}
 ```
 
 #Chapter 1:
