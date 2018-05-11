@@ -226,7 +226,7 @@ summary(UnitShippingCost)
 
 summary(UnitShippingCost$Mowers)
 
-hist(UnitShippingCost$Mowers)
+hist(UnitShippingCost$Mowers, xlab="Shipping Cost in $")
 
 ```
 
@@ -236,17 +236,13 @@ hist(UnitShippingCost$Mowers)
 
 summary(UnitShippingCost$Tractors)
 
-hist(UnitShippingCost$Tractors)
+hist(UnitShippingCost$Tractors, xlab="Shipping Cost in $")
 
 ```
 
 ##Part 3:
 
 Ms. Burke would also like a quantitative summary of the average responses for each of the customer attributes in the worksheet 2014 Customer Survey for each market region as a cross-tabulation (use PivotTables as appropriate), along with frequency distributions, histograms, and quartiles of these data.
-
-##Part 4:
-
-Propose a monthly dashboard of the most important business information that Ms. Burke can use on a routine basis as data are updated. Create one using the most recent data. Your dashboard should not consist of more than 6–8 charts, which should fit comfortably on one screen.
 
 ```{r}
 
@@ -261,6 +257,10 @@ barplot(table(CustomerSurvey2014$Region))
 hist(CustomerSurvey2014$Quality, main="Quality - Number of Responses", xlab="Level of Quality")
 
 ```
+
+##Part 4:
+
+Propose a monthly dashboard of the most important business information that Ms. Burke can use on a routine basis as data are updated. Create one using the most recent data. Your dashboard should not consist of more than 6–8 charts, which should fit comfortably on one screen.
 
 #Chapter 4:
 
