@@ -210,15 +210,33 @@ plot(Complaints$China, ylim=range(c(0,400)), type="l", col="deeppink4", axes = F
 
 As noted in the case in Chapter 1, the supply chain worksheets provide cost data associated with logistics between existing plants and customers as well as proposed new plants. Ms. Burke wants you to extract the records associated with the unit shipping costs of proposed plant locations and compare the costs of existing locations against those of the proposed locations using quartiles.
 
+*Unit Shipping Cost:*
+
 ```{r}
 
 str(UnitShippingCost)
 
 summary(UnitShippingCost)
 
+```
+
+*Unit Shipping Cost for Mowers:*
+
+```{r}
+
 summary(UnitShippingCost$Mowers)
 
+hist(UnitShippingCost$Mowers)
+
+```
+
+*Unit Shipping Cost for Tractors:*
+
+```{r}
+
 summary(UnitShippingCost$Tractors)
+
+hist(UnitShippingCost$Tractors)
 
 ```
 
@@ -229,6 +247,20 @@ Ms. Burke would also like a quantitative summary of the average responses for ea
 ##Part 4:
 
 Propose a monthly dashboard of the most important business information that Ms. Burke can use on a routine basis as data are updated. Create one using the most recent data. Your dashboard should not consist of more than 6–8 charts, which should fit comfortably on one screen.
+
+```{r}
+
+str(CustomerSurvey2014)
+summary(CustomerSurvey2014)
+
+CustomerSurvey2014[is.na(CustomerSurvey2014)] <- "NorthA"
+str(CustomerSurvey2014)
+
+barplot(table(CustomerSurvey2014$Region))
+
+hist(CustomerSurvey2014$Quality, main="Quality - Number of Responses", xlab="Level of Quality")
+
+```
 
 #Chapter 4:
 
