@@ -201,9 +201,26 @@ plot(Complaints$China, ylim=range(c(0,400)), type="l", col="deeppink4", axes = F
 
 ```
 
+### Step 4: (Mower Unit Sales)
+
+//TODO: Plot the REST!!!!
+------------------------
+
 ##Part 2:
 
 As noted in the case in Chapter 1, the supply chain worksheets provide cost data associated with logistics between existing plants and customers as well as proposed new plants. Ms. Burke wants you to extract the records associated with the unit shipping costs of proposed plant locations and compare the costs of existing locations against those of the proposed locations using quartiles.
+
+```{r}
+
+str(UnitShippingCost)
+
+summary(UnitShippingCost)
+
+summary(UnitShippingCost$Mowers)
+
+summary(UnitShippingCost$Tractors)
+
+```
 
 ##Part 3:
 
