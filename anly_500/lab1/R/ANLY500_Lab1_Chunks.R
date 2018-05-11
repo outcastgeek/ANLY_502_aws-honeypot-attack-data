@@ -214,3 +214,46 @@ chDealerSat <- DealerSat %>%
         tGraphData(yearsInChinaCols,dataTags)
 ggplot(chDealerSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
 ggplot(chDealerSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
+
+
+## @knitr endUserSatNorthAmerica
+
+naEndUserSat <- EndUserSat %>%
+        sectionTranspose(1,5, 3,8) %>%
+        tGraphData(yearsCols,dataTags)
+ggplot(naEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
+ggplot(naEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
+
+## @knitr endUserSatSouthAmerica
+
+saEndUserSat <- EndUserSat %>%
+        sectionTranspose(6,10, 3,8) %>%
+        tGraphData(yearsCols,dataTags)
+ggplot(saEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
+ggplot(saEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
+
+## @knitr endUserSatEurope
+
+euEndUserSat <- EndUserSat %>%
+        sectionTranspose(11,15, 3,8) %>%
+        tGraphData(yearsCols,dataTags)
+ggplot(euEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
+ggplot(euEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
+
+## @knitr endUserSatPacificRim
+
+prEndUserSat <- EndUserSat %>%
+        sectionTranspose(16,20, 3,8) %>%
+        tGraphData(yearsCols,dataTags)
+ggplot(prEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
+ggplot(prEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
+
+## @knitr endUserSatChina
+
+yearsInChinaCols <- c("2012", "2013", "2014")
+
+chEndUserSat <- EndUserSat %>%
+        sectionTranspose(21,23, 3,8) %>%
+        tGraphData(yearsInChinaCols,dataTags)
+ggplot(chEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
+ggplot(chEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")

@@ -156,68 +156,31 @@ The [Dealer Satisfaction by Region] is as follows:
 
 ### Step 2 (End-User Satisfaction)
 
-**End-User Satisfaction by Region:**
+The [End-User Satisfaction by Region] is as follows:
 
 *North America:*
 
-```{r echo=FALSE}
-
-naEndUserSat <- EndUserSat %>%
-        sectionTranspose(1,5, 3,8) %>%
-        tGraphData(yearsCols,dataTags)
-ggplot(naEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
-ggplot(naEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
-
+```{r endUserSatNorthAmerica, echo=FALSE}
 ```
 
 *South America:*
 
-```{r echo=FALSE}
-
-saEndUserSat <- EndUserSat %>%
-        sectionTranspose(6,10, 3,8) %>%
-        tGraphData(yearsCols,dataTags)
-ggplot(saEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
-ggplot(saEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
-
+```{r endUserSatSouthAmerica, echo=FALSE}
 ```
 
 *Europe:*
 
-```{r echo=FALSE}
-
-euEndUserSat <- EndUserSat %>%
-        sectionTranspose(11,15, 3,8) %>%
-        tGraphData(yearsCols,dataTags)
-ggplot(euEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
-ggplot(euEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
-
+```{r endUserSatEurope, echo=FALSE}
 ```
 
 *Pacific Rim:*
 
-```{r echo=FALSE}
-
-prEndUserSat <- EndUserSat %>%
-        sectionTranspose(16,20, 3,8) %>%
-        tGraphData(yearsCols,dataTags)
-ggplot(prEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
-ggplot(prEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
-
+```{r endUserSatPacificRim, echo=FALSE}
 ```
 
 *China:*
 
-```{r echo=FALSE}
-
-yearsInChinaCols <- c("2012", "2013", "2014")
-
-chEndUserSat <- EndUserSat %>%
-        sectionTranspose(21,23, 3,8) %>%
-        tGraphData(yearsInChinaCols,dataTags)
-ggplot(chEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
-ggplot(chEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
-
+```{r endUserSatChina, echo=FALSE}
 ```
 
 ### Step 3: (Complaints)
@@ -298,7 +261,7 @@ In reviewing your previous reports, several questions came to Elizabeth Burke’
 
 # Appendix:
 
-#### Required Libraries
+### Required Libraries
 
 ```{r installLibraries, eval=FALSE}
 ```
@@ -306,29 +269,71 @@ In reviewing your previous reports, several questions came to Elizabeth Burke’
 ```{r loadLibraries, eval=FALSE}
 ```
 
-#### Helper Functions
+### Helper Functions
 
 ```{r helperFunctions, eval=FALSE}
 ```
 
-#### Loading the Data Sheets
+### Loading the Data Sheets
 
 ```{r loadSheets, eval=FALSE}
 ```
 
-#### Dealer Satisfaction by Region
+### Dealer Satisfaction by Region
 
 ```{r satisfactionByRegionAxis, eval=FALSE}
 ```
+
+*North America:*
+
 ```{r dealerSatNorthAmerica, eval=FALSE}
 ```
+
+*South America:*
+
 ```{r dealerSatSouthAmerica, eval=FALSE}
 ```
+
+*Europe:*
+
 ```{r dealerSatEurope, eval=FALSE}
 ```
+
+*Pacific Rim:*
+
 ```{r dealerSatPacificRim, eval=FALSE}
 ```
+
+*China:*
+
 ```{r dealerSatChina, eval=FALSE}
+```
+
+### End-User Satisfaction by Region
+
+*North America:*
+
+```{r endUserSatNorthAmerica, eval=FALSE}
+```
+
+*South America:*
+
+```{r endUserSatSouthAmerica, eval=FALSE}
+```
+
+*Europe:*
+
+```{r endUserSatEurope, eval=FALSE}
+```
+
+*Pacific Rim:*
+
+```{r endUserSatPacificRim, eval=FALSE}
+```
+
+*China:*
+
+```{r endUserSatChina, eval=FALSE}
 ```
 
 # References:
