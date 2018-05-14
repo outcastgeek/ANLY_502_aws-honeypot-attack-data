@@ -103,7 +103,6 @@ We start by [Loading the Data Sheets].
 7. *World:* Categorical
 
 * Tractor Unit Sales:
-* Mower Unit Sales:
 1. *Month:* Ordinal
 2. *NA:* Categorical
 3. *SA:* Categorical
