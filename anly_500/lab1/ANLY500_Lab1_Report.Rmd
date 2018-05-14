@@ -310,7 +310,7 @@ plot(y)
 
 ```{r}
 
-View(BladeWeight)
+#View(BladeWeight)
 str(BladeWeight)
 
 (sum(BladeWeight$Weight)/350)
@@ -372,21 +372,168 @@ hist(BladeWeight$Weight)
 In reviewing your previous reports, several questions came to Elizabeth Burke’s mind. Use point and interval estimates to help answer these questions.
 
 1. What proportion of customer’s rate the company with “top box” survey responses (which is defined as scale levels 4 and 5) on quality, ease of use, price, and service in the 2014 Customer Survey worksheet? How do these proportions differ by geographic region?
+
+```{r}
+
+countByRegion <- table(CustomerSurvey2014$Region, CustomerSurvey2014$Quality)
+countByRegion
+
+sum(countByRegion[3,4], countByRegion[3,5])
+
+```
+
 2. What estimates, with reasonable assurance, can PLE give customers for response times to customer service calls?
+
+````{r}
+
+Q1.13mean <- mean(ResponseTimesCSC$'Q1 2013')
+Q1.13std <- sd(ResponseTimesCSC$'Q1 2013')
+
+Q1.13mean
+Q1.13std
+
+z.test(ResponseTimesCSC$'Q1 2013', sigma.x = Q1.13std)
+
+Q2.13mean <- mean(ResponseTimesCSC$'Q2 2013')
+Q2.13std <- sd(ResponseTimesCSC$'Q2 2013')
+z.test(ResponseTimesCSC$'Q2 2013', sigma.x = Q2.13std)
+
+````
+
 3. Engineering has collected data on alternative process costs for building transmissions in the worksheet Transmission Costs. Can you determine whether one of the proposed processes is better than the current process?
+
+```{r}
+
+current.sd <- sd(TransmissionCosts$Current)
+z.test(TransmissionCosts$Current, sigma.x = current.sd)
+
+```
+
 4. What would be a confidence interval for an additional sample of mower test performance as in the worksheet Mower Test?
+
+\begin{equation}
+Standard\hspace{1 mm}deviation = \sqrt{\frac{mean * (1 - mean)}{n}}
+\end{equation}
+
+```{r}
+
+#TODO: Revisit this!!!!
+A <- data.frame(lapply(MowerTest, function(x) as.numeric(x)))
+str(A)
+A[,5] <- 2
+A[,10] <- 2
+A[,27] <- 2
+A[,30] <- 2
+str(A)
+
+B <- data.matrix(A[,-1])
+str(B)
+B <- B - 1
+str(B)
+
+B <- B - 1
+length(which(B==0))
+1-mean(B)
+t.test(B, mu=0.982)
+#End TODO
+
+hist(BladeWeight$Weight)
+
+# The standard error of the mean for our blade weight data can be found using
+sem <- sd(BladeWeight$Weight)/sqrt(length(BladeWeight$Weight))
+sem
+
+#TODO: Revisit this!
+A <- lm(BladeWeight$Weight~ ., BladeWeight)
+str(A)
+plot(A)
+
+```
+
 5. For the data in the worksheet Blade Weight, what is the sampling distribution of the mean, the overall mean, and the standard error of the mean? Is a normal distribution an appropriate assumption for the sampling distribution of the mean?
 6. How many blade weights must be measured to find a 95% confidence interval for the mean blade weight with a sampling error of at most 0.2? What if the sampling error is specified as 0.1?
 
 #Chapter 7:
 
 1. Are there significant differences in ratings of specific product/service attributes in the 2014 Customer Survey worksheet?
+
+```{r}
+
+Quality <- CustomerSurvey2014$Quality
+str(CustomerSurvey2014)
+Ease.of.Use <- CustomerSurvey2014$'Ease of Use'
+Price <- CustomerSurvey2014$Price
+Service <- CustomerSurvey2014$Service
+
+Data <- data.frame(Y=c(Quality, Ease.of.Use, Price, Service), Para=factor(rep(c("Quality", "Ease.of.Use", "Price", "Service"), times=c(length(Quality), length(Ease.of.Use), length(Price), length(Service)))))
+str(Data)
+
+fm1 <- aov(Y~Para, data = Data)
+anova(fm1)
+
+```
+
 2. In the worksheet On-Time Delivery, has the proportion of on-time deliveries in 2014 significantly improved since 2010?
+
+```{r}
+
+p0 <- sum(OnTimeDelivery$'Number On Time'[1:12]/sum(OnTimeDelivery$'Number of deliveries'[1:12]))
+p0
+
+pbar <- sum(OnTimeDelivery$'Number On Time'[49:60])/sum(OnTimeDelivery$'Number of deliveries'[49:60])
+pbar
+
+n <- 12
+z <- (pbar - p0)/sqrt(p0*(1-p0)/n)
+z
+
+alpha <- 0.05
+z.alpha <- qnorm(1 - alpha)
+z.alpha
+
+pval <- pnorm(z, lower.tail = FALSE)
+pval
+
+```
+
 3. Have the data in the worksheet Defects After Delivery changed significantly over the past 5 years?
+
+```{r}
+
+sum(DefectsAfterDelivery$'2014')/12
+
+defects.by.year <- c(826.33, 837.42, 785.92, 669.08, 496.25)
+plot(defects.by.year, type="b", lwd=2)
+
+a <- DefectsAfterDelivery$'2010'
+b <- DefectsAfterDelivery$'2014'
+t.test(a,b, var.equal = FALSE, paired = FALSE)
+
+```
+
 4. Although engineering has collected data on alternative process costs for building transmissions in the worksheet Transmission Costs, why didn’t they reach a conclusion as to whether one of the proposed processes is better than the current process?
+
+```{r}
+
+t.test(TransmissionCosts$Current, TransmissionCosts$'Process A', var.equal = FALSE, paired = FALSE)
+t.test(TransmissionCosts$Current, TransmissionCosts$'Process B', var.equal = FALSE, paired = FALSE)
+
+```
+
 5. Are there differences in employee retention due to gender, college graduation status, or whether the employee is from the local area in the data in the worksheet Employee Retention?
 
+```{r}
 
+gender <- EmployeeRetention$Gender
+yearsPLE <- EmployeeRetention$YearsPLE
+male.female <- data.frame(gender=gender, yearsPLE=yearsPLE)
+
+male.female[order(male.female$gender),]
+t.test(male.female$yearsPLE ~ male.female$gender, var.equal = FALSE, paired = FALSE)
+
+```
+
+Once again, the p-value is greater than .05 who we conclude that there is no statistically significant difference between men and women in terms of the number of years of service at PLE.
 
 # Appendix:
 

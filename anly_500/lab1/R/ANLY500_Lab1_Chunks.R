@@ -117,7 +117,7 @@ OnTimeDelivery <- perfFileName %>%
 
 DefectsAfterDelivery <- perfFileName %>%
     fullFilePath %>%
-    read_excel(sheet = "Defects After Delivery", skip = 1)
+    read_excel(sheet = "Defects After Delivery", skip = 3)
 
 TimeToPaySuppliers <- perfFileName %>%
     fullFilePath %>%
