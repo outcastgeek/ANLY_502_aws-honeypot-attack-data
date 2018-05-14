@@ -249,7 +249,6 @@ Ms. Burke would also like a quantitative summary of the average responses for ea
 str(CustomerSurvey2014)
 summary(CustomerSurvey2014)
 
-CustomerSurvey2014[is.na(CustomerSurvey2014)] <- "NorthA"
 str(CustomerSurvey2014)
 
 barplot(table(CustomerSurvey2014$Region))
@@ -261,6 +260,9 @@ hist(CustomerSurvey2014$Quality, main="Quality - Number of Responses", xlab="Lev
 ##Part 4:
 
 Propose a monthly dashboard of the most important business information that Ms. Burke can use on a routine basis as data are updated. Create one using the most recent data. Your dashboard should not consist of more than 6–8 charts, which should fit comfortably on one screen.
+
+//TODO: Do this part as you best see fit in terms of a choice of a dashboard
+------------------------------------------------------------------------------
 
 #Chapter 4:
 
@@ -277,15 +279,93 @@ How sales of mowers and tractors compare with industry totals and how strongly m
 PLE collects a variety of data from special studies, many of which are related to the quality of its products. The company collects data about functional test performance of its mowers after assembly; results from the past 30 days are given in the worksheet Mower Test. In addition, many in-process measurements are taken to ensure that manufacturing processes remain in control and can produce according to design specifications. The worksheet Blade Weight shows 350 measurements of blade weights taken from the manufacturing process that produces mower blades during the most recent shift. Elizabeth Burke has asked you to study these data from an analytics perspective. Drawing upon your experience, you have developed a number of questions.
 
 1. For the mower test data, what distribution might be appropriate to model the failure of an individual mower?
+
+A **Bernoulli Distribution** would be most appropriate.
+
 2. What fraction of mowers fails the functional performance test using all the mower test data?
+
+```{r}
+
+countFail <- length(which(MowerTest == "Fail"))
+countFail
+
+```
+
+So there are 54 “Fail” in the MowerTest data set, or the fraction of “Fail”, i.e. the probability of “Fail” is 54/3000 = 0.018.
+
 3. What is the probability of having x failures in the next 100 mowers tested, for x from 0 to 20?
+
+```{r}
+
+y <- dbinom(0:20, 100, .018)
+y
+plot(y)
+
+```
+
 4. What is the average blade weight and how much variability is occurring in the measurements of blade weights?
+
+```{r echo=FALSE}
+```
+
+```{r}
+
+View(BladeWeight)
+str(BladeWeight)
+
+(sum(BladeWeight$Weight)/350)
+sd(BladeWeight$Weight)
+
+```
+
 5. Assuming that the data are normal, what is the probability that blade weights from this process will exceed 5.20?
+
+```{r}
+
+y = pnorm(5.20, mean=4.99, sd=0.11)
+y
+1 - y
+
+```
+
 6. What is the probability that weights will be less than 4.80?
+
+```{r}
+
+pnorm(4.80, mean=4.99, sd=0.11)
+
+```
+
 7. What is the actual percent of weights that exceed 5.20 or are less than 4.80 from the data in the worksheet?
+
+```{r}
+
+countblade <- length(which(BladeWeight$Weight > 5.20))
+countblade
+countblade2 <- length(which(BladeWeight$Weight <= 4.80))
+countblade2
+
+```
+
 8. Is the process that makes the blades stable over time? That is, are there any apparent changes in the pattern of the blade weights?
+
+```{r}
+
+plot(BladeWeight$Sample, BladeWeight$Weight)
+
+```
+
 9. Could any of the blade weights be considered outliers, which might indicate a problem with the manufacturing process or materials?
+
+Looking at the scatter plot, only close to the 200th blade was there any trouble.  It isn’t too much trouble to find that this is blade #171.
+
 10. Was the assumption that blade weights are normally distributed justified? What is the best-fitting probability distribution for the data?
+
+```{r}
+
+hist(BladeWeight$Weight)
+
+```
 
 #Chapter 6:
 
