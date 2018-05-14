@@ -84,6 +84,94 @@ We start by [Loading the Data Sheets].
 4. *Price:* Ordinal
 5. *Service:* Ordinal
 
+* Complaints:
+1. *Month:* Ordinal
+2. *World:* Categorical
+3. *NA:* Categorical
+4. *SA:* Categorical
+5. *Eur:* Categorical
+6. *Pac:* Categorical
+7. *China:* Categorical
+
+* Mower Unit Sales:
+1. *Month:* Ordinal
+2. *NA:* Categorical
+3. *SA:* Categorical
+4. *Europe:* Categorical
+5. *Pacific:* Categorical
+6. *China:* Categorical
+7. *World:* Categorical
+
+* Tractor Unit Sales:
+* Mower Unit Sales:
+1. *Month:* Ordinal
+2. *NA:* Categorical
+3. *SA:* Categorical
+4. *Eur:* Categorical
+5. *Pac:* Categorical
+6. *China:* Categorical
+7. *World:* Categorical
+
+* Industry Mower Total Sales:
+1. *Month:* Ordinal
+2. *NA:* Categorical
+3. *SA:* Categorical
+4. *Eur:* Categorical
+5. *Pac:* Categorical
+6. *China:* Categorical
+7. *World:* Categorical
+
+* Industry Tractor Total Sales:
+1. *Month:* Ordinal
+2. *NA:* Categorical
+3. *SA:* Categorical
+4. *Eur:* Categorical
+5. *Pac:* Categorical
+6. *China:* Categorical
+7. *World:* Categorical
+
+* Unit Production Costs:
+1. *Month:* Ordinal
+2. *Tractor:* Numerical Continuous
+3. *Mower:* Numerical Continuous
+
+* Operating and Interest Expenses:
+1. *Month:* Ordinal
+2. *Administrative:* Numerical Continuous
+3. *Depreciation:* Numerical Continuous
+4. *Interest:* Numerical Continuous
+
+* On-Time Delivery:
+1. *Month:* Ordinal
+2. *Number of deliveries:* Numerical Discrete
+3. *Number On Time:* Numerical Discrete
+4. *Percent:* Numerical Continuous
+
+* Defects After Delivery:
+1. *Month:* Ordinal
+2. *2010:* Numerical Discrete
+3. *2011:* Numerical Discrete
+4. *2012:* Numerical Discrete
+5. *2013:* Numerical Discrete
+6. *2014:* Numerical Discrete
+
+* Time to Pay Suppliers:
+1. *Month:* Ordinal
+2. *Working Days:* Numerical Continuous
+
+* Response times to customer service calls:
+1. *Q1 2013:* Numerical Continuous
+2. *Q2 2013:* Numerical Continuous
+3. *Q3 2013:* Numerical Continuous
+4. *Q4 2013:* Numerical Continuous
+5. *Q1 2014:* Numerical Continuous
+6. *Q2 2014:* Numerical Continuous
+7. *Q3 2014:* Numerical Continuous
+8. *Q4 2014:* Numerical Continuous
+
+* Employee Satisfaction Results:
+Quarter	Production	Sample size	Manager	Sample size	Administration	Sample size	Total	Sample size
+
 #Chapter 3:
 
 ##Part 1:
@@ -384,6 +472,8 @@ sum(countByRegion[3,4], countByRegion[3,5])
 
 2. What estimates, with reasonable assurance, can PLE give customers for response times to customer service calls?
 
+Q1
+
 ````{r}
 
 Q1.13mean <- mean(ResponseTimesCSC$'Q1 2013')
@@ -393,6 +483,12 @@ Q1.13mean
 Q1.13std
 
 z.test(ResponseTimesCSC$'Q1 2013', sigma.x = Q1.13std)
+
+```
+
+Q2
+
+````{r}
 
 Q2.13mean <- mean(ResponseTimesCSC$'Q2 2013')
 Q2.13std <- sd(ResponseTimesCSC$'Q2 2013')
@@ -415,9 +511,8 @@ z.test(TransmissionCosts$Current, sigma.x = current.sd)
 Standard\hspace{1 mm}deviation = \sqrt{\frac{mean * (1 - mean)}{n}}
 \end{equation}
 
-```{r}
+```{r warn=FALSE}
 
-#TODO: Revisit this!!!!
 A <- data.frame(lapply(MowerTest, function(x) as.numeric(x)))
 str(A)
 A[,5] <- 2
@@ -435,15 +530,18 @@ B <- B - 1
 length(which(B==0))
 1-mean(B)
 t.test(B, mu=0.982)
-#End TODO
 
 hist(BladeWeight$Weight)
 
-# The standard error of the mean for our blade weight data can be found using
+```
+
+The standard error of the mean for our blade weight data can be found using
+
+```{r}
+
 sem <- sd(BladeWeight$Weight)/sqrt(length(BladeWeight$Weight))
 sem
 
-#TODO: Revisit this!
 A <- lm(BladeWeight$Weight~ ., BladeWeight)
 str(A)
 plot(A)
