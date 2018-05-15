@@ -169,7 +169,97 @@ We start by [Loading the Data Sheets].
 8. *Q4 2014:* Numerical Continuous
 
 * Employee Satisfaction Results:
-Quarter	Production	Sample size	Manager	Sample size	Administration	Sample size	Total	Sample size
+1. *Quarter:* Ordinal
+2. *Production:* Numerical Continuous
+3. *Sample size:* Numerical Discrete
+4. *Manager:* Numerical Continuous
+5. *Sample size:* Numerical Discrete
+6. *Administration:* Numerical Continuous
+7. *Sample size:* Numerical Discrete
+8. *Total:* Numerical Continuous
+9. *Sample size:* Numerical Discrete
+
+* Engine Production Time:
+1. *Sample:* Numerical Discrete
+2. *Production Time (min):* Numerical Continuous
+
+* Unit Tractor Transmission Costs:
+1. *Current:* Numerical Continuous
+2. *Process A:* Numerical Continuous
+3. *Process B:* Numerical Continuous
+
+* Blade Weight:
+1. *Sample:* Numerical Discrete
+2. *Weight:* Numerical Continuous
+
+* Mower Test Functional Performance:
+1. *Observation:* Numerical Discrete
+2. *1:* Categorical
+3. *2:* Categorical
+4. *3:* Categorical
+5. *4:* Categorical
+6. *5:* Categorical
+7. *6:* Categorical
+8. *7:* Categorical
+9. *8:* Categorical
+10. *9:* Categorical
+11. *10:* Categorical
+12. *11:* Categorical
+13. *12:* Categorical
+14. *13:* Categorical
+15. *14:* Categorical
+16. *15:* Categorical
+17. *16:* Categorical
+18. *17:* Categorical
+19. *18:* Categorical
+20. *19:* Categorical
+21. *20:* Categorical
+22. *21:* Categorical
+23. *22:* Categorical
+24. *23:* Categorical
+25. *24:* Categorical
+26. *25:* Categorical
+27. *26:* Categorical
+28. *27:* Categorical
+29. *28:* Categorical
+30. *29:* Categorical
+31. *30:* Categorical
+
+* Employee Retention:
+1. *YearsPLE:* Numerical Continuous
+2. *YrsEducation:* Numerical Discrete
+3. *College GPA:* Numerical Continuous
+4. *Age:* Numerical Discrete
+5. *Gender:* Categorical
+6. *College Grad:* Categorical
+7. *Local:* Categorical
+
+* Unit Shipping Cost:
+1. *Plant:* Categorical
+2. *Customer:* Categorical
+3. *Mowers:* Numerical Continuous
+4. *Tractors:* Numerical Continuous
+
+* Fixed Costs of Capacity Increase or New Construction:
+1. *Current Plants:* Categorical
+2. *PlantType:* Categorical
+3. *CapacityAmount:* Numerical Discrete
+4. *Cost:* Numerical Continuous
+
+* Purchasing Survey:
+1. *Delivery speed:* Numerical Continuous
+1. *Price level:* Numerical Continuous
+1. *Price flexibility:* Numerical Continuous
+1. *Manufacturing image:* Numerical Continuous
+1. *Overall service:* Numerical Continuous
+1. *Salesforce image:* Numerical Continuous
+1. *Product quality:* Numerical Continuous
+1. *Usage Level:* Numerical Discrete
+1. *Satisfaction Level:* Numerical Continuous
+1. *Size of firm:* Categorical
+1. *Purchasing Structure:* Categorical
+1. *Industry:* Categorical
+1. *Buying Type:* Categorical
 
 #Chapter 3:
 
