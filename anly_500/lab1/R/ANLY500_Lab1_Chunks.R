@@ -346,39 +346,39 @@ tusDataTags <- c("Region", "Month", "Sales")
 
 ## @knitr tractorUnitSales2010
 
-tractorUnitSales2010 <- MowerUnitSales %>%
+tractorUnitSales2010 <- TractorUnitSales %>%
     chunkTranspose(1,12, 2,7) %>%
-    tGraphData(MowerUnitSales$Month[1:12],tusDataTags)
+    tGraphData(TractorUnitSales$Month[1:12],tusDataTags)
 tractorUnitSales2010$Month <- as.POSIXct(tractorUnitSales2010$Month, origin="1970-01-01")
 ggplot(tractorUnitSales2010, aes(x=Month, y=Sales)) + geom_bar(aes(fill=Region), stat="identity")
 
 ## @knitr tractorUnitSales2011
 
-tractorUnitSales2011 <- MowerUnitSales %>%
+tractorUnitSales2011 <- TractorUnitSales %>%
     chunkTranspose(13,24, 2,7) %>%
-    tGraphData(MowerUnitSales$Month[13:24],tusDataTags)
+    tGraphData(TractorUnitSales$Month[13:24],tusDataTags)
 tractorUnitSales2011$Month <- as.POSIXct(tractorUnitSales2011$Month, origin="1970-01-01")
 ggplot(tractorUnitSales2011, aes(x=Month, y=Sales)) + geom_bar(aes(fill=Region), stat="identity")
 
 ## @knitr tractorUnitSales2012
 
-tractorUnitSales2012 <- MowerUnitSales %>%
+tractorUnitSales2012 <- TractorUnitSales %>%
     chunkTranspose(25,36, 2,7) %>%
-    tGraphData(MowerUnitSales$Month[25:36],tusDataTags)
+    tGraphData(TractorUnitSales$Month[25:36],tusDataTags)
 tractorUnitSales2012$Month <- as.POSIXct(tractorUnitSales2012$Month, origin="1970-01-01")
 ggplot(tractorUnitSales2012, aes(x=Month, y=Sales)) + geom_bar(aes(fill=Region), stat="identity")
 
 ## @knitr tractorUnitSales2013
 
-tractorUnitSales2013 <- MowerUnitSales %>%
+tractorUnitSales2013 <- TractorUnitSales %>%
     chunkTranspose(37,48, 2,7) %>%
-    tGraphData(MowerUnitSales$Month[37:48],tusDataTags)
+    tGraphData(TractorUnitSales$Month[37:48],tusDataTags)
 tractorUnitSales2013$Month <- as.POSIXct(tractorUnitSales2013$Month, origin="1970-01-01")
 ggplot(tractorUnitSales2013, aes(x=Month, y=Sales)) + geom_bar(aes(fill=Region), stat="identity")
 
 ## @knitr tractorUnitSales2014
 
-tractorUnitSales2014 <- MowerUnitSales %>%
+tractorUnitSales2014 <- TractorUnitSales %>%
     chunkTranspose(49,60, 2,7) %>%
     tGraphData(MowerUnitSales$Month[49:60],tusDataTags)
 tractorUnitSales2014$Month <- as.POSIXct(tractorUnitSales2014$Month, origin="1970-01-01")
@@ -411,3 +411,31 @@ q4.14 <- data.frame(Quarters = "Q4 2014", Time = ResponseTimesCSC$`Q4 2014`)
 responseTimePlotData = rbind(q1.13,q2.13,q3.13,q4.13,q1.14,q2.14,q3.14,q4.14)
 
 ggplot(responseTimePlotData, aes(x=Quarters, y=Time, fill=Quarters)) +  geom_boxplot()
+
+## @knitr dashboard
+
+mowerSalesNA <- data.frame(Region="North America", Equipment="Mower", Months=MowerUnitSales$Month, Sales=MowerUnitSales$'NA')
+mowerSalesSA <- data.frame(Region="South America", Equipment="Mower", Months=MowerUnitSales$Month, Sales=MowerUnitSales$SA)
+mowerSalesEurope <- data.frame(Region="Europe", Equipment="Mower", Months=MowerUnitSales$Month, Sales=MowerUnitSales$Europe)
+mowerSalesPacific <- data.frame(Region="Pacific Rim", Equipment="Mower", Months=MowerUnitSales$Month, Sales=MowerUnitSales$Pacific)
+mowerSalesChina <- data.frame(Region="China", Equipment="Mower", Months=MowerUnitSales$Month, Sales=MowerUnitSales$China)
+mowerSalesWorld <- data.frame(Region="World", Equipment="Mower", Months=MowerUnitSales$Month, Sales=MowerUnitSales$World)
+
+# mowerSalesDashboard <- rbind(mowerSalesNA, mowerSalesSA, mowerSalesEurope, mowerSalesPacific, mowerSalesChina, mowerSalesWorld)
+#
+# ggplot(mowerSalesDashboard, aes(x=Months, y=Sales, fill=Equipment)) +  geom_boxplot() + facet_grid(Equipment ~ Region)
+
+tractorSalesNA <- data.frame(Region="North America", Equipment="Tractor", Months=TractorUnitSales$Month, Sales=TractorUnitSales$'NA')
+tractorSalesSA <- data.frame(Region="South America", Equipment="Tractor", Months=TractorUnitSales$Month, Sales=TractorUnitSales$SA)
+tractorSalesEurope <- data.frame(Region="Europe", Equipment="Tractor", Months=TractorUnitSales$Month, Sales=TractorUnitSales$Eur)
+tractorSalesPacific <- data.frame(Region="Pacific Rim", Equipment="Tractor", Months=TractorUnitSales$Month, Sales=TractorUnitSales$Pac)
+tractorSalesChina <- data.frame(Region="China", Equipment="Tractor", Months=TractorUnitSales$Month, Sales=TractorUnitSales$China)
+tractorSalesWorld <- data.frame(Region="World", Equipment="Tractor", Months=TractorUnitSales$Month, Sales=TractorUnitSales$World)
+
+# tractorSalesDashboard <- rbind(tractorSalesNA, tractorSalesSA, tractorSalesEurope, tractorSalesPacific, tractorSalesChina, tractorSalesWorld)
+#
+# ggplot(tractorSalesDashboard, aes(x=Months, y=Sales, fill=Equipment)) +  geom_boxplot() + facet_grid(Equipment ~ Region)
+
+salesDashboard <- rbind(mowerSalesNA, mowerSalesSA, mowerSalesEurope, mowerSalesPacific, mowerSalesChina, mowerSalesWorld, tractorSalesNA, tractorSalesSA, tractorSalesEurope, tractorSalesPacific, tractorSalesChina, tractorSalesWorld)
+
+ggplot(salesDashboard, aes(x=Months, y=Sales, fill=Equipment)) +  geom_boxplot() + facet_grid(Equipment ~ Region)
