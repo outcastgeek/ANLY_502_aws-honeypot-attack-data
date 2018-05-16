@@ -271,6 +271,31 @@ chEndUserSat <- EndUserSat %>%
 ggplot(chEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
 ggplot(chEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
 
+## knitr complaints
+
+plot(Complaints$World, ylim=range(c(0, 400)), type="l", xlab="Month", ylab="Number of Complaints")
+par(new=TRUE)
+plot(Complaints$'NA', ylim=range(c(0,400)), type="l", col="red", axes = FALSE, xlab = "", ylab = "")
+par(new=TRUE)
+plot(Complaints$SA, ylim=range(c(0,400)), type="l", col="green", axes = FALSE, xlab = "", ylab = "")
+par(new=TRUE)
+plot(Complaints$Eur, ylim=range(c(0,400)), type="l", col="blue", axes = FALSE, xlab = "", ylab = "")
+par(new=TRUE)
+plot(Complaints$Pac, ylim=range(c(0,400)), type="l", col="magenta", axes = FALSE, xlab = "", ylab = "")
+par(new=TRUE)
+plot(Complaints$China, ylim=range(c(0,400)), type="l", col="deeppink4", axes = FALSE, xlab = "", ylab = "")
+
+worldComplaints <- data.frame(Regions = "World", RegionComplaints = Complaints$World)
+naComplaints <- data.frame(Regions = "North America", RegionComplaints = Complaints$'NA')
+saComplaints <- data.frame(Regions = "South America", RegionComplaints = Complaints$SA)
+euComplaints <- data.frame(Regions = "Europe", RegionComplaints = Complaints$Eur)
+prComplaints <- data.frame(Regions = "Pacific Rim", RegionComplaints = Complaints$Pac)
+chComplaints <- data.frame(Regions = "China", RegionComplaints = Complaints$China)
+
+complaintsPlotData <- rbind(worldComplaints, naComplaints, saComplaints, euComplaints, prComplaints, chComplaints)
+
+ggplot(complaintsPlotData, aes(x=Regions, y=RegionComplaints, fill=Regions)) +  geom_boxplot()
+
 ## knitr mowerUnitSalesDataTags
 
 musDataTags <- c("Region", "Month", "Sales")
@@ -315,8 +340,6 @@ mowerUnitSales2014 <- MowerUnitSales %>%
 mowerUnitSales2014$Month <- as.POSIXct(mowerUnitSales2014$Month, origin="1970-01-01")
 ggplot(mowerUnitSales2014, aes(x=Month, y=Sales)) + geom_bar(aes(fill=Region), stat="identity")
 
-# ###########
-
 ## knitr tractorUnitSalesDataTags
 
 tusDataTags <- c("Region", "Month", "Sales")
@@ -360,6 +383,18 @@ tractorUnitSales2014 <- MowerUnitSales %>%
     tGraphData(MowerUnitSales$Month[49:60],tusDataTags)
 tractorUnitSales2014$Month <- as.POSIXct(tractorUnitSales2014$Month, origin="1970-01-01")
 ggplot(tractorUnitSales2014, aes(x=Month, y=Sales)) + geom_bar(aes(fill=Region), stat="identity")
+
+## @knitr defectsAfterDelivery
+
+year2010 <- data.frame(Years = "2010", Defects = DefectsAfterDelivery$`2010`)
+year2011 <- data.frame(Years = "2011", Defects = DefectsAfterDelivery$`2011`)
+year2012 <- data.frame(Years = "2012", Defects = DefectsAfterDelivery$`2012`)
+year2013 <- data.frame(Years = "2013", Defects = DefectsAfterDelivery$`2013`)
+year2014 <- data.frame(Years = "2014", Defects = DefectsAfterDelivery$`2014`)
+
+defectsAfterDeliveryPlotData <- rbind(year2010, year2011, year2012, year2013, year2014)
+
+ggplot(defectsAfterDeliveryPlotData, aes(x=Years, y=Defects, fill=Years)) +  geom_boxplot()
 
 ## @knitr responseTime
 
