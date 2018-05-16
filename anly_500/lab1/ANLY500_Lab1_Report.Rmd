@@ -368,6 +368,9 @@ The [Insight into the Complaints] is as follows:
 
 The [Mower Unit Sales by Year] is as follows:
 
+```{r mowerUnitSalesDataTags, echo=FALSE}
+```
+
 *2010:*
 
 ```{r mowerUnitSales2010, echo=FALSE}
@@ -860,12 +863,15 @@ Once again, the p-value is greater than .05 who we conclude that there is no sta
 ```{r endUserSatChina, eval=FALSE}
 ```
 
-### Insight into the Complaints:
+### Insight into the Complaints
 
 ```{r complaints, eval=FALSE}
 ```
 
 ### Mower Unit Sales by Year
+
+```{r mowerUnitSalesDataTags, eval=FALSE}
+```
 
 *2010:*
 

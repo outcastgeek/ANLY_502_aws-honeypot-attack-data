@@ -271,7 +271,7 @@ chEndUserSat <- EndUserSat %>%
 ggplot(chEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
 ggplot(chEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
 
-## knitr complaints
+## @knitr complaints
 
 plot(Complaints$World, ylim=range(c(0, 400)), type="l", xlab="Month", ylab="Number of Complaints")
 par(new=TRUE)
@@ -296,7 +296,7 @@ complaintsPlotData <- rbind(worldComplaints, naComplaints, saComplaints, euCompl
 
 ggplot(complaintsPlotData, aes(x=Regions, y=RegionComplaints, fill=Regions)) +  geom_boxplot()
 
-## knitr mowerUnitSalesDataTags
+## @knitr mowerUnitSalesDataTags
 
 musDataTags <- c("Region", "Month", "Sales")
 
