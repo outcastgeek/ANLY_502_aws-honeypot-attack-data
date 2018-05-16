@@ -67,6 +67,18 @@ tGraphData <- function(tDFrame, cols1,cols2) {
     data.m2
 }
 
+# Creates the transpose of a chunk of a Data Frame
+chunkTranspose <- function(DFrame, lRow, hRow, lCol, hCol) {
+    tdFrame <- t(DFrame[lRow:hRow,lCol:hCol])
+    tdFrame
+}
+
+# Converts column of Timestamps to Date
+ttColToDate <- function(dFrame, colName) {
+    dFrame[colName] <- as.POSIXct(dFrame[colName], origin="1970-01-01")
+    dFrame
+}
+
 ## @knitr loadSheets
 
 perfFileName <- "Performance Lawn Equipment Database.xlsx"
@@ -258,51 +270,92 @@ chEndUserSat <- EndUserSat %>%
 ggplot(chEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
 ggplot(chEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
 
-###########
-
 ## knitr mowerUnitSalesDataTags
 
-musDataTags <- c("Level", "Year", "Counts")
+musDataTags <- c("Region", "Month", "Sales")
 
-## @knitr mowerUnitSalesNorthAmerica
+## @knitr mowerUnitSales2010
 
-naMowerUnitSales <- MowerUnitSales %>%
-    sectionTranspose(1,5, 3,8) %>%
-    tGraphData(yearsCols,musDataTags)
-ggplot(naMowerUnitSales, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
-ggplot(naMowerUnitSales, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
+mowerUnitSales2010 <- MowerUnitSales %>%
+    chunkTranspose(1,12, 2,7) %>%
+    tGraphData(MowerUnitSales$Month[1:12],musDataTags)
+mowerUnitSales2010$Month <- as.POSIXct(mowerUnitSales2010$Month, origin="1970-01-01")
+ggplot(mowerUnitSales2010, aes(x=Month, y=Sales)) + geom_bar(aes(fill=Region), stat="identity")
 
-## @knitr mowerUnitSalesSouthAmerica
+## @knitr mowerUnitSales2011
 
-saMowerUnitSales <- MowerUnitSales %>%
-    sectionTranspose(6,10, 3,8) %>%
-    tGraphData(yearsCols,musDataTags)
-ggplot(saMowerUnitSales, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
-ggplot(saMowerUnitSales, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
+mowerUnitSales2011 <- MowerUnitSales %>%
+    chunkTranspose(13,24, 2,7) %>%
+    tGraphData(MowerUnitSales$Month[13:24],musDataTags)
+mowerUnitSales2011$Month <- as.POSIXct(mowerUnitSales2011$Month, origin="1970-01-01")
+ggplot(mowerUnitSales2011, aes(x=Month, y=Sales)) + geom_bar(aes(fill=Region), stat="identity")
 
-## @knitr mowerUnitSalesEurope
+## @knitr mowerUnitSales2012
 
-euMowerUnitSales <- MowerUnitSales %>%
-    sectionTranspose(11,15, 3,8) %>%
-    tGraphData(yearsCols,musDataTags)
-ggplot(euMowerUnitSales, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
-ggplot(euMowerUnitSales, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
+mowerUnitSales2012 <- MowerUnitSales %>%
+    chunkTranspose(25,36, 2,7) %>%
+    tGraphData(MowerUnitSales$Month[25:36],musDataTags)
+mowerUnitSales2012$Month <- as.POSIXct(mowerUnitSales2012$Month, origin="1970-01-01")
+ggplot(mowerUnitSales2012, aes(x=Month, y=Sales)) + geom_bar(aes(fill=Region), stat="identity")
 
-## @knitr mowerUnitSalesPacific
+## @knitr mowerUnitSales2013
 
-prMowerUnitSales <- MowerUnitSales %>%
-    sectionTranspose(16,20, 3,8) %>%
-    tGraphData(yearsCols,musDataTags)
-ggplot(prMowerUnitSales, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
-ggplot(prMowerUnitSales, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
+mowerUnitSales2013 <- MowerUnitSales %>%
+    chunkTranspose(37,48, 2,7) %>%
+    tGraphData(MowerUnitSales$Month[37:48],musDataTags)
+mowerUnitSales2013$Month <- as.POSIXct(mowerUnitSales2013$Month, origin="1970-01-01")
+ggplot(mowerUnitSales2013, aes(x=Month, y=Sales)) + geom_bar(aes(fill=Region), stat="identity")
 
-## @knitr mowerUnitSalesChina
+## @knitr mowerUnitSales2014
 
-yearsInChinaCols <- c("2012", "2013", "2014")
+mowerUnitSales2014 <- MowerUnitSales %>%
+    chunkTranspose(49,60, 2,7) %>%
+    tGraphData(MowerUnitSales$Month[49:60],musDataTags)
+mowerUnitSales2014$Month <- as.POSIXct(mowerUnitSales2014$Month, origin="1970-01-01")
+ggplot(mowerUnitSales2014, aes(x=Month, y=Sales)) + geom_bar(aes(fill=Region), stat="identity")
 
-chMowerUnitSales <- MowerUnitSales %>%
-    sectionTranspose(21,23, 3,8) %>%
-    tGraphData(yearsInChinaCols,musDataTags)
-ggplot(chMowerUnitSales, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
-ggplot(chMowerUnitSales, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
+# ###########
 
+## knitr tractorUnitSalesDataTags
+
+tusDataTags <- c("Region", "Month", "Sales")
+
+## @knitr tractorUnitSales2010
+
+tractorUnitSales2010 <- MowerUnitSales %>%
+    chunkTranspose(1,12, 2,7) %>%
+    tGraphData(MowerUnitSales$Month[1:12],tusDataTags)
+tractorUnitSales2010$Month <- as.POSIXct(tractorUnitSales2010$Month, origin="1970-01-01")
+ggplot(tractorUnitSales2010, aes(x=Month, y=Sales)) + geom_bar(aes(fill=Region), stat="identity")
+
+## @knitr tractorUnitSales2011
+
+tractorUnitSales2011 <- MowerUnitSales %>%
+    chunkTranspose(13,24, 2,7) %>%
+    tGraphData(MowerUnitSales$Month[13:24],tusDataTags)
+tractorUnitSales2011$Month <- as.POSIXct(tractorUnitSales2011$Month, origin="1970-01-01")
+ggplot(tractorUnitSales2011, aes(x=Month, y=Sales)) + geom_bar(aes(fill=Region), stat="identity")
+
+## @knitr tractorUnitSales2012
+
+tractorUnitSales2012 <- MowerUnitSales %>%
+    chunkTranspose(25,36, 2,7) %>%
+    tGraphData(MowerUnitSales$Month[25:36],tusDataTags)
+tractorUnitSales2012$Month <- as.POSIXct(tractorUnitSales2012$Month, origin="1970-01-01")
+ggplot(tractorUnitSales2012, aes(x=Month, y=Sales)) + geom_bar(aes(fill=Region), stat="identity")
+
+## @knitr tractorUnitSales2013
+
+tractorUnitSales2013 <- MowerUnitSales %>%
+    chunkTranspose(37,48, 2,7) %>%
+    tGraphData(MowerUnitSales$Month[37:48],tusDataTags)
+tractorUnitSales2013$Month <- as.POSIXct(tractorUnitSales2013$Month, origin="1970-01-01")
+ggplot(tractorUnitSales2013, aes(x=Month, y=Sales)) + geom_bar(aes(fill=Region), stat="identity")
+
+## @knitr tractorUnitSales2014
+
+tractorUnitSales2014 <- MowerUnitSales %>%
+    chunkTranspose(49,60, 2,7) %>%
+    tGraphData(MowerUnitSales$Month[49:60],tusDataTags)
+tractorUnitSales2014$Month <- as.POSIXct(tractorUnitSales2014$Month, origin="1970-01-01")
+ggplot(tractorUnitSales2014, aes(x=Month, y=Sales)) + geom_bar(aes(fill=Region), stat="identity")

@@ -40,3 +40,15 @@ tGraphData <- function(tDFrame, cols1,cols2) {
 
     data.m2
 }
+
+# Creates the transpose of a chunk of a Data Frame
+chunkTranspose <- function(DFrame, lRow, hRow, lCol, hCol) {
+    tdFrame <- t(DFrame[lRow:hRow,lCol:hCol])
+    tdFrame
+}
+
+# Converts column of Timestamps to Date
+ttColToDate <- function(dFrame, colName) {
+    dFrame[colName] <- as.POSIXct(dFrame[colName], origin="1970-01-01")
+    dFrame
+}

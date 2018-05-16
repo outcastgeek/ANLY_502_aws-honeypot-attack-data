@@ -377,42 +377,60 @@ plot(Complaints$China, ylim=range(c(0,400)), type="l", col="deeppink4", axes = F
 
 ### Step 4: (Mower Unit Sales)
 
-The [Mower Unit Sales by Region] is as follows:
+The [Mower Unit Sales by Year] is as follows:
 
-```{r}
+*2010:*
 
-lb <- t(MowerUnitSales[,2:7])
-colnames(lb) <- MowerUnitSales$Month
-mlb <- melt(lb, id.vars=var1)
-colnames(mlb) <- c("Region", "Date", "Sales")
-mlb$Date <- as.POSIXct(mlb$Date, origin="1970-01-01")
-ggplot(mlb, aes(x=Date, y=Sales)) + geom_bar(aes(fill=Region), stat="identity") + facet_grid(Date ~ .)
-
+```{r mowerUnitSales2010, echo=FALSE}
 ```
 
-*North America:*
+*2011:*
 
-```{r mowerUnitSalesNorthAmerica, echo=FALSE}
+```{r mowerUnitSales2011, echo=FALSE}
 ```
 
-*South America:*
+*2012:*
 
-```{r mowerUnitSalesSouthAmerica, echo=FALSE}
+```{r mowerUnitSales2012, echo=FALSE}
 ```
 
-*Europe:*
+*2013:*
 
-```{r mowerUnitSalesEurope, echo=FALSE}
+```{r mowerUnitSales2013, echo=FALSE}
 ```
 
-*Pacific:*
+*2014:*
 
-```{r mowerUnitSalesPacific, echo=FALSE}
+```{r mowerUnitSales2014, echo=FALSE}
 ```
 
-*China:*
+### Step 5: (Tractor Unit Sales)
 
-```{r mowerUnitSalesChina, echo=FALSE}
+The [Tractor Unit Sales by Year] is as follows:
+
+*2010:*
+
+```{r tractorUnitSales2010, echo=FALSE}
+```
+
+*2011:*
+
+```{r tractorUnitSales2011, echo=FALSE}
+```
+
+*2012:*
+
+```{r tractorUnitSales2012, echo=FALSE}
+```
+
+*2013:*
+
+```{r tractorUnitSales2013, echo=FALSE}
+```
+
+*2014:*
+
+```{r tractorUnitSales2014, echo=FALSE}
 ```
 
 //TODO: Plot the REST!!!!
@@ -834,31 +852,58 @@ Once again, the p-value is greater than .05 who we conclude that there is no sta
 ```{r endUserSatChina, eval=FALSE}
 ```
 
-### Mower Unit Sales by Region
+### Mower Unit Sales by Year
 
-*North America:*
+*2010:*
 
-```{r mowerUnitSalesNorthAmerica, echo=FALSE}
+```{r mowerUnitSales2010, eval=FALSE}
 ```
 
-*South America:*
+*2011:*
 
-```{r mowerUnitSalesSouthAmerica, echo=FALSE}
+```{r mowerUnitSales2011, eval=FALSE}
 ```
 
-*Europe:*
+*2012:*
 
-```{r mowerUnitSalesEurope, echo=FALSE}
+```{r mowerUnitSales2012, eval=FALSE}
 ```
 
-*Pacific:*
+*2013:*
 
-```{r mowerUnitSalesPacific, echo=FALSE}
+```{r mowerUnitSales2013, eval=FALSE}
 ```
 
-*China:*
+*2014:*
 
-```{r mowerUnitSalesChina, echo=FALSE}
+```{r mowerUnitSales2014, eval=FALSE}
+```
+
+### Tractor Unit Sales by Year
+
+*2010:*
+
+```{r tractorUnitSales2010, eval=FALSE}
+```
+
+*2011:*
+
+```{r tractorUnitSales2011, eval=FALSE}
+```
+
+*2012:*
+
+```{r tractorUnitSales2012, eval=FALSE}
+```
+
+*2013:*
+
+```{r tractorUnitSales2013, eval=FALSE}
+```
+
+*2014:*
+
+```{r tractorUnitSales2014, eval=FALSE}
 ```
 
 # References:
