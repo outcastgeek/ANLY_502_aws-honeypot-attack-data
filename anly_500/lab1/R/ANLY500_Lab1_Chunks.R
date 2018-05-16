@@ -414,28 +414,22 @@ ggplot(responseTimePlotData, aes(x=Quarters, y=Time, fill=Quarters)) +  geom_box
 
 ## @knitr dashboard
 
-mowerSalesNA <- data.frame(Region="North America", Equipment="Mower", Months=MowerUnitSales$Month, Sales=MowerUnitSales$'NA')
-mowerSalesSA <- data.frame(Region="South America", Equipment="Mower", Months=MowerUnitSales$Month, Sales=MowerUnitSales$SA)
-mowerSalesEurope <- data.frame(Region="Europe", Equipment="Mower", Months=MowerUnitSales$Month, Sales=MowerUnitSales$Europe)
-mowerSalesPacific <- data.frame(Region="Pacific Rim", Equipment="Mower", Months=MowerUnitSales$Month, Sales=MowerUnitSales$Pacific)
-mowerSalesChina <- data.frame(Region="China", Equipment="Mower", Months=MowerUnitSales$Month, Sales=MowerUnitSales$China)
-mowerSalesWorld <- data.frame(Region="World", Equipment="Mower", Months=MowerUnitSales$Month, Sales=MowerUnitSales$World)
+mowerSalesNA <- data.frame(Region="North America", Equipment="Mower", Months=MowerUnitSales$Month[49:60], Sales=MowerUnitSales$'NA'[49:60])
+mowerSalesSA <- data.frame(Region="South America", Equipment="Mower", Months=MowerUnitSales$Month[49:60], Sales=MowerUnitSales$SA[49:60])
+mowerSalesEurope <- data.frame(Region="Europe", Equipment="Mower", Months=MowerUnitSales$Month[49:60], Sales=MowerUnitSales$Europe[49:60])
+mowerSalesPacific <- data.frame(Region="Pacific Rim", Equipment="Mower", Months=MowerUnitSales$Month[49:60], Sales=MowerUnitSales$Pacific[49:60])
+mowerSalesChina <- data.frame(Region="China", Equipment="Mower", Months=MowerUnitSales$Month[49:60], Sales=MowerUnitSales$China[49:60])
+mowerSalesWorld <- data.frame(Region="World", Equipment="Mower", Months=MowerUnitSales$Month[49:60], Sales=MowerUnitSales$World[49:60])
 
-# mowerSalesDashboard <- rbind(mowerSalesNA, mowerSalesSA, mowerSalesEurope, mowerSalesPacific, mowerSalesChina, mowerSalesWorld)
-#
-# ggplot(mowerSalesDashboard, aes(x=Months, y=Sales, fill=Equipment)) +  geom_boxplot() + facet_grid(Equipment ~ Region)
-
-tractorSalesNA <- data.frame(Region="North America", Equipment="Tractor", Months=TractorUnitSales$Month, Sales=TractorUnitSales$'NA')
-tractorSalesSA <- data.frame(Region="South America", Equipment="Tractor", Months=TractorUnitSales$Month, Sales=TractorUnitSales$SA)
-tractorSalesEurope <- data.frame(Region="Europe", Equipment="Tractor", Months=TractorUnitSales$Month, Sales=TractorUnitSales$Eur)
-tractorSalesPacific <- data.frame(Region="Pacific Rim", Equipment="Tractor", Months=TractorUnitSales$Month, Sales=TractorUnitSales$Pac)
-tractorSalesChina <- data.frame(Region="China", Equipment="Tractor", Months=TractorUnitSales$Month, Sales=TractorUnitSales$China)
-tractorSalesWorld <- data.frame(Region="World", Equipment="Tractor", Months=TractorUnitSales$Month, Sales=TractorUnitSales$World)
-
-# tractorSalesDashboard <- rbind(tractorSalesNA, tractorSalesSA, tractorSalesEurope, tractorSalesPacific, tractorSalesChina, tractorSalesWorld)
-#
-# ggplot(tractorSalesDashboard, aes(x=Months, y=Sales, fill=Equipment)) +  geom_boxplot() + facet_grid(Equipment ~ Region)
+tractorSalesNA <- data.frame(Region="North America", Equipment="Tractor", Months=TractorUnitSales$Month[49:60], Sales=TractorUnitSales$'NA'[49:60])
+tractorSalesSA <- data.frame(Region="South America", Equipment="Tractor", Months=TractorUnitSales$Month[49:60], Sales=TractorUnitSales$SA[49:60])
+tractorSalesEurope <- data.frame(Region="Europe", Equipment="Tractor", Months=TractorUnitSales$Month[49:60], Sales=TractorUnitSales$Eur[49:60])
+tractorSalesPacific <- data.frame(Region="Pacific Rim", Equipment="Tractor", Months=TractorUnitSales$Month[49:60], Sales=TractorUnitSales$Pac[49:60])
+tractorSalesChina <- data.frame(Region="China", Equipment="Tractor", Months=TractorUnitSales$Month[49:60], Sales=TractorUnitSales$China[49:60])
+tractorSalesWorld <- data.frame(Region="World", Equipment="Tractor", Months=TractorUnitSales$Month[49:60], Sales=TractorUnitSales$World[49:60])
 
 salesDashboard <- rbind(mowerSalesNA, mowerSalesSA, mowerSalesEurope, mowerSalesPacific, mowerSalesChina, mowerSalesWorld, tractorSalesNA, tractorSalesSA, tractorSalesEurope, tractorSalesPacific, tractorSalesChina, tractorSalesWorld)
 
-ggplot(salesDashboard, aes(x=Months, y=Sales, fill=Equipment)) +  geom_boxplot() + facet_grid(Equipment ~ Region)
+ggplot(salesDashboard, aes(x=Months, y=Sales, fill=Equipment)) +  geom_boxplot() +
+    facet_grid(Equipment ~ Region) +
+    ggtitle("Realtime Equipment Sales Dashboard for 2014")

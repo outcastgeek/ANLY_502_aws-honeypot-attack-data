@@ -502,13 +502,10 @@ hist(CustomerSurvey2014$Quality, main="Quality - Number of Responses", xlab="Lev
 
 Propose a monthly dashboard of the most important business information that Ms. Burke can use on a routine basis as data are updated. Create one using the most recent data. Your dashboard should not consist of more than 6–8 charts, which should fit comfortably on one screen.
 
-The [Realtime Sales Dashbord] is as follows:
+The most recent data available is from 2014, so the monthly [Realtime Sales Dashbord] is as follows:
 
 ```{r dashboard, echo=FALSE}
 ```
-
-//TODO: Do this part as you best see fit in terms of a choice of a dashboard
-------------------------------------------------------------------------------
 
 #Chapter 4:
 
