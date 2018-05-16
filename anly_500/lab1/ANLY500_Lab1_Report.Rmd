@@ -433,6 +433,62 @@ The [Tractor Unit Sales by Year] is as follows:
 ```{r tractorUnitSales2014, echo=FALSE}
 ```
 
+### Step 6: (On-Time Delivery)
+
+```{r}
+
+ggplot(OnTimeDelivery, aes(x=Month, y=Percent)) + geom_point(color='blue') + scale_y_continuous(labels = percent_format()) + geom_smooth(method = "lm", color='red')
+
+```
+
+### Step 7: (Defects after Delivery)
+
+```{r}
+
+plot(DefectsAfterDelivery$`2010`, ylim=range(c(0, 900)), type="l", xlab="Month", ylab="Number of Defects")
+par(new=TRUE)
+plot(DefectsAfterDelivery$`2011`, ylim=range(c(0, 900)), type="l", col="blue", axes = FALSE, xlab = "", ylab = "")
+par(new=TRUE)
+plot(DefectsAfterDelivery$`2013`, ylim=range(c(0, 900)), type="l", col="green", axes = FALSE, xlab = "", ylab = "")
+par(new=TRUE)
+plot(DefectsAfterDelivery$`2014`, ylim=range(c(0, 900)), type="l", col="red", axes = FALSE, xlab = "", ylab = "")
+par(new=TRUE)
+
+```
+
+### Step 8: (Response Time)
+
+*2013:*
+
+```{r}
+
+plot(ResponseTimesCSC$`Q1 2013`, ylim=range(c(0, 10)), type="l", xlab="", ylab="Number of Defects")
+par(new=TRUE)
+
+plot(ResponseTimesCSC$`Q2 2013`, ylim=range(c(0, 10)), type="l", col="blue", axes = FALSE, xlab = "", ylab = "")
+par(new=TRUE)
+plot(ResponseTimesCSC$`Q3 2013`, ylim=range(c(0, 10)), type="l", col="green", axes = FALSE, xlab = "", ylab = "")
+par(new=TRUE)
+plot(ResponseTimesCSC$`Q4 2013`, ylim=range(c(0, 10)), type="l", col="red", axes = FALSE, xlab = "", ylab = "")
+par(new=TRUE)
+
+```
+
+*2014:*
+
+```{r}
+
+plot(ResponseTimesCSC$`Q1 2014`, ylim=range(c(0, 10)), type="l", xlab="", ylab="Number of Defects")
+par(new=TRUE)
+plot(ResponseTimesCSC$`Q2 2014`, ylim=range(c(0, 10)), type="l", col="blue", axes = FALSE, xlab = "", ylab = "")
+par(new=TRUE)
+plot(ResponseTimesCSC$`Q3 2014`, ylim=range(c(0, 10)), type="l", col="green", axes = FALSE, xlab = "", ylab = "")
+par(new=TRUE)
+plot(ResponseTimesCSC$`Q4 2014`, ylim=range(c(0, 10)), type="l", col="red", axes = FALSE, xlab = "", ylab = "")
+par(new=TRUE)
+
+```
+
 //TODO: Plot the REST!!!!
 ------------------------
 

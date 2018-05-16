@@ -24,6 +24,7 @@ library(stats)
 library(magrittr)
 library(reshape2)
 library(BSDA)
+require(scales)
 
 ### @knitr samplePlot
 
