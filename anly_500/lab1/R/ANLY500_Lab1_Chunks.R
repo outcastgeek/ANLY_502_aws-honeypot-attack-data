@@ -257,3 +257,52 @@ chEndUserSat <- EndUserSat %>%
         tGraphData(yearsInChinaCols,dataTags)
 ggplot(chEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
 ggplot(chEndUserSat, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
+
+###########
+
+## knitr mowerUnitSalesDataTags
+
+musDataTags <- c("Level", "Year", "Counts")
+
+## @knitr mowerUnitSalesNorthAmerica
+
+naMowerUnitSales <- MowerUnitSales %>%
+    sectionTranspose(1,5, 3,8) %>%
+    tGraphData(yearsCols,musDataTags)
+ggplot(naMowerUnitSales, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
+ggplot(naMowerUnitSales, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
+
+## @knitr mowerUnitSalesSouthAmerica
+
+saMowerUnitSales <- MowerUnitSales %>%
+    sectionTranspose(6,10, 3,8) %>%
+    tGraphData(yearsCols,musDataTags)
+ggplot(saMowerUnitSales, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
+ggplot(saMowerUnitSales, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
+
+## @knitr mowerUnitSalesEurope
+
+euMowerUnitSales <- MowerUnitSales %>%
+    sectionTranspose(11,15, 3,8) %>%
+    tGraphData(yearsCols,musDataTags)
+ggplot(euMowerUnitSales, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
+ggplot(euMowerUnitSales, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
+
+## @knitr mowerUnitSalesPacific
+
+prMowerUnitSales <- MowerUnitSales %>%
+    sectionTranspose(16,20, 3,8) %>%
+    tGraphData(yearsCols,musDataTags)
+ggplot(prMowerUnitSales, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
+ggplot(prMowerUnitSales, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
+
+## @knitr mowerUnitSalesChina
+
+yearsInChinaCols <- c("2012", "2013", "2014")
+
+chMowerUnitSales <- MowerUnitSales %>%
+    sectionTranspose(21,23, 3,8) %>%
+    tGraphData(yearsInChinaCols,musDataTags)
+ggplot(chMowerUnitSales, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), position="dodge", stat="identity")
+ggplot(chMowerUnitSales, aes(x=Year, y=Counts)) + geom_bar(aes(fill=Level), stat="identity")
+

@@ -377,6 +377,44 @@ plot(Complaints$China, ylim=range(c(0,400)), type="l", col="deeppink4", axes = F
 
 ### Step 4: (Mower Unit Sales)
 
+The [Mower Unit Sales by Region] is as follows:
+
+```{r}
+
+lb <- t(MowerUnitSales[,2:7])
+colnames(lb) <- MowerUnitSales$Month
+mlb <- melt(lb, id.vars=var1)
+colnames(mlb) <- c("Region", "Date", "Sales")
+mlb$Date <- as.POSIXct(mlb$Date, origin="1970-01-01")
+ggplot(mlb, aes(x=Date, y=Sales)) + geom_bar(aes(fill=Region), stat="identity") + facet_grid(Date ~ .)
+
+```
+
+*North America:*
+
+```{r mowerUnitSalesNorthAmerica, echo=FALSE}
+```
+
+*South America:*
+
+```{r mowerUnitSalesSouthAmerica, echo=FALSE}
+```
+
+*Europe:*
+
+```{r mowerUnitSalesEurope, echo=FALSE}
+```
+
+*Pacific:*
+
+```{r mowerUnitSalesPacific, echo=FALSE}
+```
+
+*China:*
+
+```{r mowerUnitSalesChina, echo=FALSE}
+```
+
 //TODO: Plot the REST!!!!
 ------------------------
 
@@ -794,6 +832,33 @@ Once again, the p-value is greater than .05 who we conclude that there is no sta
 *China:*
 
 ```{r endUserSatChina, eval=FALSE}
+```
+
+### Mower Unit Sales by Region
+
+*North America:*
+
+```{r mowerUnitSalesNorthAmerica, echo=FALSE}
+```
+
+*South America:*
+
+```{r mowerUnitSalesSouthAmerica, echo=FALSE}
+```
+
+*Europe:*
+
+```{r mowerUnitSalesEurope, echo=FALSE}
+```
+
+*Pacific:*
+
+```{r mowerUnitSalesPacific, echo=FALSE}
+```
+
+*China:*
+
+```{r mowerUnitSalesChina, echo=FALSE}
 ```
 
 # References:
