@@ -360,3 +360,19 @@ tractorUnitSales2014 <- MowerUnitSales %>%
     tGraphData(MowerUnitSales$Month[49:60],tusDataTags)
 tractorUnitSales2014$Month <- as.POSIXct(tractorUnitSales2014$Month, origin="1970-01-01")
 ggplot(tractorUnitSales2014, aes(x=Month, y=Sales)) + geom_bar(aes(fill=Region), stat="identity")
+
+## @knitr responseTime
+
+q1.13 <- data.frame(Quarters = "Q1 2013", Time = ResponseTimesCSC$`Q1 2013`)
+q2.13 <- data.frame(Quarters = "Q2 2013", Time = ResponseTimesCSC$`Q2 2013`)
+q3.13 <- data.frame(Quarters = "Q3 2013", Time = ResponseTimesCSC$`Q3 2013`)
+q4.13 <- data.frame(Quarters = "Q4 2013", Time = ResponseTimesCSC$`Q4 2013`)
+
+q1.14 <- data.frame(Quarters = "Q1 2014", Time = ResponseTimesCSC$`Q1 2014`)
+q2.14 <- data.frame(Quarters = "Q2 2014", Time = ResponseTimesCSC$`Q2 2014`)
+q3.14 <- data.frame(Quarters = "Q3 2014", Time = ResponseTimesCSC$`Q3 2014`)
+q4.14 <- data.frame(Quarters = "Q4 2014", Time = ResponseTimesCSC$`Q4 2014`)
+
+responseTimePlotData = rbind(q1.13,q2.13,q3.13,q4.13,q1.14,q2.14,q3.14,q4.14)
+
+ggplot(responseTimePlotData, aes(x=Quarters, y=Time, fill=Quarters)) +  geom_boxplot()

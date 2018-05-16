@@ -458,35 +458,9 @@ par(new=TRUE)
 
 ### Step 8: (Response Time)
 
-*2013:*
+The [Response Times for Q1, Q2, Q3, Q4 for years 2013 and 2014] is as follows:
 
-```{r}
-
-plot(ResponseTimesCSC$`Q1 2013`, ylim=range(c(0, 10)), type="l", xlab="", ylab="Number of Defects")
-par(new=TRUE)
-
-plot(ResponseTimesCSC$`Q2 2013`, ylim=range(c(0, 10)), type="l", col="blue", axes = FALSE, xlab = "", ylab = "")
-par(new=TRUE)
-plot(ResponseTimesCSC$`Q3 2013`, ylim=range(c(0, 10)), type="l", col="green", axes = FALSE, xlab = "", ylab = "")
-par(new=TRUE)
-plot(ResponseTimesCSC$`Q4 2013`, ylim=range(c(0, 10)), type="l", col="red", axes = FALSE, xlab = "", ylab = "")
-par(new=TRUE)
-
-```
-
-*2014:*
-
-```{r}
-
-plot(ResponseTimesCSC$`Q1 2014`, ylim=range(c(0, 10)), type="l", xlab="", ylab="Number of Defects")
-par(new=TRUE)
-plot(ResponseTimesCSC$`Q2 2014`, ylim=range(c(0, 10)), type="l", col="blue", axes = FALSE, xlab = "", ylab = "")
-par(new=TRUE)
-plot(ResponseTimesCSC$`Q3 2014`, ylim=range(c(0, 10)), type="l", col="green", axes = FALSE, xlab = "", ylab = "")
-par(new=TRUE)
-plot(ResponseTimesCSC$`Q4 2014`, ylim=range(c(0, 10)), type="l", col="red", axes = FALSE, xlab = "", ylab = "")
-par(new=TRUE)
-
+```{r responseTime, echo=FALSE}
 ```
 
 //TODO: Plot the REST!!!!
@@ -960,6 +934,11 @@ Once again, the p-value is greater than .05 who we conclude that there is no sta
 *2014:*
 
 ```{r tractorUnitSales2014, eval=FALSE}
+```
+
+### Response Times for Q1, Q2, Q3, Q4 for years 2013 and 2014
+
+```{r responseTime, eval=FALSE}
 ```
 
 # References:
