@@ -359,25 +359,17 @@ The [End-User Satisfaction by Region] is as follows:
 
 ### Step 3: (Complaints)
 
-```{r echo=FALSE}
+The [Insight into the Complaints] is as follows:
 
-plot(Complaints$World, ylim=range(c(0, 400)), type="l", xlab="Month", ylab="Number of Complaints")
-par(new=TRUE)
-plot(Complaints$'NA', ylim=range(c(0,400)), type="l", col="red", axes = FALSE, xlab = "", ylab = "")
-par(new=TRUE)
-plot(Complaints$SA, ylim=range(c(0,400)), type="l", col="green", axes = FALSE, xlab = "", ylab = "")
-par(new=TRUE)
-plot(Complaints$Eur, ylim=range(c(0,400)), type="l", col="blue", axes = FALSE, xlab = "", ylab = "")
-par(new=TRUE)
-plot(Complaints$Pac, ylim=range(c(0,400)), type="l", col="magenta", axes = FALSE, xlab = "", ylab = "")
-par(new=TRUE)
-plot(Complaints$China, ylim=range(c(0,400)), type="l", col="deeppink4", axes = FALSE, xlab = "", ylab = "")
-
+```{r complaints, echo=FALSE}
 ```
 
 ### Step 4: (Mower Unit Sales)
 
 The [Mower Unit Sales by Year] is as follows:
+
+```{r mowerUnitSalesDataTags, echo=FALSE}
+```
 
 *2010:*
 
@@ -443,54 +435,17 @@ ggplot(OnTimeDelivery, aes(x=Month, y=Percent)) + geom_point(color='blue') + sca
 
 ### Step 7: (Defects after Delivery)
 
-```{r}
+The [Defects after Delivery for years 2010, 2011, 2012, 2013 and 2014] is as follows:
 
-plot(DefectsAfterDelivery$`2010`, ylim=range(c(0, 900)), type="l", xlab="Month", ylab="Number of Defects")
-par(new=TRUE)
-plot(DefectsAfterDelivery$`2011`, ylim=range(c(0, 900)), type="l", col="blue", axes = FALSE, xlab = "", ylab = "")
-par(new=TRUE)
-plot(DefectsAfterDelivery$`2013`, ylim=range(c(0, 900)), type="l", col="green", axes = FALSE, xlab = "", ylab = "")
-par(new=TRUE)
-plot(DefectsAfterDelivery$`2014`, ylim=range(c(0, 900)), type="l", col="red", axes = FALSE, xlab = "", ylab = "")
-par(new=TRUE)
-
+```{r defectsAfterDelivery, echo=FALSE}
 ```
 
 ### Step 8: (Response Time)
 
-*2013:*
+The [Response Times for Q1, Q2, Q3, Q4 for years 2013 and 2014] is as follows:
 
-```{r}
-
-plot(ResponseTimesCSC$`Q1 2013`, ylim=range(c(0, 10)), type="l", xlab="", ylab="Number of Defects")
-par(new=TRUE)
-
-plot(ResponseTimesCSC$`Q2 2013`, ylim=range(c(0, 10)), type="l", col="blue", axes = FALSE, xlab = "", ylab = "")
-par(new=TRUE)
-plot(ResponseTimesCSC$`Q3 2013`, ylim=range(c(0, 10)), type="l", col="green", axes = FALSE, xlab = "", ylab = "")
-par(new=TRUE)
-plot(ResponseTimesCSC$`Q4 2013`, ylim=range(c(0, 10)), type="l", col="red", axes = FALSE, xlab = "", ylab = "")
-par(new=TRUE)
-
+```{r responseTime, echo=FALSE}
 ```
-
-*2014:*
-
-```{r}
-
-plot(ResponseTimesCSC$`Q1 2014`, ylim=range(c(0, 10)), type="l", xlab="", ylab="Number of Defects")
-par(new=TRUE)
-plot(ResponseTimesCSC$`Q2 2014`, ylim=range(c(0, 10)), type="l", col="blue", axes = FALSE, xlab = "", ylab = "")
-par(new=TRUE)
-plot(ResponseTimesCSC$`Q3 2014`, ylim=range(c(0, 10)), type="l", col="green", axes = FALSE, xlab = "", ylab = "")
-par(new=TRUE)
-plot(ResponseTimesCSC$`Q4 2014`, ylim=range(c(0, 10)), type="l", col="red", axes = FALSE, xlab = "", ylab = "")
-par(new=TRUE)
-
-```
-
-//TODO: Plot the REST!!!!
-------------------------
 
 ##Part 2:
 
@@ -547,8 +502,10 @@ hist(CustomerSurvey2014$Quality, main="Quality - Number of Responses", xlab="Lev
 
 Propose a monthly dashboard of the most important business information that Ms. Burke can use on a routine basis as data are updated. Create one using the most recent data. Your dashboard should not consist of more than 6–8 charts, which should fit comfortably on one screen.
 
-//TODO: Do this part as you best see fit in terms of a choice of a dashboard
-------------------------------------------------------------------------------
+The most recent data available is from 2014, so the monthly [Realtime Sales Dashbord] is as follows:
+
+```{r dashboard, echo=FALSE}
+```
 
 #Chapter 4:
 
@@ -908,7 +865,15 @@ Once again, the p-value is greater than .05 who we conclude that there is no sta
 ```{r endUserSatChina, eval=FALSE}
 ```
 
+### Insight into the Complaints
+
+```{r complaints, eval=FALSE}
+```
+
 ### Mower Unit Sales by Year
+
+```{r mowerUnitSalesDataTags, eval=FALSE}
+```
 
 *2010:*
 
@@ -960,6 +925,21 @@ Once again, the p-value is greater than .05 who we conclude that there is no sta
 *2014:*
 
 ```{r tractorUnitSales2014, eval=FALSE}
+```
+
+### Defects after Delivery for years 2010, 2011, 2012, 2013 and 2014:
+
+```{r defectsAfterDelivery, eval=FALSE}
+```
+
+### Response Times for Q1, Q2, Q3, Q4 for years 2013 and 2014
+
+```{r responseTime, eval=FALSE}
+```
+
+### Realtime Sales Dashbord
+
+```{r dashboard, eval=FALSE}
 ```
 
 # References:
