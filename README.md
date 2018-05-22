@@ -21,4 +21,9 @@
 > make && make check
 > sudo make install
 ```
+* Run R Studio via Docker:
+```
+docker run --rm -p 8787:8787 -e "USER=user" -e "PASSWORD=password" -e "ROOT=TRUE" rocker/rstudio
+```
+* Install [Rattle](https://rattle.togaware.com/)
 
