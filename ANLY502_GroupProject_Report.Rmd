@@ -1,5 +1,5 @@
 ---
-title: "ANLY 502 Group Project Data"
+title: "ANLY 502 Group Project Report"
 author:
 - "Akpany Benjamin Ebby"
 date: "`r format(Sys.time(), '%d %B %Y')`"
@@ -25,14 +25,17 @@ read_chunk('R/ANLY502_GroupProjectData_Chunks.R')
 ```
 
 *Install the Required Libraries if not installed*
-```{r installLibraries}
+```{r installLibraries, echo=FALSE}
 ```
 
 *Load the Required Libraries*
-```{r loadLibraries}
+```{r loadLibraries, echo=FALSE}
 ```
 
-Some helper functions do exists to support the code snippets below such as: ```loadSheetFromFile```
+Some [helper functions] do exists to support the code snippets below such as: ```loadSheetFromFile```
+
+```{r helperFunctions, echo=FALSE}
+```
 
 #General Description of Data
 
@@ -41,28 +44,12 @@ Data has 451,581 data points collected from 9:53pm on 3 March 2013 to 5:55am on 
 The Data is in the CSV format with a size of ```47MB```, and is a ```6MB``` zipped download.
 We will analyze this Data to identify any trends or correlations that could possibly be used in predictive cyber threat vectors.
 
-###*Set Data File Name:*
+---
 
-```{r}
+Let's start by [Loading the Data Sheets]
 
-attackDataFile <- "AWS_Honeypot_marx-geo.csv"
-
+```{r loadSheets, echo=FALSE, warning=FALSE}
 ```
-
-*Load Data*
-
-```{r}
-
-# Honeypot Attack
-HoneypotAttack <- loadSheetFromFile(attackDataFile, skip = 0)
-```
-
-*Summary of Data*
-
-```{r}
-summary(HoneypotAttack)
-```
-
 
 *Structure of Data*
 
@@ -87,6 +74,71 @@ __cc:__ the country code
 __country:__ the country of the origin of the attack
 __locale:__ the locale of the origin of the attack
 __localeabbr:__ the locale abbreviation of the origin of the attack
+
+*Summary of Data*
+
+```{r}
+summary(HoneypotAttack)
+```
+
+
+######################
+
+
+Then, let us [Adjust the Attacks Data]
+
+```{r conflictsData, echo=FALSE, warning=FALSE}
+```
+
+Then, let us [Setup the Mapping Data]
+
+```{r mappingData, echo=FALSE, warning=FALSE}
+```
+
+Finally, let us [Plot the Attacks Data on the Map]
+
+```{r mapPlots, echo=FALSE, warning=FALSE}
+``` 
+
+######################
+
+
+---
+
+# Appendix:
+
+### Required Libraries
+
+```{r installLibraries, eval=FALSE}
+```
+
+```{r loadLibraries, eval=FALSE}
+```
+
+### Helper Functions
+
+```{r helperFunctions, eval=FALSE}
+```
+
+### Loading the Data Sheets
+
+```{r loadSheets, eval=FALSE}
+```
+
+### Adjust the Attacks Data
+
+```{r attacksData, eval=FALSE}
+```
+
+### Setup the Mapping Data
+
+```{r mappingData, eval=FALSE}
+```
+
+### Plot the Attacks Data on the Map
+
+```{r mapPlots, eval=FALSE}
+```
 
 #Data Source
 

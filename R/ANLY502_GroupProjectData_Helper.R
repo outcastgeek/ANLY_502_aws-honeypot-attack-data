@@ -10,6 +10,7 @@ capabilities()
 
 #Set Working Directory
 #setwd("~/datascience_workspace/MS_Analytics/anly_502/group_work")
+#setwd("/Users/outca/workspace/ms_analytics")
 getwd()
 
 #Set Library Packages Folder
