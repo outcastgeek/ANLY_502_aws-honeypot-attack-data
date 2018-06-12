@@ -1,5 +1,9 @@
 ---
 title: "ANLY 502 Group Project Report"
+author:
+ - "Akpany Benjamin Ebby"
+ - "Amit Augustine"
+ - "Zongxia Li"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
   pdf_document:
@@ -18,6 +22,8 @@ source('R/ANLY502_GroupProjectData_Helper.R')
 ```{r echo=FALSE}
 
 library(knitr)
+library(printr)
+library(formatR)
 read_chunk('R/ANLY502_GroupProjectData_Chunks.R')
 
 ```
@@ -79,14 +85,18 @@ __localeabbr:__ the locale abbreviation of the origin of the attack
 summary(HoneypotAttack)
 ```
 
+Now let's [Adjust the Attacks Data]
+```{r, attacksData, echo=FALSE}
+```
+
 ## Attacks by Protocol
 
-```{r protocolAttacks}
+```{r protocolAttacks, echo=FALSE}
 ```
 
 Then, let us [Adjust the Attacks Data]
 
-```{r conflictsData, echo=FALSE, warning=FALSE}
+```{r attacksData, echo=FALSE, warning=FALSE}
 ```
 
 Then, let us [Setup the Mapping Data]
