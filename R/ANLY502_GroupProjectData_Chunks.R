@@ -2,6 +2,8 @@
 ## @knitr installLibraries
 
 #install.packages("knitr")
+#install.packages("printr")
+#install.packages("formatR")
 #install.packages("readxl")
 #install.packages("ggplot2")
 #install.packages("pastecs")
@@ -76,40 +78,46 @@ HoneypotAttack <- attackDataFile %>%
 
 colnames(HoneypotAttack) <- c("datetime", "host", "src", "proto", "type", "spt",
                               "dpt", "srcstr", "cc", "country", "locale", "localeabbr",
-                              "postalcode", "latitude", "longitude")
+                              "postalcode", "latitude", "longitude", "NA")
+HoneypotAttack$longitude <- HoneypotAttack$longitude %>% toUtf8 %>% as.double
+HoneypotAttack$latitude <- HoneypotAttack$latitude %>% toUtf8 %>% as.double
+HoneypotAttack$spt <- HoneypotAttack$spt %>% toUtf8 %>% as.double
+
+HoneypotAttack <- HoneypotAttack %>%
+  select(c("datetime", "host", "src", "proto", "type", "spt",
+           "dpt", "srcstr", "cc", "country", "locale", "localeabbr",
+           "postalcode", "latitude", "longitude"))
 
 sampleHoneypotAttack <- sample_n(HoneypotAttack, 1000)
 
 ## @knitr attacksData
 
-attacksData <- data.frame(COUNTRY = HoneypotAttack$country,
-                          SPT = HoneypotAttack$spt,
-                          PROTO = HoneypotAttack$proto,
-                         LONGITUDE = HoneypotAttack$longitude,
-                         LATITUDE = HoneypotAttack$latitude)
+#attacksData <- data.frame(COUNTRY = HoneypotAttack$country,
+#                         SPT = HoneypotAttack$spt,
+#                         PROTO = HoneypotAttack$proto,
+#                         LONGITUDE = HoneypotAttack$longitude,
+#                         LATITUDE = HoneypotAttack$latitude)
 #attacksData <- tail(attacksData,-1)
 
-#attacksData <- attacksData %>%
-#  group_by(COUNTRY) %>%
-#  mutate(ATTACKS_COUNT = frequency(COUNTRY)) %>%
-#  filter(row_number()==1)
+attacksData <- HoneypotAttack %>%
+  group_by(country) %>%
+  mutate(ATTACKS_COUNT = n(), region=country) %>%
+  filter(row_number()==1)
 
 ## @knitr protocolAttacks
-
-attacksData <- data.frame(COUNTRY = HoneypotAttack$country,
-                          SPT = HoneypotAttack$spt,
-                          PROTO = HoneypotAttack$proto,
-                          LONGITUDE = HoneypotAttack$longitude,
-                          LATITUDE = HoneypotAttack$latitude)
 
 ggplot(sampleHoneypotAttack, aes(x = country, y = spt, fill=proto)) +
   geom_bar(stat="identity") +
   ggtitle("Attacks by Protocol")
 
-dd <- attacksData %>%
-  filter(COUNTRY %in% c("China", "Russia", "France", "south korea", "Germany"))
+#ggplot(HoneypotAttack, aes(x = country, y = spt, fill=proto)) +
+#  geom_bar(stat="identity") +
+#  ggtitle("Attacks by Protocol")
 
-ggplot(dd, aes(x = COUNTRY, y = SPT, fill=PROTO)) +
+dd <- attacksData %>%
+  filter(country %in% c("China", "Russia", "France", "south korea", "Germany"))
+
+ggplot(dd, aes(x = country, y = spt, fill=proto)) +
   geom_bar(stat="identity") +
   ggtitle("Attacks by Protocol China, Russia, France, south korea, Germany")
 
@@ -120,14 +128,22 @@ colnames(world)
 
 #attacksMapData <- attacksData
 #attacksMapData$region <- attacksData$COUNTRY
-#attacksMapData <- world %>% inner_join(., attacksMapData)
-#colnames(attacksMapData)
+
+attacksMapData <- world %>% inner_join(., attacksData)
+colnames(attacksMapData)
 
 ## @knitr mapPlots
 
 #ggplot() +
-#  geom_point(aes(x = LONGITUDE, y = LATITUDE, size = ATTACKS_COUNT), data = attacksMapData, alpha = 0.8) +
+#  geom_polygon(aes(x=long, y=lat, group=group, fill=region), attacksMapData, colour = "black") +
+#  geom_point(aes(x = longitude, y = latitude, size = ATTACKS_COUNT), data = attacksMapData, alpha = 0.8) +
 #  scale_size_area() +
 #  coord_quickmap() +
 #  ggtitle("Attacks by Location")
+
+ggplot() +
+  geom_map(aes(x=long, y=lat, group=group, map_id=region),
+           data=world, map=world, fill="white", colour="#7f7f7f", size=0.5) +
+  geom_point(aes(x = longitude, y = latitude, size = ATTACKS_COUNT), data = attacksMapData, alpha = 0.8) +
+  ggtitle("Attacks from 9:53pm on Mar 3rd to 5:55am on Sept 8th of year 2013")
 
