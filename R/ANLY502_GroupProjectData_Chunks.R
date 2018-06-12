@@ -78,17 +78,40 @@ colnames(HoneypotAttack) <- c("datetime", "host", "src", "proto", "type", "spt",
                               "dpt", "srcstr", "cc", "country", "locale", "localeabbr",
                               "postalcode", "latitude", "longitude")
 
+sampleHoneypotAttack <- sample_n(HoneypotAttack, 1000)
+
 ## @knitr attacksData
 
 attacksData <- data.frame(COUNTRY = HoneypotAttack$country,
+                          SPT = HoneypotAttack$spt,
+                          PROTO = HoneypotAttack$proto,
                          LONGITUDE = HoneypotAttack$longitude,
                          LATITUDE = HoneypotAttack$latitude)
-attacksData <- tail(attacksData,-1)
+#attacksData <- tail(attacksData,-1)
 
-attacksData <- attacksData %>%
-  group_by(COUNTRY) %>%
-  mutate(ATTACKS_COUNT = frequency(COUNTRY)) %>%
-  filter(row_number()==1)
+#attacksData <- attacksData %>%
+#  group_by(COUNTRY) %>%
+#  mutate(ATTACKS_COUNT = frequency(COUNTRY)) %>%
+#  filter(row_number()==1)
+
+## @knitr protocolAttacks
+
+attacksData <- data.frame(COUNTRY = HoneypotAttack$country,
+                          SPT = HoneypotAttack$spt,
+                          PROTO = HoneypotAttack$proto,
+                          LONGITUDE = HoneypotAttack$longitude,
+                          LATITUDE = HoneypotAttack$latitude)
+
+ggplot(sampleHoneypotAttack, aes(x = country, y = spt, fill=proto)) +
+  geom_bar(stat="identity") +
+  ggtitle("Attacks by Protocol")
+
+dd <- attacksData %>%
+  filter(COUNTRY %in% c("China", "Russia", "France", "south korea", "Germany"))
+
+ggplot(dd, aes(x = COUNTRY, y = SPT, fill=PROTO)) +
+  geom_bar(stat="identity") +
+  ggtitle("Attacks by Protocol China, Russia, France, south korea, Germany")
 
 ## @knitr mappingData
 

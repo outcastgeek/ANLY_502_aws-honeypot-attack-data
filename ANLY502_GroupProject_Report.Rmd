@@ -1,7 +1,5 @@
 ---
 title: "ANLY 502 Group Project Report"
-author:
-- "Akpany Benjamin Ebby"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
   pdf_document:
@@ -81,9 +79,10 @@ __localeabbr:__ the locale abbreviation of the origin of the attack
 summary(HoneypotAttack)
 ```
 
+## Attacks by Protocol
 
-######################
-
+```{r protocolAttacks}
+```
 
 Then, let us [Adjust the Attacks Data]
 
@@ -100,8 +99,13 @@ Finally, let us [Plot the Attacks Data on the Map]
 ```{r mapPlots, echo=FALSE, warning=FALSE}
 ``` 
 
-######################
+## Summary
 
+This is work in progress. Still needed:
+
+- Analyze attacks according to their time of occurence
+- Analyze attacks according to US locations to check for important targets
+- Create a model to predict next attack target and time
 
 ---
 
