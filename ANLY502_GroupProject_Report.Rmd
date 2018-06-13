@@ -120,31 +120,17 @@ Finally, let us [Plot the Attacks Data on the Map]
 
 ## Attacks according to US locations
 
-The purpose of this section is to analyze the frequency of attacks in each location in US. Histogram is used to do the analysis.
-```{r}
-library(dplyr)
-library(ggplot2)
-HoneypotAttack <- read.csv("AWS_Honeypot_marx-geo.csv")
-HoneypotAttack <- HoneypotAttack[,1:15]
-HoneypotAttack_us <- HoneypotAttack %>% filter(host %in% c("groucho-oregon","groucho-us-east", "groucho-norcal"))
-hist <- ggplot(data.frame(HoneypotAttack_us$host), aes(x=HoneypotAttack_us$host)) +  geom_bar()
-hist + labs(x = "Host", y = "Count", title = "Histogram of host locations in US") #Histogram of attacks according to US locations
+The purpose of this section is to analyze the frequency of [attacks in each location in US]. Histogram is used to do the analysis.
+
+```{r locationOfAttacks, echo=FALSE}
 ```
 According to the histogram, the attacks occur in Orgon most frequently, following by US-East, and North California.
 
 ## Prediction of next attack time
 
-One of the valuable information we want to know is when the next attack will occur. This section uses forecast() function to do the time series prediction. 
+One of the valuable information we want to know is when the next attack will occur. This section uses `forecast()` function to do the [time series prediction]. 
 
-```{r}
-library(lubridate)
-library(forecast)
-time <- mdy_hm(HoneypotAttack$datetime) #convert datetime to Date
-time_num <- hour(time) + minute(time)/60  #extract hour and minute and convert it to numeric
-time_num <- data.frame(time_num)
-timepred <- auto.arima(time_num) #time series prediction
-plot(forecast(timepred, h=20), main = "Forecast of next attack time") #plot of forecast result
-forecast(timepred, h=5) #forecast result, seeing the Forecast, you need to convert the numeric to Date. eg 5.982467 is 5:59. Therefore, the next attack will be at 5:59
+```{r forecastPrediction, echo=FALSE}
 ```
 The plot shows the prediction of the time of the next 20 attacks.
 
@@ -152,24 +138,8 @@ According to the tables, the next attack will occur at 5.982467 which correspond
 
 ## Prediction of next attack location
 
-Another valuable information we want to know is where the next attack will occur. This section uses multinorm() function to do the location prediction. Multinomial logistic regression is used to model nominal outcome variables, in which the log odds of the outcomes are modeled as a linear combination of the predictor variables. 
-```{r}
-split <- round(nrow(HoneypotAttack)*0.8)
-training <- HoneypotAttack[1:split,]
-testing <- HoneypotAttack[(split + 1):nrow(HoneypotAttack),] # split data into train data and test data
-locationpred <- multinom(host ~ src + spt + dpt, data = training) #regression model
-summary(locationpred)
-z <- summary(locationpred)$coefficients/summary(locationpred)$standard.errors
-p <- (1 - pnorm(abs(z), 0, 1)) * 2 #p-value of each variable
-p
-prediction <- predict(locationpred, newdata = testing, "probs") #the prediction result shows the probability of the attack occuring at each locations
-prediction
-attacklocationprob <- data.frame(colMeans(prediction,na.rm = TRUE))
-attacklocationprob <- cbind(rownames(attacklocationprob), data.frame(attacklocationprob, row.names=NULL))
-colnames(attacklocationprob) <- c("location","probability") #the average probability of the attack occuring at each locations
-attacklocationprob
-attacklocationprob$location
-ggplot(attacklocationprob, aes(x = attacklocationprob$location, y = attacklocationprob$probability)) + geom_boxplot()
+Another valuable information we want to know is where the next attack will occur. This section uses `multinorm()` function to do the [location prediction]. Multinomial logistic regression is used to model nominal outcome variables, in which the log odds of the outcomes are modeled as a linear combination of the predictor variables. 
+```{r locationPrediction, echo=FALSE}
 ```
 The prediction result shows the probability of the attack occuring at each locations. The attacklocationprob table shows the average probability of the attack occuring at each locations.
 ---
@@ -199,6 +169,18 @@ The prediction result shows the probability of the attack occuring at each locat
 ```{r attacksData, eval=FALSE}
 ```
 
+### attacks in each location in US
+```{r locationOfAttacks, eval=FALSE}
+```
+
+### time series prediction
+```{r forecastPrediction, eval=FALSE}
+```
+
+### location prediction
+```{r locationPrediction, eval=FALSE}
+```
+
 ### Setup the Mapping Data
 
 ```{r mappingData, eval=FALSE}
@@ -223,4 +205,4 @@ The personal contributions go here. Lorem Ipsum is simply dummy text of the prin
 - #Amit Augustine: 
 Due to my having experience and core knowledge in the fields on network security, cloud and threat landscape, I was able to understand and determine the various explanatory variables needed, help the team understand their relationships, and assist in the inference of our dataset analysis. Also involved in creating report and presentation slides.
 - #Zongxia Li:
-The personal contributions go here. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+With my experience with R, data analysis, and machine learning techniques, I was able to analyze the data set, including the exploratory data analysis and predictions. I contributed to the analysis of attacks’ location in US with histogram plot generated by R. I also worked on predicting the next attack time with time series forecast ,specifically ARIMA methodology. As well as possible target location prediction with Multinomial logistic regression method. I also involved in creating the report and presentation slides.

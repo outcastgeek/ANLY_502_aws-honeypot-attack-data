@@ -9,8 +9,11 @@
 #install.packages("pastecs")
 #install.packages("lattice")
 #install.packages("lmtest")
-## install.packages("maps")
-## install.packages("mapdata")
+#install.packages("maps")
+#install.packages("mapdata")
+#install.packages("lubridate")
+#install.packages("forecast")
+#install.packages("nnet")
 
 ## @knitr loadLibraries
 
@@ -21,6 +24,9 @@ library(pastecs)
 library(dplyr)
 library(maps)
 library(mapdata)
+library(lubridate)
+library(forecast)
+library(nnet)
 
 ## @knitr helperFunctions
 
@@ -90,6 +96,9 @@ HoneypotAttack <- HoneypotAttack %>%
 
 ## @knitr attacksData
 
+HoneypotAttack_us <- HoneypotAttack %>%
+  filter(host %in% c("groucho-oregon","groucho-us-east", "groucho-norcal"))
+
 attacksCountData <- HoneypotAttack %>%
   group_by(country) %>%
   mutate(ATTACKS_COUNT = n(), region=country) %>%
@@ -104,6 +113,47 @@ totalSptProtoData <- HoneypotAttack %>%
 #attacksFirst20ProtoData <- attacksCountData %>%
 #  slice(1:20)
 #colnames(attacksFirst20ProtoData)
+
+## @knitr locationOfAttacks
+
+ggplot(HoneypotAttack_us, aes(x=host)) +
+  geom_bar() +
+  labs(x = "Host", y = "Count", title = "Histogram of host locations in US") #Histogram of attacks according to US locations
+
+## @knitr forecastPrediction
+
+time <- mdy_hm(HoneypotAttack$datetime) #convert datetime to Date
+time_num <- hour(time) + minute(time)/60  #extract hour and minute and convert it to numeric
+time_num <- data.frame(time_num)
+timepred <- auto.arima(time_num) #time series prediction
+
+plot(forecast(timepred, h=20), main = "Forecast of next attack time") #plot of forecast result
+forecast(timepred, h=5) #forecast result, seeing the Forecast, you need to convert the numeric to Date. eg 5.982467 is 5:59. Therefore, the next attack will be at 5:59
+
+## @knitr locationPrediction
+
+split <- round(nrow(HoneypotAttack)*0.8)
+training <- HoneypotAttack[1:split,]
+testing <- HoneypotAttack[(split + 1):nrow(HoneypotAttack),] # split data into train data and test data
+
+locationpred <- multinom(host ~ src + spt + dpt, data = training) #regression model
+summary(locationpred)
+
+z <- summary(locationpred)$coefficients/summary(locationpred)$standard.errors
+p <- (1 - pnorm(abs(z), 0, 1)) * 2 #p-value of each variable
+p
+
+prediction <- predict(locationpred, newdata = testing, "probs") #the prediction result shows the probability of the attack occuring at each locations
+prediction
+
+attacklocationprob <- data.frame(colMeans(prediction,na.rm = TRUE))
+attacklocationprob <- cbind(rownames(attacklocationprob), data.frame(attacklocationprob, row.names=NULL))
+colnames(attacklocationprob) <- c("location","probability") #the average probability of the attack occuring at each locations
+attacklocationprob
+
+attacklocationprob$location
+
+ggplot(attacklocationprob, aes(x = attacklocationprob$location, y = attacklocationprob$probability)) + geom_boxplot()
 
 ## @knitr protocolAttacks
 
