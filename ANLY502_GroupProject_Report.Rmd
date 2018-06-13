@@ -13,6 +13,15 @@ comment: Rmd Document with Markdown + Embedded R Code
 
 #### Document as of `r Sys.Date()`
 
+## Introduction
+
+The world is moving fast towards a digital future, which encompasses people being Always On, Always Connected, and sharing a global network of information, as Data. Hence, we have the cloud revolution rapidly expanding in all spheres of our digital world, where all our information -self-created or even 3rd party sourced - is hosted and stored online in cyberspace. 
+But, an often-overlooked factor in this cloud revolution and even transitional information processing and storage, was cybersecurity. 
+Nowadays, there is tremendous focus on cybersecurity, due to risk of various security threats, amplified due to all the information stored online. We have various cybersecurity threat mitigation tools like vulnerability scanners, hybrid firewalls and Intrusion prevention systems, smart endpoint tools, honeypot techniques etc.
+'Honeypot' in cybersecurity speak, has different implementations and adaptations. Nevertheless, it's the process of exposing an asset like a computer server, network hardware, database etc., to the outside world, voluntarily without adequate threat protections, to view the incoming cyber threats, understand the techniques used, and to build a more secure enterprise cloud architecture.
+In this paper, we focus more on Honeypot technique sourced cloud attack data, and using analytical approach, make sense of the raw-attack datasets, and predict future cyber-threat vectors and attack behavior.
+
+
 ```{r setup, include=FALSE, purl=FALSE, eval=TRUE}
 
 source('R/ANLY502_GroupProjectData_Helper.R')
@@ -160,3 +169,12 @@ This is work in progress. Still needed:
 ```
 https://www.kaggle.com/casimian2000/aws-honeypot-attack-data
 ```
+
+#Contributions
+
+- #Akpany Aubin Ebby:
+The personal contributions go here. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+- #Amit Augustine: 
+The personal contributions go here. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+- #Zongxia Li:
+The personal contributions go here. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
