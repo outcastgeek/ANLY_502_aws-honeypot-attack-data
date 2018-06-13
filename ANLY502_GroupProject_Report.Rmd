@@ -130,7 +130,7 @@ According to the histogram, the attacks occur in Orgon most frequently, followin
 
 One of the valuable information we want to know is when the next attack will occur. This section uses `forecast()` function to do the [time series prediction]. 
 
-```{r forecastPrediction, echo=FALSE}
+```{r forecastPrediction}
 ```
 The plot shows the prediction of the time of the next 20 attacks.
 
@@ -139,8 +139,39 @@ According to the tables, the next attack will occur at 5.982467 which correspond
 ## Prediction of next attack location
 
 Another valuable information we want to know is where the next attack will occur. This section uses `multinorm()` function to do the [location prediction]. Multinomial logistic regression is used to model nominal outcome variables, in which the log odds of the outcomes are modeled as a linear combination of the predictor variables. 
-```{r locationPrediction, echo=FALSE}
+
+> summary(locationpred)
+Call:
+multinom(formula = host ~ src + spt + dpt, data = training)
+
+Coefficients:
+                    (Intercept)           src           spt           dpt
+groucho-norcal    -3.078383e-18  5.820251e-12  2.504480e-14  1.470998e-14
+groucho-oregon     5.813458e-18  5.698810e-10 -1.577155e-13 -1.196674e-14
+groucho-sa        -3.302551e-18  1.990879e-11  4.004279e-14  2.046523e-14
+groucho-singapore  2.093676e-18  4.507228e-10 -4.169394e-14 -7.025991e-15
+groucho-sydney    -2.840168e-18 -2.014874e-12  4.869702e-14 -7.241270e-15
+groucho-tokyo      1.069403e-17  5.387339e-10 -6.173720e-14 -3.467693e-14
+groucho-us-east   -2.246735e-18  1.112273e-10  1.047060e-13  1.809391e-14
+zeppo-norcal      -3.265972e-18  2.771078e-11  3.169074e-14  1.157041e-14
+
+Std. Errors:
+                   (Intercept)          src          spt          dpt
+groucho-norcal    2.039262e-21 4.744180e-12 3.852650e-17 9.200814e-18
+groucho-oregon    1.438330e-21 3.682128e-12 2.684050e-17 6.405141e-18
+groucho-sa        2.010850e-21 4.698765e-12 3.796864e-17 9.067455e-18
+groucho-singapore 1.491869e-21 3.802095e-12 2.783764e-17 6.646539e-18
+groucho-sydney    2.055453e-21 4.769955e-12 3.884438e-17 9.276807e-18
+groucho-tokyo     1.449455e-21 3.709682e-12 2.704207e-17 6.454545e-18
+groucho-us-east   1.847278e-21 4.432439e-12 3.475929e-17 8.300355e-18
+zeppo-norcal      1.995495e-21 4.674125e-12 3.766720e-17 8.995396e-18
+
+Residual Deviance: 1319952 
+AIC: 1320016
+
+```{r locationPredictionPlot, echo=FALSE}
 ```
+
 The prediction result shows the probability of the attack occuring at each locations. The attacklocationprob table shows the average probability of the attack occuring at each locations.
 ---
 
@@ -178,7 +209,10 @@ The prediction result shows the probability of the attack occuring at each locat
 ```
 
 ### location prediction
+
 ```{r locationPrediction, eval=FALSE}
+```
+```{r locationPredictionPlot, eval=FALSE}
 ```
 
 ### Setup the Mapping Data

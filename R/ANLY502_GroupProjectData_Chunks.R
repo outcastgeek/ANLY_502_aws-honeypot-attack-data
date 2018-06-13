@@ -23,7 +23,7 @@ library(stats)
 library(pastecs)
 library(dplyr)
 library(maps)
-library(mapdata)
+#library(mapdata)
 library(lubridate)
 library(forecast)
 library(nnet)
@@ -137,7 +137,6 @@ training <- HoneypotAttack[1:split,]
 testing <- HoneypotAttack[(split + 1):nrow(HoneypotAttack),] # split data into train data and test data
 
 locationpred <- multinom(host ~ src + spt + dpt, data = training) #regression model
-summary(locationpred)
 
 z <- summary(locationpred)$coefficients/summary(locationpred)$standard.errors
 p <- (1 - pnorm(abs(z), 0, 1)) * 2 #p-value of each variable
@@ -153,7 +152,24 @@ attacklocationprob
 
 attacklocationprob$location
 
-ggplot(attacklocationprob, aes(x = attacklocationprob$location, y = attacklocationprob$probability)) + geom_boxplot()
+ggplot(attacklocationprob, aes(x = attacklocationprob$location, y = attacklocationprob$probability)) +
+  geom_boxplot()
+
+## @knitr locationPredictionPlot
+
+#locationpred <- readRDS(file = 'locationpred.RDS')
+#locationpred <- 'locationpred.RDS' %>%
+#  fullFilePath %>%
+#  readRDS
+#summary(locationpred)
+
+attacklocationprob <- readRDS(file = 'attacklocationprob.RDS')
+#attacklocationprob <- 'attacklocationprob.RDS' %>%
+#  fullFilePath %>%
+#  readRDS
+
+ggplot(attacklocationprob, aes(x = attacklocationprob$location, y = attacklocationprob$probability)) +
+  geom_boxplot()
 
 ## @knitr protocolAttacks
 
