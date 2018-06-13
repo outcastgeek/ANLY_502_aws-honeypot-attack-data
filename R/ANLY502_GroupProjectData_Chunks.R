@@ -80,19 +80,8 @@ attackDataFile <- "AWS_Honeypot_marx-geo.csv"
 # Honeypot Attack
 HoneypotAttack <- attackDataFile %>%
   fullFilePath %>%
-  read.csv(encoding = "UTF-8", header=FALSE, stringsAsFactors=FALSE)
-
-colnames(HoneypotAttack) <- c("datetime", "host", "src", "proto", "type", "spt",
-                              "dpt", "srcstr", "cc", "country", "locale", "localeabbr",
-                              "postalcode", "latitude", "longitude", "NA")
-HoneypotAttack$longitude <- HoneypotAttack$longitude %>% toUtf8 %>% as.double
-HoneypotAttack$latitude <- HoneypotAttack$latitude %>% toUtf8 %>% as.double
-HoneypotAttack$spt <- HoneypotAttack$spt %>% toUtf8 %>% as.double
-
-HoneypotAttack <- HoneypotAttack %>%
-  select(c("datetime", "host", "src", "proto", "type", "spt",
-           "dpt", "srcstr", "cc", "country", "locale", "localeabbr",
-           "postalcode", "latitude", "longitude"))
+  read.csv(encoding = "UTF-8", header=TRUE, stringsAsFactors=FALSE)
+HoneypotAttack <- HoneypotAttack[,1:15]
 
 ## @knitr attacksData
 
@@ -105,14 +94,16 @@ attacksCountData <- HoneypotAttack %>%
   filter(row_number()==1)
 colnames(attacksCountData)
 
-totalSptProtoData <- HoneypotAttack %>%
-  group_by(proto) %>%
-  mutate(SPT_TOTAL = sum(spt)) %>%
-  filter(row_number()==1)
+top15CountriesAttacksCountData <- attacksCountData %>%
+  select(country, ATTACKS_COUNT) %>%
+  arrange(desc(ATTACKS_COUNT)) %>%
+  head(n=15)
 
-#attacksFirst20ProtoData <- attacksCountData %>%
-#  slice(1:20)
-#colnames(attacksFirst20ProtoData)
+protoCountData <- HoneypotAttack %>%
+  group_by(country) %>%
+  mutate(PROTO_COUNT = n(), region=proto) %>%
+  filter(row_number()==1)
+colnames(protoCountData)
 
 ## @knitr locationOfAttacks
 
@@ -171,15 +162,16 @@ attacklocationprob <- readRDS(file = 'attacklocationprob.RDS')
 ggplot(attacklocationprob, aes(x = attacklocationprob$location, y = attacklocationprob$probability)) +
   geom_boxplot()
 
-## @knitr protocolAttacks
+## @knitr attacksByFacet
 
-ggplot(totalSptProtoData, aes(x = proto, y = SPT_TOTAL, fill=proto)) +
+ggplot(protoCountData, aes(x = proto, y = PROTO_COUNT, fill=proto)) +
   geom_bar(stat="identity") +
-  ggtitle("Total SPT by Protocol")
+  ggtitle("Total Attacks Count by Protocol")
 
-#ggplot(attacksFirst20ProtoData, aes(x = country, y = ATTACKS_COUNT, fill=proto)) +
-#  geom_bar(stat="identity") +
-#  ggtitle("Attacks by Protocol for First 20 Countries")
+ggplot(top15CountriesAttacksCountData, aes(x = country, y = ATTACKS_COUNT, fill=country)) +
+  geom_bar(stat="identity") +
+  coord_flip() +
+  ggtitle("Top 15 Countries Total Attacks Count")
 
 ## @knitr mappingData
 
@@ -190,13 +182,6 @@ attacksCountMapData <- world %>% inner_join(., attacksCountData)
 colnames(attacksCountData)
 
 ## @knitr mapPlots
-
-#ggplot() +
-#  geom_polygon(aes(x=long, y=lat, group=group, fill=region), attacksMapData, colour = "black") +
-#  geom_point(aes(x = longitude, y = latitude, size = ATTACKS_COUNT), data = attacksMapData, alpha = 0.8) +
-#  scale_size_area() +
-#  coord_quickmap() +
-#  ggtitle("Attacks by Location")
 
 ggplot() +
   geom_map(aes(x=long, y=lat, group=group, map_id=region),
