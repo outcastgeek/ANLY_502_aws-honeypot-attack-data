@@ -246,7 +246,7 @@ https://www.kaggle.com/casimian2000/aws-honeypot-attack-data
 #Contributions
 
 - #Akpany Aubin Ebby:
-With my experience in Software Engineering, DevOps, as well as Data Visualization, I was able to make various contributions to this project, such as: setting up and managing the git repository that allowed use to share code, setting up the framework that allowed us to generate the report, and finally visually displaying interesting aspects of the Honeypot Attacks Dataset.
+With my experience in Software Engineering, DevOps, as well as Data Visualization, I was able to make various contributions to this project, such as: setting up and managing the git repository that allowed use to share code, setting up the framework that allowed us to generate the report, visually displaying interesting aspects of the Honeypot Attacks Dataset, and finally contributing to the presentation slides. 
 - #Amit Augustine: 
 Due to my having experience and core knowledge in the fields on network security, cloud and threat landscape, I was able to understand and determine the various explanatory variables needed, help the team understand their relationships, and assist in the inference of our dataset analysis. Also involved in creating report and presentation slides.
 - #Zhongxia Li:
