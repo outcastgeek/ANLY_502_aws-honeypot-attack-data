@@ -115,7 +115,7 @@ The purpose of this section is to analyze the frequency of attacks in each locat
 ```{r}
 library(dplyr)
 library(ggplot2)
-HoneypotAttack <- read.csv("C:/Users/tiant/Desktop/Monday/AWS_Honeypot_marx-geo.csv")
+HoneypotAttack <- read.csv("AWS_Honeypot_marx-geo.csv")
 HoneypotAttack <- HoneypotAttack[,1:15]
 HoneypotAttack_us <- HoneypotAttack %>% filter(host %in% c("groucho-oregon","groucho-us-east", "groucho-norcal"))
 hist <- ggplot(data.frame(HoneypotAttack_us$host), aes(x=HoneypotAttack_us$host)) +  geom_bar()
