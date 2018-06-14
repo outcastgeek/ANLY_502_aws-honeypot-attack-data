@@ -142,7 +142,7 @@ colnames(attacklocationprob) <- c("location","probability") #the average probabi
 attacklocationprob
 
 attacklocationprob$location
-
+attacklocationprob$location <- gsub(".*-","",attacklocationprob$location)
 ggplot(attacklocationprob, aes(x = attacklocationprob$location, y = attacklocationprob$probability)) +
   geom_boxplot()
 

@@ -171,14 +171,11 @@ AIC: 1320016
 ```{r locationPredictionPlot, echo=FALSE}
 ```
 
-The prediction result shows the probability of the attack occuring at each locations. The attacklocationprob table shows the average probability of the attack occuring at each locations.
+The prediction result shows the probability of the attack occuring at each locations. The attacklocationprob table shows the average probability of the attack occuring at each locations. Oregon, Tokyo, and Singapore are there locations having higher probability being attacked. 
 
-# Conclusion
+# Conclusion:
 
-We learned a few things from our analysis of the Honeypot Attacks Dataset:
-- `TCP` is the most attacked, hence vulnerable internet protocol
-- Most of the cyber attacks were launched from *China*
-- The next attack and its location origin may be somewhat predicatable
+Cyber security is a matter of concern all of the world. Cyber attackers are constantly looking for targets on the Internet. A weak system is very easy to be attacked unless the weak system is a honeypot. A honeypot is a trap set up on the Internet with minimum security settings so an attacker may easily break into it, without knowing the activities are being monitored and tracked. Honeypot attack data have been used widely by researchers to study the methods of attackers. In our project, we investigated and analyzed the Honeypot attack data from 3/3/2013 to 9/8/2013, trying to figure out the behaves of attacks and to predict the future attacks. Machine learning techniques including the statistical analysis and regression methods are very useful for the analysis. We learned a few things from our analysis of the Honeypot Attacks Dataset: - TCP is the most attacked, hence vulnerable internet protocol - Most of the cyber attacks were launched from China - Oregon, Singapore, and Tokyo are the regions more likely been attacked - The next attack and its location origin may be somewhat predicatable. 
 
 ---
 
