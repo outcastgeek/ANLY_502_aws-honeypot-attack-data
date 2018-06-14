@@ -3,7 +3,7 @@ title: "ANLY 502 Group Project Report"
 author:
  - "Akpany Benjamin Ebby"
  - "Amit Augustine"
- - "Zongxia Li"
+ - "Zhongxia Li"
 date: "`r format(Sys.time(), '%d %B %Y')`"
 output:
   pdf_document:
@@ -76,6 +76,12 @@ str(HoneypotAttack) #Good way to quickly show the structure of something
 stat.desc(HoneypotAttack)
 ```
 
+*Summary of Data*
+
+```{r}
+summary(HoneypotAttack)
+```
+
 #List of explanatory variables
 
 The explanatory variables are:	**src,	proto, type, spt, dpt, srcstr, cc, country, locale, localeabbr**
@@ -88,32 +94,25 @@ __country:__ the country of the origin of the attack
 __locale:__ the locale of the origin of the attack
 __localeabbr:__ the locale abbreviation of the origin of the attack
 
-*Summary of Data*
+#Data Wrangling and Charts
 
-```{r}
-summary(HoneypotAttack)
-```
-
-Now let's [Adjust the Attacks Data]
+Let's [Adjust the Attacks Data]
 ```{r, attacksData, echo=FALSE}
 ```
 
-## Attacks by Protocol
+The [Attacks by Facet] give us a good idea about not only which protocols may be the most vulnerable,
+but also which countries may be the most likely to launch a cyber attack.
 
-```{r protocolAttacks, echo=FALSE}
+```{r attacksByFacet, echo=FALSE}
 ```
 
-Then, let us [Adjust the Attacks Data]
-
-```{r attacksData, echo=FALSE, warning=FALSE}
-```
-
-Then, let us [Setup the Mapping Data]
+Let us [Setup the Mapping Data]
 
 ```{r mappingData, echo=FALSE, warning=FALSE}
 ```
 
-Finally, let us [Plot the Attacks Data on the Map]
+Finally, let us [Plot the Attacks Data on the Map] to have an idea of the location origins of cyber attack,
+and provide an indication of their volume.
 
 ```{r mapPlots, echo=FALSE, warning=FALSE}
 ``` 
@@ -130,7 +129,7 @@ According to the histogram, the attacks occur in Orgon most frequently, followin
 
 One of the valuable information we want to know is when the next attack will occur. This section uses `forecast()` function to do the [time series prediction]. 
 
-```{r forecastPrediction, echo=FALSE}
+```{r forecastPrediction}
 ```
 The plot shows the prediction of the time of the next 20 attacks.
 
@@ -139,9 +138,48 @@ According to the tables, the next attack will occur at 5.982467 which correspond
 ## Prediction of next attack location
 
 Another valuable information we want to know is where the next attack will occur. This section uses `multinorm()` function to do the [location prediction]. Multinomial logistic regression is used to model nominal outcome variables, in which the log odds of the outcomes are modeled as a linear combination of the predictor variables. 
-```{r locationPrediction, echo=FALSE}
+
+> summary(locationpred)
+Call:
+multinom(formula = host ~ src + spt + dpt, data = training)
+
+Coefficients:
+                    (Intercept)           src           spt           dpt
+groucho-norcal    -3.078383e-18  5.820251e-12  2.504480e-14  1.470998e-14
+groucho-oregon     5.813458e-18  5.698810e-10 -1.577155e-13 -1.196674e-14
+groucho-sa        -3.302551e-18  1.990879e-11  4.004279e-14  2.046523e-14
+groucho-singapore  2.093676e-18  4.507228e-10 -4.169394e-14 -7.025991e-15
+groucho-sydney    -2.840168e-18 -2.014874e-12  4.869702e-14 -7.241270e-15
+groucho-tokyo      1.069403e-17  5.387339e-10 -6.173720e-14 -3.467693e-14
+groucho-us-east   -2.246735e-18  1.112273e-10  1.047060e-13  1.809391e-14
+zeppo-norcal      -3.265972e-18  2.771078e-11  3.169074e-14  1.157041e-14
+
+Std. Errors:
+                   (Intercept)          src          spt          dpt
+groucho-norcal    2.039262e-21 4.744180e-12 3.852650e-17 9.200814e-18
+groucho-oregon    1.438330e-21 3.682128e-12 2.684050e-17 6.405141e-18
+groucho-sa        2.010850e-21 4.698765e-12 3.796864e-17 9.067455e-18
+groucho-singapore 1.491869e-21 3.802095e-12 2.783764e-17 6.646539e-18
+groucho-sydney    2.055453e-21 4.769955e-12 3.884438e-17 9.276807e-18
+groucho-tokyo     1.449455e-21 3.709682e-12 2.704207e-17 6.454545e-18
+groucho-us-east   1.847278e-21 4.432439e-12 3.475929e-17 8.300355e-18
+zeppo-norcal      1.995495e-21 4.674125e-12 3.766720e-17 8.995396e-18
+
+Residual Deviance: 1319952 
+AIC: 1320016
+
+```{r locationPredictionPlot, echo=FALSE}
 ```
+
 The prediction result shows the probability of the attack occuring at each locations. The attacklocationprob table shows the average probability of the attack occuring at each locations.
+
+# Conclusion
+
+We learned a few things from our analysis of the Honeypot Attacks Dataset:
+- `TCP` is the most attacked, hence vulnerable internet protocol
+- Most of the cyber attacks were launched from *China*
+- The next attack and its location origin may be somewhat predicatable
+
 ---
 
 # Appendix:
@@ -169,6 +207,10 @@ The prediction result shows the probability of the attack occuring at each locat
 ```{r attacksData, eval=FALSE}
 ```
 
+### Attacks by Facet
+```{r attacksByFacet, eval=FALSE}
+```
+
 ### attacks in each location in US
 ```{r locationOfAttacks, eval=FALSE}
 ```
@@ -178,7 +220,10 @@ The prediction result shows the probability of the attack occuring at each locat
 ```
 
 ### location prediction
+
 ```{r locationPrediction, eval=FALSE}
+```
+```{r locationPredictionPlot, eval=FALSE}
 ```
 
 ### Setup the Mapping Data
@@ -201,8 +246,8 @@ https://www.kaggle.com/casimian2000/aws-honeypot-attack-data
 #Contributions
 
 - #Akpany Aubin Ebby:
-The personal contributions go here. Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.
+With my experience in Software Engineering, DevOps, as well as Data Visualization, I was able to make various contributions to this project, such as: setting up and managing the git repository that allowed use to share code, setting up the framework that allowed us to generate the report, visually displaying interesting aspects of the Honeypot Attacks Dataset, and finally contributing to the presentation slides. 
 - #Amit Augustine: 
 Due to my having experience and core knowledge in the fields on network security, cloud and threat landscape, I was able to understand and determine the various explanatory variables needed, help the team understand their relationships, and assist in the inference of our dataset analysis. Also involved in creating report and presentation slides.
-- #Zongxia Li:
+- #Zhongxia Li:
 With my experience with R, data analysis, and machine learning techniques, I was able to analyze the data set, including the exploratory data analysis and predictions. I contributed to the analysis of attacks’ location in US with histogram plot generated by R. I also worked on predicting the next attack time with time series forecast ,specifically ARIMA methodology. As well as possible target location prediction with Multinomial logistic regression method. I also involved in creating the report and presentation slides.
