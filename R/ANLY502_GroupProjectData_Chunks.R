@@ -171,7 +171,7 @@ ggplot(protoCountData, aes(x = proto, y = PROTO_COUNT, fill=proto)) +
 ggplot(top15CountriesAttacksCountData, aes(x = country, y = ATTACKS_COUNT, fill=country)) +
   geom_bar(stat="identity") +
   coord_flip() +
-  ggtitle("Top 15 Countries Total Attacks Count")
+  ggtitle("Top 15 Countries for Total Attacks Count")
 
 ## @knitr mappingData
 
